@@ -1,0 +1,63 @@
+//
+//  Prefix.pch
+//  RentShe
+//
+//  Created by Lengzz on 17/5/19.
+//  Copyright © 2017年 Lengzz. All rights reserved.
+//
+
+#ifndef Prefix_pch
+#define Prefix_pch
+
+#pragma mark -
+#pragma mark - 类别
+
+#import "NSObject+Common.h"
+#import "UIView+Frame.h"
+#import "UINavigationBar+Custom.h"
+
+#pragma mark -
+#pragma mark - 公共设置
+
+#import <RongIMKit/RongIMKit.h>
+
+#import "NetAPIManager.h"
+
+#import "Definition.h"
+
+#import "UserDefaultsManager.h"
+
+#import "SVProgressHUD.h"
+
+#import "UIImageView+WebCache.h"
+
+#import "Masonry.h"
+
+#import "IQKeyboardManager.h"
+
+#import "MJRefresh.h"
+
+#import "PublicMethod.h"
+
+#import "CommonConfig.h"
+
+#pragma mark -
+#pragma mark - 公共控制器
+
+#import "CustomNavVC.h"
+
+#import "ShareToV.h"
+
+#import "LoginVC.h"
+
+
+#pragma mark -
+#pragma mark - 公共模型
+
+#import "UserInfoM.h"
+
+#import "RentSkillM.h"
+
+#import "RentInfoM.h"
+
+#endif /* Prefix_pch */
