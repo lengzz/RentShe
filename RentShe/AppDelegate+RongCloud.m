@@ -42,7 +42,8 @@
     UITabBarItem *item = [self.tabVC.tabBar.items objectAtIndex:1];
     
     if (unreadMessageCount == 0) {
-        item.badgeValue = nil ;
+        item.badgeValue = nil;
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
         return ;
     }
     item.badgeValue = [NSString stringWithFormat:@"%ld",(long)unreadMessageCount];

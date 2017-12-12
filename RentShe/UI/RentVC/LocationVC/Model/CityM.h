@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *code;
 
++ (NSArray *)dataArr;
 + (NSString *)getCityByCode:(NSString *)code;
 + (NSString *)getCodeByCity:(NSString *)city;
 

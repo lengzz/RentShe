@@ -109,6 +109,9 @@
         _priceTF.text = @"";
         return;
     }
+    if (self.priceBlock) {
+        self.priceBlock(_priceTF.text);
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField

@@ -35,6 +35,8 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setCustomBarBackgroundColor:kRGB_Value(0xfde23d)];
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    self.navigationController.navigationBar.shadowImage = nil;
 }
 
 - (void)createNavBar

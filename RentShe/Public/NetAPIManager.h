@@ -142,4 +142,8 @@ typedef void (^HttpCallBackWithObject)(BOOL success,id object);
 
 //钱包列表
 + (void)walletList:(id)params callBack:(HttpCallBackWithObject)callBack;
+
+#pragma mark -
+#pragma mark - 我的余额
++ (void)myWallet:(HttpCallBackWithObject)callBack;
 @end

@@ -35,13 +35,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RentShe/UI/ConversationVC/ConversationDetailVC/ConversationDetailVC.m"
-            timestampString = "534423271.003459"
+            filePath = "RentShe/UI/MineVC/MyRentInfo/AddRentSkillVC/AddRentSkillVC.m"
+            timestampString = "534761825.016541"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-didTapCellPortrait:"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "-completed"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RentShe/UI/MineVC/View/MineHeadCell.m"
+            timestampString = "534765224.679108"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-refreshCellIsLogin:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

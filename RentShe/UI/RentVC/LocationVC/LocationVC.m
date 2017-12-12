@@ -12,7 +12,7 @@
 #import "LocationHotCell.h"
 #import "CityM.h"
 
-@interface LocationVC ()<UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate>
+@interface LocationVC ()<UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate,UISearchResultsUpdating,UISearchControllerDelegate>
 {
     NSString *_locationCity;
 }
@@ -22,9 +22,21 @@
 @property (nonatomic, strong) NSMutableArray *titleArr;
 @property (nonatomic, strong) NSMutableArray *hotArr;
 @property (nonatomic, strong) CLLocationManager *locationManager;
+
+@property (nonatomic, strong) UISearchController *searchCtl;
+@property (nonatomic, strong) NSMutableArray *saveArr;
+@property (nonatomic, assign) BOOL isSearch;
 @end
 
 @implementation LocationVC
+
+-(NSMutableArray *)saveArr{
+    
+    if (!_saveArr) {
+        _saveArr = [NSMutableArray new];
+    }
+    return _saveArr;
+}
 
 - (NSMutableArray *)hotArr
 {
@@ -54,6 +66,20 @@
     return _titleArr;
 }
 
+- (UISearchController *)searchCtl
+{
+    if (!_searchCtl) {
+        _searchCtl = [[UISearchController alloc] initWithSearchResultsController:nil];
+        _searchCtl.searchResultsUpdater = self;
+        _searchCtl.delegate = self;
+        _searchCtl.searchBar.placeholder = @"请输入城市名或拼音";
+        [_searchCtl.searchBar sizeToFit];
+//        _searchCtl.searchBar.barTintColor = [UIColor cyanColor];
+        _searchCtl.dimsBackgroundDuringPresentation = NO;
+    }
+    return _searchCtl;
+}
+
 - (UITableView *)myTabV
 {
     if (!_myTabV) {
@@ -66,6 +92,7 @@
         _myTabV.sectionIndexColor = kRGB(255, 117, 26);
         _myTabV.sectionIndexBackgroundColor = [UIColor clearColor];
         _myTabV.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _myTabV.tableHeaderView = self.searchCtl.searchBar;
         [self.view addSubview:_myTabV];
     }
     return _myTabV;
@@ -153,10 +180,65 @@
 }
 
 #pragma mark -
+#pragma mark- UISearchResultsUpdating
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
+    if (!searchController.searchBar.text.length) {
+        return;
+    }
+    if (self.isSearch == NO)
+    {
+        self.isSearch = YES;
+    }
+    [self.saveArr removeAllObjects];
+    
+    for (CityM *model in [CityM dataArr])
+    {
+        if ([model.city containsString:searchController.searchBar.text])
+        {
+            [self.saveArr addObject:model];
+            continue;
+        }
+        NSMutableString *pinyin = [NSMutableString stringWithString:model.city];
+        CFStringTransform((__bridge CFMutableStringRef)pinyin, 0, kCFStringTransformMandarinLatin, NO);
+        if (CFStringTransform((__bridge CFMutableStringRef)pinyin, 0, kCFStringTransformStripDiacritics, NO))
+        {
+            if ([pinyin rangeOfString:searchController.searchBar.text options:NSCaseInsensitiveSearch].length)
+            {
+                [self.saveArr addObject:model];
+            }
+        }
+    }
+    [self.myTabV reloadData];
+}
+
+-(void)didDismissSearchController:(UISearchController *)searchController
+{
+    self.isSearch = NO;
+    [self.myTabV reloadData];
+}
+
+#pragma mark -
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.isSearch)
+    {
+        self.locationBtn.selected = NO;
+        CityM *obj = self.saveArr[indexPath.row];
+        [self.locationBtn setTitle:obj.city forState:UIControlStateNormal];
+        [UserDefaultsManager setCity:obj.city];
+        [UserDefaultsManager setCityCode:obj.code];
+        if (self.cityBlock) {
+            self.cityBlock(YES);
+        }
+        [self.searchCtl setActive:NO];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self backClick];
+        });
+        return;
+    }
     if (!indexPath.section||(indexPath.section == 1 && self.hotArr.count)) {
         return;
     }
@@ -174,11 +256,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (self.isSearch) return 1;
     return self.dataArr.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.isSearch) return self.saveArr.count;
     if (!section) {
         return 1;
     }
@@ -191,6 +275,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.isSearch)
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"locationCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"locationCell"];
+            cell.textLabel.font = [UIFont systemFontOfSize:16];
+            cell.textLabel.textColor = kRGB(40, 40, 40);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            UIView *line = [[UIView alloc] init];
+            line.backgroundColor = kRGB_Value(0xf2f2f2);
+            [cell.contentView addSubview:line];
+            [line mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(cell.contentView.mas_left);
+                make.height.equalTo(@.5);
+                make.width.equalTo(@(kWindowWidth));
+                make.bottom.equalTo(cell.contentView.mas_bottom);
+            }];
+        }
+        CityM *m = self.saveArr[indexPath.row];
+        cell.textLabel.text = m.city;
+        return cell;
+    }
     if (!indexPath.section) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"locationBtnCell"];
         if (!cell) {
@@ -267,6 +373,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (self.isSearch) return 0.001;
     return 40;
 }
 
@@ -277,6 +384,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    if (self.isSearch) return [UIView new];
     UIView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"locationHeader"];
     if (!header) {
         header = [UIView new];

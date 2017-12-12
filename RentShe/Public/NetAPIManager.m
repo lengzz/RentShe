@@ -659,4 +659,17 @@
         callBack(NO,nil);
     }];
 }
+
+#pragma mark -
+#pragma mark - 我的余额
++ (void)myWallet:(HttpCallBackWithObject)callBack
+{
+    [[NetAPIManager manager] POST:base_url@"/User/myAmount" parameters:[self configParams:nil] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *dic = nil;
+        BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
+        callBack(status,dic);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callBack(NO,nil);
+    }];
+}
 @end

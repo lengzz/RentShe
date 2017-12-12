@@ -205,6 +205,7 @@ typedef NS_ENUM(NSInteger, PickType)
                           @"avatar":_avatar};
     [NetAPIManager setUserInfo:dic callBack:^(BOOL success, id object) {
         if (success) {
+            [UserDefaultsManager updateUserInfo];
             if (self.isChange)
             {
                 self.isChange();

@@ -14,7 +14,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:kUnreadMessageIsChange object:self];
+    [self.navigationController.navigationBar setCustomBarBackgroundColor:kRGB_Value(0xfde23d)];
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    self.navigationController.navigationBar.shadowImage = nil;
 }
 
 - (void)viewDidLoad {
@@ -54,10 +56,13 @@
     {
         return;
     }
-    RentDetailVC *vc = [[RentDetailVC alloc] init];
-    vc.isSelf = NO;
-    vc.user_id = userId;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.view endEditing:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        RentDetailVC *vc = [[RentDetailVC alloc] init];
+        vc.isSelf = NO;
+        vc.user_id = userId;
+        [self.navigationController pushViewController:vc animated:YES];
+    });
 }
 
 @end

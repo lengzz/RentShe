@@ -121,6 +121,7 @@
     [super viewWillAppear:animated];
     CGRect frame = self.headerV.frame;
     self.headerV.frame = frame;
+    [self updateMoney];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -294,6 +295,22 @@
             self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
         }
     }
+}
+
+- (void)updateMoney
+{
+    [SVProgressHUD show];
+    [NetAPIManager myWallet:^(BOOL success, id object) {
+        [SVProgressHUD dismiss];
+        if (success) {
+            NSDictionary *dic = object[@"data"];
+            NSString *money = dic[@"money"];
+            if (money.length) {
+                [UserDefaultsManager setMoney:money];
+                _moneyLab.text = money;
+            }
+        }
+    }];
 }
 
 #pragma mark -
