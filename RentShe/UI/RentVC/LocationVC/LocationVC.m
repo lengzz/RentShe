@@ -81,9 +81,8 @@
         _searchCtl = [[UISearchController alloc] initWithSearchResultsController:nil];
         _searchCtl.searchResultsUpdater = self;
         _searchCtl.delegate = self;
-        _searchCtl.searchBar.placeholder = @"请输入城市名或拼音";
+        _searchCtl.searchBar.placeholder = @"请输入城市名";
         [_searchCtl.searchBar sizeToFit];
-//        _searchCtl.searchBar.barTintColor = [UIColor cyanColor];
         _searchCtl.dimsBackgroundDuringPresentation = NO;
     }
     return _searchCtl;
@@ -136,6 +135,7 @@
     [self createNavbar];
     [self myTabV];
     [self.myTabV reloadData];
+    self.interactivePopDisabled = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -200,7 +200,6 @@
         self.isSearch = YES;
     }
     [self.saveArr removeAllObjects];
-    [SVProgressHUD show];
     NSString *searchStr = searchController.searchBar.text;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         for (CityM *model in self.searchArr)
@@ -210,18 +209,8 @@
                 [self.saveArr addObject:model];
                 continue;
             }
-//            NSMutableString *pinyin = [NSMutableString stringWithString:model.city];
-//            CFStringTransform((__bridge CFMutableStringRef)pinyin, 0, kCFStringTransformMandarinLatin, NO);
-//            if (CFStringTransform((__bridge CFMutableStringRef)pinyin, 0, kCFStringTransformStripDiacritics, NO))
-//            {
-//                if ([pinyin rangeOfString:searchController.searchBar.text options:NSCaseInsensitiveSearch].length)
-//                {
-//                    [self.saveArr addObject:model];
-//                }
-//            }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD dismiss];
             [self.myTabV reloadData];
         });
     });
