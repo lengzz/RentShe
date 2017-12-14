@@ -205,7 +205,7 @@ typedef NS_ENUM(NSInteger,SettingType) {
         }
         case SettingTypeGrade:
         {
-            NSString *urlStr = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@&pageNumber=0&sortOrdering=2&mt=8", kAPPID];
+            NSString *urlStr = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", kAPPID];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
             break;
         }

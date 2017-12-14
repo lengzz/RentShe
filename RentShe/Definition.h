@@ -47,8 +47,8 @@ typedef NS_ENUM(NSInteger,LoginType) {
 #define kWeCaht_APPID @"wx693fda99b5c287cd"
 #define kWeCaht_Secret @"2aa7e7f2ae26d74077a25cadc2af153d"
 
-#define kQQ_APPID @""
-#define kQQ_Secret @""
+#define kQQ_APPID @"1106607644"
+#define kQQ_Secret @"yIwbIpVaFN7UO91U"
 #define kAMapKey @"589239581301a83945f4b9c1bd6a736a"
 #define kAliScheme @"alisdkRentShe"
 

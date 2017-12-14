@@ -293,7 +293,7 @@
     lab.font = [UIFont systemFontOfSize:16];
     lab.textColor = kRGB(152, 152, 152);
     [header addSubview:lab];
-    lab.text = section ? @"如果对方未赴约，租金原路返回":@"技能分享";
+    lab.text = section ? @"如果对方未赴约，租金原路返回":@"订单信息";
 
     return header;
 }

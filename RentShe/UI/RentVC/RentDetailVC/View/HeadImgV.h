@@ -10,4 +10,5 @@
 
 @interface HeadImgV : UIView
 @property (nonatomic, strong) NSArray *dataArr;
+
 @end

@@ -115,7 +115,7 @@ typedef NS_ENUM(NSInteger,CellType) {
                           @{@"name":@"实名认证",
                             @"img":@"mine_certification",
                             @"type":@(CellTypeCertification)},
-                          @{@"name":@"技能分享",
+                          @{@"name":@"我的技能",
                             @"img":@"mine_info",
                             @"type":@(CellTypeInfo)}];
     [self.dataArr addObjectsFromArray:@[firstArr,secondArr,thirdArr]];

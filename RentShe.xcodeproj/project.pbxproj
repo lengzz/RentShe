@@ -359,6 +359,9 @@
 		1FF4E8631ED4A38A007E7B15 /* regist_nick_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FF4E8591ED4A38A007E7B15 /* regist_nick_selected@3x.png */; };
 		1FF4E8641ED4A38A007E7B15 /* regist_nick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FF4E85A1ED4A38A007E7B15 /* regist_nick@2x.png */; };
 		1FF4E8651ED4A38A007E7B15 /* regist_nick@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FF4E85B1ED4A38A007E7B15 /* regist_nick@3x.png */; };
+		4C2DFBEC1FE229F4007D6EA7 /* DQPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DFBE51FE229F3007D6EA7 /* DQPhotoModel.m */; };
+		4C2DFBED1FE229F4007D6EA7 /* DQPhotoBroswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DFBE81FE229F3007D6EA7 /* DQPhotoBroswerViewController.m */; };
+		4C2DFBEE1FE229F4007D6EA7 /* DQBroswerItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DFBEB1FE229F3007D6EA7 /* DQBroswerItemView.m */; };
 		4C739EE91F7F6B2000D5F93E /* CityM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C739EE81F7F6B2000D5F93E /* CityM.m */; };
 		4C739EED1F7F842C00D5F93E /* SearchM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C739EEC1F7F842C00D5F93E /* SearchM.m */; };
 		4C7489361FD103F300D108B3 /* share_shield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7489351FD103F200D108B3 /* share_shield@2x.png */; };
@@ -920,6 +923,12 @@
 		1FF4E8591ED4A38A007E7B15 /* regist_nick_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regist_nick_selected@3x.png"; sourceTree = "<group>"; };
 		1FF4E85A1ED4A38A007E7B15 /* regist_nick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regist_nick@2x.png"; sourceTree = "<group>"; };
 		1FF4E85B1ED4A38A007E7B15 /* regist_nick@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regist_nick@3x.png"; sourceTree = "<group>"; };
+		4C2DFBE41FE229F3007D6EA7 /* DQPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DQPhotoModel.h; sourceTree = "<group>"; };
+		4C2DFBE51FE229F3007D6EA7 /* DQPhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DQPhotoModel.m; sourceTree = "<group>"; };
+		4C2DFBE71FE229F3007D6EA7 /* DQPhotoBroswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DQPhotoBroswerViewController.h; sourceTree = "<group>"; };
+		4C2DFBE81FE229F3007D6EA7 /* DQPhotoBroswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DQPhotoBroswerViewController.m; sourceTree = "<group>"; };
+		4C2DFBEA1FE229F3007D6EA7 /* DQBroswerItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DQBroswerItemView.h; sourceTree = "<group>"; };
+		4C2DFBEB1FE229F3007D6EA7 /* DQBroswerItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DQBroswerItemView.m; sourceTree = "<group>"; };
 		4C322F2A1FDA2FD200E3EFC2 /* RentShe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RentShe.entitlements; sourceTree = "<group>"; };
 		4C739EE71F7F6B2000D5F93E /* CityM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityM.h; sourceTree = "<group>"; };
 		4C739EE81F7F6B2000D5F93E /* CityM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityM.m; sourceTree = "<group>"; };
@@ -1782,6 +1791,7 @@
 		1F6567271ECEF59E00D30107 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				4C2DFBE21FE229F3007D6EA7 /* DQPhotoBroswer */,
 				1F91BC0C1F7D3622009D9B55 /* IQKeyboardManager */,
 				1F5FE7CA1F63917000CE1988 /* MJRefresh */,
 				1F502D821EDBFCEF0007A908 /* SDWebImage */,
@@ -2377,8 +2387,8 @@
 		1FF2C2D81F0A9EA8008246E4 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				1F7507081FAD6A3300718536 /* UINavigationBar+Custom.m */,
 				1F7507091FAD6A3300718536 /* UINavigationBar+Custom.h */,
+				1F7507081FAD6A3300718536 /* UINavigationBar+Custom.m */,
 				1F41BAEB1F9CD480001EFF2E /* UIView+Frame.h */,
 				1F41BAEC1F9CD480001EFF2E /* UIView+Frame.m */,
 				1FF2C2D91F0A9F0A008246E4 /* NSObject+Common.h */,
@@ -2460,6 +2470,43 @@
 				1FF4E82F1ED42AD0007E7B15 /* regist_back@3x.png */,
 			);
 			path = "Login&Regist";
+			sourceTree = "<group>";
+		};
+		4C2DFBE21FE229F3007D6EA7 /* DQPhotoBroswer */ = {
+			isa = PBXGroup;
+			children = (
+				4C2DFBE31FE229F3007D6EA7 /* BroswerModel */,
+				4C2DFBE61FE229F3007D6EA7 /* BroswerVC */,
+				4C2DFBE91FE229F3007D6EA7 /* BroswerView */,
+			);
+			path = DQPhotoBroswer;
+			sourceTree = "<group>";
+		};
+		4C2DFBE31FE229F3007D6EA7 /* BroswerModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C2DFBE41FE229F3007D6EA7 /* DQPhotoModel.h */,
+				4C2DFBE51FE229F3007D6EA7 /* DQPhotoModel.m */,
+			);
+			path = BroswerModel;
+			sourceTree = "<group>";
+		};
+		4C2DFBE61FE229F3007D6EA7 /* BroswerVC */ = {
+			isa = PBXGroup;
+			children = (
+				4C2DFBE71FE229F3007D6EA7 /* DQPhotoBroswerViewController.h */,
+				4C2DFBE81FE229F3007D6EA7 /* DQPhotoBroswerViewController.m */,
+			);
+			path = BroswerVC;
+			sourceTree = "<group>";
+		};
+		4C2DFBE91FE229F3007D6EA7 /* BroswerView */ = {
+			isa = PBXGroup;
+			children = (
+				4C2DFBEA1FE229F3007D6EA7 /* DQBroswerItemView.h */,
+				4C2DFBEB1FE229F3007D6EA7 /* DQBroswerItemView.m */,
+			);
+			path = BroswerView;
 			sourceTree = "<group>";
 		};
 		4C739EE61F7F6B0400D5F93E /* Model */ = {
@@ -2868,6 +2915,7 @@
 				1F60E4861FA5D563004215EE /* BindMobileVC.m in Sources */,
 				1F65672C1ECEF61E00D30107 /* RootTabbarVC.m in Sources */,
 				1F5FE8061F63917000CE1988 /* MJRefreshStateHeader.m in Sources */,
+				4C2DFBEE1FE229F4007D6EA7 /* DQBroswerItemView.m in Sources */,
 				1F502DD61EDC29A40007A908 /* RentDetailVC.m in Sources */,
 				1F502DA81EDBFCEF0007A908 /* SDWebImageDecoder.m in Sources */,
 				1F540BFD1EE1457E007E39BC /* LocationHotCell.m in Sources */,
@@ -2945,6 +2993,7 @@
 				1F75070F1FAD924800718536 /* RechargeVC.m in Sources */,
 				1F60124F1FA5937D0016A94A /* BindingVC.m in Sources */,
 				1F7507121FADC21900718536 /* WithdrawVC.m in Sources */,
+				4C2DFBED1FE229F4007D6EA7 /* DQPhotoBroswerViewController.m in Sources */,
 				1FF4E8181ED41A90007E7B15 /* MASLayoutConstraint.m in Sources */,
 				1FC883DE1F3ED22200A3045F /* MOInfoVC.m in Sources */,
 				1F91BC331F7D3622009D9B55 /* IQUITextFieldView+Additions.m in Sources */,
@@ -2958,6 +3007,7 @@
 				1F5962151ED023E200E0EF30 /* MineHeadCell.m in Sources */,
 				1FF4E7FA1ED4157D007E7B15 /* SVProgressHUD.m in Sources */,
 				1F71644D1ED989F900DDFF1C /* CustomSlider.m in Sources */,
+				4C2DFBEC1FE229F4007D6EA7 /* DQPhotoModel.m in Sources */,
 				1F9315281F6CF00400C90ED4 /* AddRentSkillHeaderV.m in Sources */,
 				1F5FE7FA1F63917000CE1988 /* MJRefreshBackFooter.m in Sources */,
 				1F502DCB1EDC030B0007A908 /* RecommendVC.m in Sources */,

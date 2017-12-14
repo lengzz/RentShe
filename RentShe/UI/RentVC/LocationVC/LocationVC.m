@@ -25,10 +25,19 @@
 
 @property (nonatomic, strong) UISearchController *searchCtl;
 @property (nonatomic, strong) NSMutableArray *saveArr;
+@property (nonatomic, strong) NSArray *searchArr;  //所有城市的数据
 @property (nonatomic, assign) BOOL isSearch;
 @end
 
 @implementation LocationVC
+
+- (NSArray *)searchArr
+{
+    if (!_searchArr) {
+        _searchArr = [CityM dataArr];
+    }
+    return _searchArr;
+}
 
 -(NSMutableArray *)saveArr{
     
@@ -191,25 +200,31 @@
         self.isSearch = YES;
     }
     [self.saveArr removeAllObjects];
-    
-    for (CityM *model in [CityM dataArr])
-    {
-        if ([model.city containsString:searchController.searchBar.text])
+    [SVProgressHUD show];
+    NSString *searchStr = searchController.searchBar.text;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        for (CityM *model in self.searchArr)
         {
-            [self.saveArr addObject:model];
-            continue;
-        }
-        NSMutableString *pinyin = [NSMutableString stringWithString:model.city];
-        CFStringTransform((__bridge CFMutableStringRef)pinyin, 0, kCFStringTransformMandarinLatin, NO);
-        if (CFStringTransform((__bridge CFMutableStringRef)pinyin, 0, kCFStringTransformStripDiacritics, NO))
-        {
-            if ([pinyin rangeOfString:searchController.searchBar.text options:NSCaseInsensitiveSearch].length)
+            if ([model.city containsString:searchStr])
             {
                 [self.saveArr addObject:model];
+                continue;
             }
+//            NSMutableString *pinyin = [NSMutableString stringWithString:model.city];
+//            CFStringTransform((__bridge CFMutableStringRef)pinyin, 0, kCFStringTransformMandarinLatin, NO);
+//            if (CFStringTransform((__bridge CFMutableStringRef)pinyin, 0, kCFStringTransformStripDiacritics, NO))
+//            {
+//                if ([pinyin rangeOfString:searchController.searchBar.text options:NSCaseInsensitiveSearch].length)
+//                {
+//                    [self.saveArr addObject:model];
+//                }
+//            }
         }
-    }
-    [self.myTabV reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+            [self.myTabV reloadData];
+        });
+    });
 }
 
 -(void)didDismissSearchController:(UISearchController *)searchController

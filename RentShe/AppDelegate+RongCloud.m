@@ -31,22 +31,21 @@
 - (void)onRCIMReceiveMessage:(RCMessage *)message
                         left:(int)left
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self setBadageNum];
-    });
+    [self setBadageNum];
 }
 
 - (void)setBadageNum{
     
     NSInteger unreadMessageCount = [self getUnreadCount];
-    UITabBarItem *item = [self.tabVC.tabBar.items objectAtIndex:1];
-    
-    if (unreadMessageCount == 0) {
-        item.badgeValue = nil;
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-        return ;
-    }
-    item.badgeValue = [NSString stringWithFormat:@"%ld",(long)unreadMessageCount];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UITabBarItem *item = [self.tabVC.tabBar.items objectAtIndex:1];
+        if (unreadMessageCount == 0) {
+            item.badgeValue = nil;
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+            return ;
+        }
+        item.badgeValue = [NSString stringWithFormat:@"%ld",(long)unreadMessageCount];
+    });
 }
 
 - (NSInteger)getUnreadCount

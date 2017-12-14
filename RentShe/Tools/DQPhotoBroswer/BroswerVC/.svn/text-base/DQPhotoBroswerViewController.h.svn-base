@@ -1,0 +1,13 @@
+//
+//  DQPhotoBroswerViewController.h
+//  PhotoDemo
+//
+//  Created by deng on 16/1/13.
+//  Copyright © 2016年 YB. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface DQPhotoBroswerViewController : UIViewController
++(void)show:(UIViewController *)handleVC index:(NSUInteger)index photoModelBlock:(NSArray *(^)())photoModelBlock currentPageWhenDismiss:(void(^)(NSInteger page))setCurrentPage;
+@end

@@ -290,10 +290,10 @@ typedef void (^ViewControllerWillAppearInjectBlock)(UIViewController *viewContro
     if (!self.cusBgV)
     {
         [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-        UIView *bgV = [[UIView alloc] initWithFrame:CGRectMake(0, -CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]), CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]))];
+        UIView *bgV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]))];
         bgV.userInteractionEnabled = NO;
         bgV.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [[self.subviews firstObject] insertSubview:bgV atIndex:0];
+        [self.subviews[0] insertSubview:bgV atIndex:0];
         self.cusBgV = bgV;
     }
     self.cusBgV.backgroundColor = backgroundColor;

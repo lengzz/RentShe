@@ -49,9 +49,9 @@
     
     [[UMSocialManager defaultManager] setUmSocialAppkey:kUmeng_APPKey];
     //微信注册
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:kWeCaht_APPID appSecret:kWeCaht_Secret redirectURL:@""];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:kWeCaht_APPID appSecret:kWeCaht_Secret redirectURL:nil];
     //QQ注册
-//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:kQQ_APPID appSecret:kQQ_Secret redirectURL:@""];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:kQQ_APPID appSecret:nil redirectURL:nil];
     
     //融云
     [[RCIM sharedRCIM] initWithAppKey:kRongCAppKey];

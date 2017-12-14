@@ -1,0 +1,14 @@
+//
+//  DQBroswerItemView.h
+//  PhotoDemo
+//
+//  Created by deng on 16/1/13.
+//  Copyright © 2016年 YB. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+@class DQPhotoModel;
+@interface DQBroswerItemView : UIView
+@property (nonatomic,strong) DQPhotoModel *pModel;
+- (void)resetToDismiss:(BOOL)dismiss;//将放大的图片复原
+@end

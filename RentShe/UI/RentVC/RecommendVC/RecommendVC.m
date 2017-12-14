@@ -79,6 +79,7 @@
     [dic setValuesForKeysWithDictionary:dic1];
     [NetAPIManager recommendPeople:dic callBack:^(BOOL success, id object) {
         [self.myCollectionV.mj_header endRefreshing];
+        [self.myCollectionV.mj_footer resetNoMoreData];
         if (success) {
             id arr = object[@"data"];
             if ([arr isKindOfClass:[NSArray class]])
@@ -112,7 +113,8 @@
     [dic setValuesForKeysWithDictionary:dic1];
     [NetAPIManager recommendPeople:dic callBack:^(BOOL success, id object) {
         [self.myCollectionV.mj_footer endRefreshing];
-        if (success) {
+        if (success)
+        {
             id arr = object[@"data"];
             if ([arr isKindOfClass:[NSArray class]])
             {
@@ -123,6 +125,10 @@
                 }
                 [self.myCollectionV reloadData];
             }
+        }
+        else
+        {
+            [self.myCollectionV.mj_footer endRefreshingWithNoMoreData];
         }
     }];
 }

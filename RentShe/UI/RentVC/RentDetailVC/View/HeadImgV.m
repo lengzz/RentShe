@@ -7,6 +7,9 @@
 //
 
 #import "HeadImgV.h"
+#import "DQPhotoBroswerViewController.h"
+#import "DQPhotoModel.h"
+
 #define kHeadImgCell @"HeadImgCellIdentifier"
 #define kHeadImgBackColor [UIColor colorWithRed:242.0/255.0 green:242.0/255.0 blue:242.0/255.0 alpha:1.0]
 
@@ -18,11 +21,10 @@
 
 @interface HeadImgV ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
-    UICollectionView *_myCollectionV;
     UIView *_numV;
     UILabel *_numLab;
 }
-
+@property (nonatomic, strong) UICollectionView *myCollectionV;
 @end
 
 @implementation HeadImgV
@@ -83,6 +85,12 @@
     }
 }
 
+- (void)scrollToPage:(NSInteger)idx
+{
+    [_myCollectionV scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    _numLab.text = [NSString stringWithFormat:@"%zd/%zd",idx + 1,self.dataArr.count];
+}
+
 #pragma mark -
 #pragma mark - UICollectionViewDelegate,UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -99,7 +107,19 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    __weak typeof(self) wself = self;
+    [DQPhotoBroswerViewController showWithIndex:indexPath.item photoModelBlock:^NSArray *{
+        NSInteger count = wself.dataArr.count;
+        NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:count];
+        for (int i = 0; i < count; i++) {
+            DQPhotoModel *pbModel=[[DQPhotoModel alloc] init];
+            pbModel.image_HD_U = wself.dataArr[i];
+            [modelsM addObject:pbModel];
+        }
+        return modelsM;
+    } currentPageWhenDismiss:^(NSInteger page) {
+        [wself scrollToPage:page];
+    }];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

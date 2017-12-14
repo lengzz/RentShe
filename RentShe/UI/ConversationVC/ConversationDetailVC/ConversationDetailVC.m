@@ -17,12 +17,11 @@
     [self.navigationController.navigationBar setCustomBarBackgroundColor:kRGB_Value(0xfde23d)];
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     self.navigationController.navigationBar.shadowImage = nil;
+    [IQKeyboardManager sharedManager].enable = NO;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [IQKeyboardManager sharedManager].enable = NO;
-    
     [self createNavbar];
 }
 
@@ -35,7 +34,6 @@
 - (void)createNavbar
 {
     [self.navigationItem setTitleView:[CustomNavVC setNavgationItemTitle:self.title]];
-    
     [self.navigationItem setLeftBarButtonItem:[CustomNavVC getLeftBarButtonItemWithTarget:self action:@selector(backClick) normalImg:[UIImage imageNamed:@"setting_back"] hilightImg:[UIImage imageNamed:@"setting_back"]]];
 }
 
@@ -56,13 +54,10 @@
     {
         return;
     }
-    [self.view endEditing:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        RentDetailVC *vc = [[RentDetailVC alloc] init];
-        vc.isSelf = NO;
-        vc.user_id = userId;
-        [self.navigationController pushViewController:vc animated:YES];
-    });
+    RentDetailVC *vc = [[RentDetailVC alloc] init];
+    vc.isSelf = NO;
+    vc.user_id = userId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

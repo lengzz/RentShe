@@ -72,13 +72,35 @@
     }
     btn.enabled = NO;
     BOOL select = btn.selected;
-    [NetAPIManager setReceiveLetter:@{@"flag":@(!select)} callBack:^(BOOL success, id object) {
-        btn.enabled = YES;
-        if (success) {
-            btn.selected = !btn.selected;
-            [UserDefaultsManager setMsgFlag:btn.selected];
-        }
-    }];
+    if (select)
+    {
+        UIAlertController *ctl = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认拒绝用户私信" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *takePhoto = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [NetAPIManager setReceiveLetter:@{@"flag":@0} callBack:^(BOOL success, id object) {
+                btn.enabled = YES;
+                if (success) {
+                    btn.selected = !btn.selected;
+                    [UserDefaultsManager setMsgFlag:btn.selected];
+                }
+            }];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            btn.enabled = YES;
+        }];
+        [ctl addAction:takePhoto];
+        [ctl addAction:cancel];
+        [self presentViewController:ctl animated:YES completion:nil];
+    }
+    else
+    {
+        [NetAPIManager setReceiveLetter:@{@"flag":@1} callBack:^(BOOL success, id object) {
+            btn.enabled = YES;
+            if (success) {
+                btn.selected = !btn.selected;
+                [UserDefaultsManager setMsgFlag:btn.selected];
+            }
+        }];
+    }
 }
 
 - (void)notifyUpdateUnreadMessageCount

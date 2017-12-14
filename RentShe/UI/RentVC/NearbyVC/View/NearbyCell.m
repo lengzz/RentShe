@@ -99,6 +99,7 @@
     UILabel *professionLab = [[UILabel alloc] init];
     professionLab.font = [UIFont systemFontOfSize:12];
     professionLab.textColor = kRGB_Value(0x989898);
+    [professionLab setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
     _professionLab = professionLab;
     [self.contentView addSubview:professionLab];
     
@@ -109,6 +110,7 @@
     UILabel *priceLab = [[UILabel alloc] init];
     priceLab.font = [UIFont systemFontOfSize:12];
     priceLab.textColor = kRGB_Value(0x989898);
+    [priceLab setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     _priceLab = priceLab;
     [self.contentView addSubview:priceLab];
     
@@ -139,6 +141,7 @@
     [priceLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(distanceImg.mas_centerY);
         make.left.equalTo(priceImg.mas_right).offset(5);
+        make.right.lessThanOrEqualTo(self.contentView).offset(-5);
     }];
 }
 
@@ -188,7 +191,13 @@
         _distanceLab.text = distanceStr;
         _professionLab.text = model.user_info.vocation;
         _sexImg.image = [UIImage imageNamed:[model.user_info.gender integerValue] ? @"rent_female" : @"rent_male"];
-        [_headImg sd_setImageWithUrlStr:model.user_info.avatar];
+        NSArray *photoArr = [model.user_info.photo componentsSeparatedByString:@","];
+        if (photoArr.count)
+        {
+            [_headImg sd_setImageWithUrlStr:photoArr[0]];
+        }
+        else
+            [_headImg sd_setImageWithUrlStr:model.user_info.avatar];
     }
     [self labSizeToFit];
 }

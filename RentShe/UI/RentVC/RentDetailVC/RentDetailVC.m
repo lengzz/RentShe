@@ -97,10 +97,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setCustomBarBackgroundColor:[UIColor clearColor]];
-    [UIView animateWithDuration:0.2 animations:^{
-        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    }];
-//    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
@@ -349,7 +346,7 @@
             }
             else
             {
-                cell.textLabel.text = @"技能分享";
+                cell.textLabel.text = @"我的技能";
             }
             break;
         }

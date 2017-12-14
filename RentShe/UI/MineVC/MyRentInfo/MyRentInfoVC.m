@@ -60,7 +60,7 @@
 - (void)createNavBar
 {
     self.view.backgroundColor = kRGB_Value(0xf2f2f2);
-    [self.navigationItem setTitleView:[CustomNavVC setNavgationItemTitle:@"技能分享"]];
+    [self.navigationItem setTitleView:[CustomNavVC setNavgationItemTitle:@"我的技能"]];
     [self.navigationController.navigationBar setCustomBarBackgroundColor:[UIColor whiteColor]];
     
     [self.navigationItem setLeftBarButtonItem:[CustomNavVC getLeftBarButtonItemWithTarget:self action:@selector(backClick) normalImg:[UIImage imageNamed:@"setting_back"] hilightImg:[UIImage imageNamed:@"setting_back"]]];

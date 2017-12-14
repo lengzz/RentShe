@@ -148,12 +148,13 @@
                              };
     [NetAPIManager nearbyPeople:params callBack:^(BOOL success, id object) {
         [self.myTabV.mj_footer endRefreshing];
-        if (success) {
+        if (success)
+        {
             NSArray *arr = object[@"data"];
             if ([arr isKindOfClass:[NSArray class]])
             {
                 if (!arr.count) {
-                    [self.myTabV.mj_footer resetNoMoreData];
+                    [self.myTabV.mj_footer endRefreshingWithNoMoreData];
                 }
                 for (id obj in arr) {
                     NearbyM *model = [NearbyM new];
@@ -162,6 +163,10 @@
                 }
                 [self.myTabV reloadData];
             }
+        }
+        else
+        {
+            [self.myTabV.mj_footer endRefreshingWithNoMoreData];
         }
     }];
 }

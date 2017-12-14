@@ -1,0 +1,180 @@
+//
+//  DQPhotoBroswerViewController.m
+//  PhotoDemo
+//
+//  Created by deng on 16/1/13.
+//  Copyright © 2016年 YB. All rights reserved.
+//
+
+#import "DQPhotoBroswerViewController.h"
+#import "DQBroswerItemView.h"
+@interface DQPhotoBroswerViewController ()<UIScrollViewDelegate>
+@property (strong, nonatomic)  UIScrollView *scrollView;
+/** 外部操作控制器 */
+@property (nonatomic,strong) UIViewController *handleVC;
+/** 初始显示的index */
+@property (nonatomic,assign) NSUInteger index;
+/** 相册数组 */
+@property (nonatomic,strong) NSArray *photoModels;
+/**页码显示*/
+@property (nonatomic,strong) UILabel *pageNumLabel;
+
+@property(nonatomic,copy) void(^setCurrentPageBlock)(NSInteger page);
+@end
+
+@implementation DQPhotoBroswerViewController
+- (UIScrollView *)scrollView
+{
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] init];
+        _scrollView.frame = self.view.bounds;
+        _scrollView.pagingEnabled = YES;
+        _scrollView.contentSize = CGSizeMake(self.view.width * self.photoModels.count , 0);
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.bounces = YES;
+        _scrollView.delegate = self;
+        [_scrollView setContentOffset:CGPointMake(self.index * self.view.width, 0) animated:NO];
+        [self.view addSubview:_scrollView];
+    }
+    return _scrollView;
+}
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+   
+}
+
+
++(void)show:(UIViewController *)handleVC index:(NSUInteger)index photoModelBlock:(NSArray *(^)())photoModelBlock currentPageWhenDismiss:(void(^)(NSInteger page))setCurrentPage
+{
+    DQPhotoBroswerViewController *pbVC = [[self alloc] init];
+    
+    //记录
+    pbVC.index = index;
+    
+    pbVC.photoModels = photoModelBlock();
+    
+    pbVC.setCurrentPageBlock = setCurrentPage;
+    
+    pbVC.handleVC = handleVC;
+    
+    [pbVC.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:pbVC action:@selector(dismiss)]];
+    //展示
+    [pbVC show];
+
+}
+- (void)show
+{
+    //拿到window
+    UIWindow *window = _handleVC.view.window;
+    
+    if(window == nil){
+        
+//        NSLog(@"错误：窗口为空！");
+        return;
+    }
+    
+    self.view.frame=[UIScreen mainScreen].bounds;
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    //添加视图
+    [window addSubview:self.view];
+    
+    //添加子控制器
+    [_handleVC addChildViewController:self];
+
+    for (int i = 0; i < self.photoModels.count;i++) {
+        DQBroswerItemView *itemView = [[DQBroswerItemView alloc] init];
+        itemView.frame = CGRectMake(self.view.width * i, 0, self.view.width, self.view.height);
+        itemView.pModel = self.photoModels[i];
+        [self.scrollView addSubview:itemView];
+    }
+      __weak typeof(self) weak = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weak addNumPageIndicate];
+    });
+    
+}
+#pragma mark - 获取显示当前页码
+- (void)addNumPageIndicate
+{
+     self.pageNumLabel = [[UILabel alloc] init];
+     self.pageNumLabel.textColor = [UIColor whiteColor];
+     self.pageNumLabel.textAlignment = NSTextAlignmentCenter;
+     self.pageNumLabel.x = SCREENW - 70;
+     self.pageNumLabel.y = SCREENH - 35 - 39;
+     self.pageNumLabel.width = 39;
+     self.pageNumLabel.height = 39;
+     self.pageNumLabel.attributedText = [self addTextPageNum:self.index + 1];
+   
+    UIImageView *imgView = [[UIImageView alloc] init];
+    imgView.image = [UIImage imageNamed:@"pageBg"];
+    imgView.frame = self.pageNumLabel.frame;
+    [self.view addSubview:imgView];
+    [self.view addSubview: self.pageNumLabel];
+}
+- (NSAttributedString *)addTextPageNum:(NSInteger)idx
+{
+    
+    NSString *text =[NSString stringWithFormat:@"%ld/%ld",(long)idx,self.photoModels.count];
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:text];
+    NSRange range = [text rangeOfString:@(idx).stringValue];
+    if (idx >= 10) {
+        self.pageNumLabel.font = [UIFont systemFontOfSize:13];
+        [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:range];
+    }else{
+        self.pageNumLabel.font = [UIFont systemFontOfSize:17];
+        [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:18] range:range];
+    }
+    return attStr;
+}
+
+- (void)dismiss
+{
+    [self zoomBackBeforeAndDismiss:YES];
+    NSInteger page = self.scrollView.contentOffset.x / self.scrollView.width;
+    self.setCurrentPageBlock(page);
+    __weak typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        _handleVC =nil;
+        
+        weakSelf.photoModels = nil;
+        
+        //移除视图
+        [weakSelf.view removeFromSuperview];
+        
+        weakSelf.view = nil;
+        
+        //移除
+        [weakSelf removeFromParentViewController];
+
+    });
+}
+#pragma mark - 复原图片
+- (void)zoomBackBeforeAndDismiss:(BOOL)dismiss
+{
+    [self.scrollView.subviews enumerateObjectsUsingBlock:^(UIView *subView, NSUInteger idx, BOOL *stop) {
+        if([subView isKindOfClass:[DQBroswerItemView class]]){
+            DQBroswerItemView *itemView = (DQBroswerItemView *)subView;
+            [itemView resetToDismiss:dismiss];
+        }
+    }];
+
+}
+
+#pragma mark - scrollView代理方法
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self zoomBackBeforeAndDismiss:NO];
+     self.pageNumLabel.attributedText = [self addTextPageNum:(NSInteger)scrollView.contentOffset.x/SCREENW + 1];
+}
+- (void)dealloc
+{
+ DLog(@"%s",__func__);
+}
+
+
+
+
+@end

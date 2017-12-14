@@ -72,9 +72,14 @@
     _priceLab = priceLab;
     [self.contentView addSubview:priceLab];
     
+    [nameLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(10);
+        make.top.equalTo(headImg.mas_bottom).offset(6);
+    }];
     [sexImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(nameLab.mas_centerY);
         make.left.equalTo(nameLab.mas_right).offset(5);
+        make.right.lessThanOrEqualTo(professionLab.mas_left).offset(-5);
         make.width.equalTo(@11);
         make.height.equalTo(@11);
     }];
@@ -141,14 +146,20 @@
         }
         
         _sexImg.image = [UIImage imageNamed:[model.user_info.gender integerValue] ? @"rent_female" : @"rent_male"];
-        [_headImg sd_setImageWithUrlStr:model.user_info.avatar];
+        NSArray *photoArr = [model.user_info.photo componentsSeparatedByString:@","];
+        if (photoArr.count)
+        {
+            [_headImg sd_setImageWithUrlStr:photoArr[0]];
+        }
+        else
+            [_headImg sd_setImageWithUrlStr:model.user_info.avatar];
     }
     [self labSizeToFit];
 }
 
 - (void)labSizeToFit
 {
-    [_nameLab sizeToFit];
+//    [_nameLab sizeToFit];
     
     CGSize size = [_professionLab.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}];
     size.width += 15;

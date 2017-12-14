@@ -1,0 +1,15 @@
+//
+//  PhotoModel.h
+//  PhotoDemo
+//
+//  Created by deng on 16/1/13.
+//  Copyright © 2016年 YB. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface DQPhotoModel : NSObject
+/** 高清图地址 */
+@property (nonatomic,copy) NSString *image_HD_U;
+
+@end

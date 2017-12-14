@@ -16,6 +16,9 @@
 #import "CusAnnotation.h"
 
 @interface MOSelLocationVC ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,AMapSearchDelegate,UISearchBarDelegate>
+{
+    BOOL _isBegin;
+}
 @property (nonatomic, strong) UITableView *myTabV;
 @property (nonatomic, strong) NSMutableArray *dataArr;
 @property (nonatomic, strong) UISearchBar *searchBar;
@@ -132,15 +135,16 @@
 
 - (void)mapKeywordsSearch:(NSString *)keywords
 {
-    AMapPOIKeywordsSearchRequest *request = [[AMapPOIKeywordsSearchRequest alloc] init];
+    _isBegin = YES;
+    AMapPOIAroundSearchRequest *request = [[AMapPOIAroundSearchRequest alloc] init];
     
-//    request.location = [AMapGeoPoint locationWithLatitude:self.hearderV.centerPoint.latitude longitude:self.hearderV.centerPoint.longitude];
+    request.location = [AMapGeoPoint locationWithLatitude:self.hearderV.centerPoint.latitude longitude:self.hearderV.centerPoint.longitude];
     request.keywords  = keywords;
     /* 按照距离排序. */
     request.sortrule  = 0;
     request.requireExtension = YES;
     
-    [self.mapSearch AMapPOIKeywordsSearch:request];
+    [self.mapSearch AMapPOIAroundSearch:request];
 }
 
 #pragma mark -
@@ -204,6 +208,15 @@
 {
     if (response.pois.count == 0)
     {
+        if (_isBegin)
+        {
+            AMapPOIKeywordsSearchRequest *request = [[AMapPOIKeywordsSearchRequest alloc] init];
+            request.keywords  = self.searchBar.text;
+            request.sortrule  = 0;
+            request.requireExtension = YES;
+            [self.mapSearch AMapPOIKeywordsSearch:request];
+            _isBegin = NO;
+        }
         return;
     }
     [self.dataArr removeAllObjects];
