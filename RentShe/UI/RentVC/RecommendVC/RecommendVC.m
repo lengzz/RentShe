@@ -115,9 +115,12 @@
         [self.myCollectionV.mj_footer endRefreshing];
         if (success)
         {
-            id arr = object[@"data"];
+            NSArray *arr = object[@"data"];
             if ([arr isKindOfClass:[NSArray class]])
             {
+                if (!arr.count) {
+                    [self.myCollectionV.mj_footer endRefreshingWithNoMoreData];
+                }
                 for (id obj in arr) {
                     NearbyM *model = [NearbyM new];
                     [model setValuesForKeysWithDictionary:obj];
