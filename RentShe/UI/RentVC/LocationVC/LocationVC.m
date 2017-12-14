@@ -176,6 +176,10 @@
 
 - (void)backClick
 {
+    if (self.searchCtl.active)
+    {
+        [self.searchCtl setActive:NO];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -237,10 +241,7 @@
         if (self.cityBlock) {
             self.cityBlock(YES);
         }
-        [self.searchCtl setActive:NO];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self backClick];
-        });
+        [self backClick];
         return;
     }
     if (!indexPath.section||(indexPath.section == 1 && self.hotArr.count)) {
