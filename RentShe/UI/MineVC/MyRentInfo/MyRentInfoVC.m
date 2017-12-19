@@ -168,6 +168,11 @@
 
 - (void)submitInfo
 {
+    if (![UserDefaultsManager getUserLat])
+    {
+        [SVProgressHUD showErrorWithStatus:@"无法获取您当前位置"];
+        return;
+    }
     [NetAPIManager submitRentInfo:[self configParams] callBack:^(BOOL success, id object) {
         if (success) {
             [SVProgressHUD showSuccessWithStatus:@"发布成功"];

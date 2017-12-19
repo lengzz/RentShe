@@ -224,7 +224,7 @@
     __weak typeof(self) wself = self;
     FilterVC *vc = [FilterVC new];
     vc.filterBlock = ^(NSDictionary *dic) {
-        wself.recommendVC.searchDic = dic;
+        [wself.recommendVC filterChange];
     };
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -238,6 +238,7 @@
     vc.cityBlock = ^(BOOL isChange) {
         if (isChange) {
             [wself.navCityBtn setTitle:[UserDefaultsManager getCity] ?[UserDefaultsManager getCity]:@"深圳" forState:UIControlStateNormal];
+            [wself.recommendVC filterChange];
         }
     };
     [self.navigationController pushViewController:vc animated:YES];

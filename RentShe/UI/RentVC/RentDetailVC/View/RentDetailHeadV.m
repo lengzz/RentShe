@@ -202,10 +202,10 @@
         if (distance < 0.01)
         {
             distance = distance * 1000;
-            distanceStr = [NSString stringWithFormat:@"%.0f米",distance];
+            distanceStr = [NSString stringWithFormat:@"%.0fm",distance];
         }
         else
-            distanceStr = [NSString stringWithFormat:@"%.2f千米",distance];
+            distanceStr = [NSString stringWithFormat:@"%.0fkm",distance];
         _visitorLab.text = [NSString stringWithFormat:@"%zd访客",model.user_info.visitornum];
         _distanceLab.text = distanceStr;
         _commentLab.text = [NSString stringWithFormat:@"%zd条评论",model.rent_info.comment_num];

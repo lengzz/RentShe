@@ -104,7 +104,7 @@
     {
         _maleBtn.selected = NO;
     }
-    [self requestNewData];
+    [self.myTabV.mj_header beginRefreshing];
 }
 
 - (void) requestNewData

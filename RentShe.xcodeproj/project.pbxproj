@@ -366,6 +366,8 @@
 		4C2DFBF51FE2871A007D6EA7 /* share_inform@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DFBF31FE28719007D6EA7 /* share_inform@3x.png */; };
 		4C2DFBF81FE2873E007D6EA7 /* share_inform@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DFBF71FE2873D007D6EA7 /* share_inform@2x.png */; };
 		4C2DFBFA1FE2876E007D6EA7 /* share_shield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DFBF91FE2876D007D6EA7 /* share_shield@2x.png */; };
+		4C5E960B1FE8E23500826075 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5E96051FE8E23500826075 /* UMAnalytics.framework */; };
+		4C5E960C1FE8E23500826075 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5E96071FE8E23500826075 /* UMCommon.framework */; };
 		4C739EE91F7F6B2000D5F93E /* CityM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C739EE81F7F6B2000D5F93E /* CityM.m */; };
 		4C739EED1F7F842C00D5F93E /* SearchM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C739EEC1F7F842C00D5F93E /* SearchM.m */; };
 		4C74893A1FD122C700D108B3 /* BlackListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7489391FD122C700D108B3 /* BlackListVC.m */; };
@@ -936,6 +938,8 @@
 		4C2DFBF71FE2873D007D6EA7 /* share_inform@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_inform@2x.png"; sourceTree = "<group>"; };
 		4C2DFBF91FE2876D007D6EA7 /* share_shield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_shield@2x.png"; sourceTree = "<group>"; };
 		4C322F2A1FDA2FD200E3EFC2 /* RentShe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RentShe.entitlements; sourceTree = "<group>"; };
+		4C5E96051FE8E23500826075 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
+		4C5E96071FE8E23500826075 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
 		4C739EE71F7F6B2000D5F93E /* CityM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityM.h; sourceTree = "<group>"; };
 		4C739EE81F7F6B2000D5F93E /* CityM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityM.m; sourceTree = "<group>"; };
 		4C739EEB1F7F842C00D5F93E /* SearchM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchM.h; sourceTree = "<group>"; };
@@ -970,6 +974,7 @@
 				1F56BDC31ED6E0C400B04A70 /* Photos.framework in Frameworks */,
 				1F56BDC11ED6E0B800B04A70 /* UIKit.framework in Frameworks */,
 				1F7143341F35B92A004B8616 /* MAMapKit.framework in Frameworks */,
+				4C5E960C1FE8E23500826075 /* UMCommon.framework in Frameworks */,
 				1F52E3811ED58BD000C678C6 /* SystemConfiguration.framework in Frameworks */,
 				1F86DE891F5A91B300F9EFA7 /* AlipaySDK.framework in Frameworks */,
 				1F56BDBF1ED6E0A000B04A70 /* QuartzCore.framework in Frameworks */,
@@ -984,6 +989,7 @@
 				1F52E3871ED58C0700C678C6 /* libc++.tbd in Frameworks */,
 				1F7143331F35B92A004B8616 /* AMapSearchKit.framework in Frameworks */,
 				1F56BDB11ED6E03400B04A70 /* ImageIO.framework in Frameworks */,
+				4C5E960B1FE8E23500826075 /* UMAnalytics.framework in Frameworks */,
 				1F56BDAF1ED6E02A00B04A70 /* CoreVideo.framework in Frameworks */,
 				1F52E38B1ED58C1E00C678C6 /* CoreTelephony.framework in Frameworks */,
 				1F56BDAD1ED6E00F00B04A70 /* CoreMedia.framework in Frameworks */,
@@ -1297,6 +1303,7 @@
 		1F52E3791ED58AAE00C678C6 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				4C5E96031FE8E23500826075 /* UMAnalytics */,
 				1F86DE871F5A91B300F9EFA7 /* AliPay */,
 				1F86DE7F1F5A5CD100F9EFA7 /* WXPay */,
 				1F71431C1F359F85004B8616 /* AMap2.4.0 */,
@@ -2515,6 +2522,31 @@
 			path = BroswerView;
 			sourceTree = "<group>";
 		};
+		4C5E96031FE8E23500826075 /* UMAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				4C5E96041FE8E23500826075 /* analytics */,
+				4C5E96061FE8E23500826075 /* common */,
+			);
+			path = UMAnalytics;
+			sourceTree = "<group>";
+		};
+		4C5E96041FE8E23500826075 /* analytics */ = {
+			isa = PBXGroup;
+			children = (
+				4C5E96051FE8E23500826075 /* UMAnalytics.framework */,
+			);
+			path = analytics;
+			sourceTree = "<group>";
+		};
+		4C5E96061FE8E23500826075 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				4C5E96071FE8E23500826075 /* UMCommon.framework */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
 		4C739EE61F7F6B0400D5F93E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -3224,6 +3256,9 @@
 					"$(PROJECT_DIR)/RentShe/Core/RongCloud2.8.0",
 					"$(PROJECT_DIR)/RentShe/Core/AMap2.4.0",
 					"$(PROJECT_DIR)/RentShe/Core/AliPay",
+					"$(PROJECT_DIR)/RentShe/Core/UMAnalytics/analytics",
+					"$(PROJECT_DIR)/RentShe/Core/UMAnalytics/common",
+					"$(PROJECT_DIR)/RentShe/Core/UMAnalytics/thirdparties/thirdparties_ios_1.0.0.16",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RentShe/Prefix.pch;
@@ -3262,6 +3297,9 @@
 					"$(PROJECT_DIR)/RentShe/Core/RongCloud2.8.0",
 					"$(PROJECT_DIR)/RentShe/Core/AMap2.4.0",
 					"$(PROJECT_DIR)/RentShe/Core/AliPay",
+					"$(PROJECT_DIR)/RentShe/Core/UMAnalytics/analytics",
+					"$(PROJECT_DIR)/RentShe/Core/UMAnalytics/common",
+					"$(PROJECT_DIR)/RentShe/Core/UMAnalytics/thirdparties/thirdparties_ios_1.0.0.16",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RentShe/Prefix.pch;

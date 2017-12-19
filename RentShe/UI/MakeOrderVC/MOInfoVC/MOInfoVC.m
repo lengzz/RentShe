@@ -135,7 +135,7 @@
                              @"lender_id":self.rentInfo.user_id,
                              @"rent_skill_id":self.skill[@"rent_skill_id"],
                              @"rent_hours":_hours,
-                             @"meeting_time":[NSString stringWithFormat:@"%f",_meetTime],
+                             @"meeting_time":[NSString stringWithFormat:@"%.0f",_meetTime],
                              @"addr_name":_address,
                              @"addr_lat":[NSString stringWithFormat:@"%f",_meetPoint.latitude],
                              @"addr_lng":[NSString stringWithFormat:@"%f",_meetPoint.longitude],

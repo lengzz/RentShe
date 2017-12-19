@@ -10,5 +10,6 @@
 
 @interface RecommendVC : UIViewController
 @property (nonatomic, weak) UINavigationController *navC;
-@property (nonatomic, strong) NSDictionary *searchDic;
+
+- (void)filterChange;
 @end

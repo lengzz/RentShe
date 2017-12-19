@@ -184,10 +184,10 @@
         if (distance < 0.01)
         {
             distance = distance * 1000;
-            distanceStr = [NSString stringWithFormat:@"%.0f米",distance];
+            distanceStr = [NSString stringWithFormat:@"%.0fm",distance];
         }
         else
-            distanceStr = [NSString stringWithFormat:@"%.2f千米",distance];
+            distanceStr = [NSString stringWithFormat:@"%.0fkm",distance];
         _distanceLab.text = distanceStr;
         _professionLab.text = model.user_info.vocation;
         _sexImg.image = [UIImage imageNamed:[model.user_info.gender integerValue] ? @"rent_female" : @"rent_male"];

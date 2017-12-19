@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "RootTabbarVC.h"
 
+#import <UMCommon/UMCommon.h>
+#import <UMAnalytics/MobClick.h>
 #import <UMSocialCore/UMSocialCore.h>
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
@@ -47,6 +49,8 @@
     [self.window reloadInputViews];
     [self.window makeKeyAndVisible];
     
+    [UMConfigure initWithAppkey:kUmeng_APPKey channel:nil];
+    [MobClick setScenarioType:E_UM_NORMAL];
     [[UMSocialManager defaultManager] setUmSocialAppkey:kUmeng_APPKey];
     //微信注册
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:kWeCaht_APPID appSecret:kWeCaht_Secret redirectURL:nil];

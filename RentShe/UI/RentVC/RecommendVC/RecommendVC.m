@@ -18,9 +18,19 @@
 }
 @property (nonatomic, strong) UICollectionView *myCollectionV;
 @property (nonatomic, strong) NSMutableArray *dataArr;
+@property (nonatomic, strong) NSDictionary *searchDic;
 @end
 
 @implementation RecommendVC
+
+- (NSDictionary *)searchDic
+{
+    if (!_searchDic)
+    {
+        _searchDic = [UserDefaultsManager getFilterInfo];
+    }
+    return _searchDic;
+}
 
 - (NSMutableArray *)dataArr
 {
@@ -136,10 +146,10 @@
     }];
 }
 
-- (void)setSearchDic:(NSDictionary *)searchDic
+- (void)filterChange
 {
-    _searchDic = searchDic;
-    [self requestData];
+    self.searchDic = nil;
+    [self.myCollectionV.mj_header beginRefreshing];
 }
 
 #pragma mark - 
