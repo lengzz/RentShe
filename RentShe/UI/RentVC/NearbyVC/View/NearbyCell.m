@@ -181,7 +181,7 @@
         _ageLab.text = model.user_info.age;
         NSString *distanceStr;
         CGFloat distance = model.rent_info.distance;
-        if (distance < 0.01)
+        if (distance < 1)
         {
             distance = distance * 1000;
             distanceStr = [NSString stringWithFormat:@"%.0fm",distance];
