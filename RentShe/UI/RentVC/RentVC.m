@@ -108,7 +108,7 @@
     [self collectionV];
     
     _startLocation = [[CLLocation alloc] initWithLatitude:[[UserDefaultsManager getUserLat] doubleValue] longitude:[[UserDefaultsManager getUserLng] doubleValue]];
-    _locationTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(locationAction) userInfo:nil repeats:YES];
+    _locationTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(locationAction) userInfo:nil repeats:YES];
     [self.locationManager startUpdatingLocation];
     [_locationTimer setFireDate:[NSDate distantPast]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusIsChange) name:kLoginStatusIsChange object:nil];

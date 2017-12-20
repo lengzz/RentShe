@@ -112,7 +112,7 @@
     UILabel *feeTipsLab = [[UILabel alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(withdrawBtn.frame) + 10, kWindowWidth - 40, 20)];
     feeTipsLab.font = [UIFont systemFontOfSize:12];
     feeTipsLab.textAlignment = NSTextAlignmentRight;
-    feeTipsLab.text = @"额外扣除¥0.00手续费（费率1%）";
+    feeTipsLab.text = @"额外扣除¥0.01手续费（费率1%）";
     feeTipsLab.textColor = kRGB(138, 138, 138);
     [self.view addSubview:feeTipsLab];
     _feeTipsLab = feeTipsLab;

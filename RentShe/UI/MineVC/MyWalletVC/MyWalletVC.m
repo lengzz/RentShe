@@ -299,9 +299,7 @@
 
 - (void)updateMoney
 {
-    [SVProgressHUD show];
     [NetAPIManager myWallet:^(BOOL success, id object) {
-        [SVProgressHUD dismiss];
         if (success) {
             NSDictionary *dic = object[@"data"];
             NSString *money = dic[@"money"];

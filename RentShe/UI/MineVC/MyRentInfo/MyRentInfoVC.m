@@ -122,9 +122,7 @@
 
 - (void)requestData
 {
-    [SVProgressHUD show];
     [NetAPIManager myHomeInfoWithCallBack:^(BOOL success, id object) {
-        [SVProgressHUD dismiss];
         if (success) {
             _myInfo = [NearbyM new];
             [_myInfo setValuesForKeysWithDictionary:object[@"data"]];
