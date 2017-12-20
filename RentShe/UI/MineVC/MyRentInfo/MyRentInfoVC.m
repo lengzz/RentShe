@@ -168,9 +168,9 @@
 
 - (void)submitInfo
 {
-    if (![UserDefaultsManager getUserLat])
+    if (![CLLocationManager locationServicesEnabled]||[CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied)
     {
-        [SVProgressHUD showErrorWithStatus:@"无法获取您当前位置"];
+        [SVProgressHUD showErrorWithStatus:@"允许租我咯访问定位后，才能发布出租。手机设置-隐私-定位服务-租我咯-使用期间"];
         return;
     }
     [NetAPIManager submitRentInfo:[self configParams] callBack:^(BOOL success, id object) {

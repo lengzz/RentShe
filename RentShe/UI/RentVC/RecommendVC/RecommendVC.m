@@ -61,7 +61,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self myCollectionV];
-    [self requestData];
     
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
     header.lastUpdatedTimeLabel.hidden = YES;
@@ -70,6 +69,8 @@
     
     MJRefreshAutoFooter *footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
     self.myCollectionV.mj_footer = footer;
+    
+    [self.myCollectionV.mj_header beginRefreshing];
 }
 
 - (void)requestData

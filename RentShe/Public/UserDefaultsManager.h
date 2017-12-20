@@ -21,6 +21,11 @@
 + (void) setAuditStatus:(BOOL)isAudit;
 
 #pragma mark -
+#pragma mark - rangeSensor -> 超过上传用户经纬度
++ (NSString *) getRangeSensor;
++ (void) setRangeSensor:(NSString *)rangeSensor;
+
+#pragma mark -
 #pragma mark - token
 + (NSString *) getToken;
 + (void) setToken:(NSString *) token;

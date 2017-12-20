@@ -111,11 +111,8 @@
 - (void)createNavBar
 {
     [self.navigationItem setLeftBarButtonItem:[CustomNavVC getLeftBarButtonItemWithTarget:self action:@selector(backClick) normalImg:[UIImage imageNamed:@"btn_back_white"] hilightImg:[UIImage imageNamed:@"btn_back_white"]]];
-    
-//    if (ShareToV.isShare)
-//    {
-        [self.navigationItem setRightBarButtonItem:[CustomNavVC getRightBarButtonItemWithTarget:self action:@selector(shareClick) normalImg:[UIImage imageNamed:@"share_more"] hilightImg:[UIImage imageNamed:@"share_more"]]];
-//    }
+
+    [self.navigationItem setRightBarButtonItem:[CustomNavVC getRightBarButtonItemWithTarget:self action:@selector(shareClick) normalImg:[UIImage imageNamed:@"share_more"] hilightImg:[UIImage imageNamed:@"share_more"]]];
 }
 
 - (void)addFunctionV
@@ -304,13 +301,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (!section) {
         return self.infoM.rent_skill.count + 1;
+    }
+    if (section == 1) {
+        return 2;
     }
     return 1;//self.dataArr.count;
 }
@@ -352,17 +352,32 @@
         }
         case 1:
         {
+            if (indexPath.row)
+            {
+                cell.textLabel.font = [UIFont systemFontOfSize:13];
+                cell.textLabel.textColor = kRGB(101, 101, 101);
+                cell.textLabel.numberOfLines = 0;
+                cell.textLabel.text = self.infoM.user_info.introduction.length ? self.infoM.user_info.introduction : @"这家伙很懒，木有介绍。";
+            }
+            else
+            {
+                cell.textLabel.text = @"自我介绍";
+            }
+            break;
+        }
+        case 2:
+        {
             cell.textLabel.text = @"职业";
             cell.detailTextLabel.text = self.infoM.user_info.vocation;
             break;
         }
-        case 2:
+        case 3:
         {
             cell.textLabel.text = @"身高";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%@cm",self.infoM.user_info.height];
             break;
         }
-        case 3:
+        case 4:
         {
             cell.textLabel.text = @"档期";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%@~%@ (时间段)",self.infoM.rent_info.rental_start_time ? self.infoM.rent_info.rental_start_time : @"0",self.infoM.rent_info.rental_end_time ? self.infoM.rent_info.rental_end_time : @"0"];

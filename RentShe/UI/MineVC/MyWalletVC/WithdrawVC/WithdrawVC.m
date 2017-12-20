@@ -14,6 +14,7 @@
     UITextField *_idTF;
     UITextField *_moneyTF;
     UIButton *_withdrawBtn;
+    UILabel *_feeTipsLab;
 }
 @end
 
@@ -107,6 +108,14 @@
     [self.view addSubview:withdrawBtn];
     withdrawBtn.enabled = NO;
     _withdrawBtn = withdrawBtn;
+    
+    UILabel *feeTipsLab = [[UILabel alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(withdrawBtn.frame) + 10, kWindowWidth - 40, 20)];
+    feeTipsLab.font = [UIFont systemFontOfSize:12];
+    feeTipsLab.textAlignment = NSTextAlignmentRight;
+    feeTipsLab.text = @"额外扣除¥0.00手续费（费率1%）";
+    feeTipsLab.textColor = kRGB(138, 138, 138);
+    [self.view addSubview:feeTipsLab];
+    _feeTipsLab = feeTipsLab;
 }
 
 - (void)backClick
@@ -116,6 +125,10 @@
 
 - (void)textFieldClick
 {
+    if (_moneyTF.text.length) {
+        float money = [_moneyTF.text integerValue]/100.0;
+        _feeTipsLab.text = [NSString stringWithFormat:@"额外扣除¥%.2f手续费（费率1%%）",money];
+    }
     if (_moneyTF.text.length && _idTF.text.length && _moneyTF.text.length)
     {
         _withdrawBtn.enabled = YES;

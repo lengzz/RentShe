@@ -366,6 +366,7 @@
 		4C2DFBF51FE2871A007D6EA7 /* share_inform@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DFBF31FE28719007D6EA7 /* share_inform@3x.png */; };
 		4C2DFBF81FE2873E007D6EA7 /* share_inform@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DFBF71FE2873D007D6EA7 /* share_inform@2x.png */; };
 		4C2DFBFA1FE2876E007D6EA7 /* share_shield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DFBF91FE2876D007D6EA7 /* share_shield@2x.png */; };
+		4C58DECD1FEA687900E26594 /* rent_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C58DECC1FEA687900E26594 /* rent_delete@2x.png */; };
 		4C5E960B1FE8E23500826075 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5E96051FE8E23500826075 /* UMAnalytics.framework */; };
 		4C5E960C1FE8E23500826075 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5E96071FE8E23500826075 /* UMCommon.framework */; };
 		4C739EE91F7F6B2000D5F93E /* CityM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C739EE81F7F6B2000D5F93E /* CityM.m */; };
@@ -938,6 +939,7 @@
 		4C2DFBF71FE2873D007D6EA7 /* share_inform@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_inform@2x.png"; sourceTree = "<group>"; };
 		4C2DFBF91FE2876D007D6EA7 /* share_shield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_shield@2x.png"; sourceTree = "<group>"; };
 		4C322F2A1FDA2FD200E3EFC2 /* RentShe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RentShe.entitlements; sourceTree = "<group>"; };
+		4C58DECC1FEA687900E26594 /* rent_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rent_delete@2x.png"; sourceTree = "<group>"; };
 		4C5E96051FE8E23500826075 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
 		4C5E96071FE8E23500826075 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
 		4C739EE71F7F6B2000D5F93E /* CityM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityM.h; sourceTree = "<group>"; };
@@ -1130,6 +1132,7 @@
 		1F502DB41EDC00310007A908 /* Rent */ = {
 			isa = PBXGroup;
 			children = (
+				4C58DECC1FEA687900E26594 /* rent_delete@2x.png */,
 				4C2DFBF71FE2873D007D6EA7 /* share_inform@2x.png */,
 				4C2DFBF31FE28719007D6EA7 /* share_inform@3x.png */,
 				4C2DFBF91FE2876D007D6EA7 /* share_shield@2x.png */,
@@ -2865,6 +2868,7 @@
 				1F63FE131F9F7B6E00A5CAE2 /* order_review_selected@3x.png in Resources */,
 				1FF4E85C1ED4A38A007E7B15 /* head_default@2x.png in Resources */,
 				1F7164401ED9838000DDFF1C /* rentinfo_show@2x.png in Resources */,
+				4C58DECD1FEA687900E26594 /* rent_delete@2x.png in Resources */,
 				1F75B4511F9C63E900BB99DF /* pay_wallet@2x.png in Resources */,
 				1F6567611ECF106C00D30107 /* tabbar_light_bg@2x.png in Resources */,
 				1F502DC51EDC00310007A908 /* rent_price@2x.png in Resources */,

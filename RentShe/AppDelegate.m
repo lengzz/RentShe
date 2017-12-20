@@ -38,6 +38,7 @@
             NSDictionary *dic = object[@"data"];
             BOOL isAudit = [dic[@"verify"] boolValue];
             [UserDefaultsManager setAuditStatus:isAudit];
+            [UserDefaultsManager setRangeSensor:[NSString stringWithFormat:@"%@",dic[@"range"]]];
         }
         else
             [UserDefaultsManager setAuditStatus:NO];
@@ -82,6 +83,9 @@
     
     //检查登录
     [self loginRC];
+    
+    //检查版本
+    [self checkAppVersion];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginRC) name:kLoginStatusIsChange object:nil];
     return YES;
@@ -177,5 +181,39 @@
             
         }];
     }
+}
+
+#pragma mark -
+#pragma mark - 检查版本
+- (void)checkAppVersion
+{
+    [NetAPIManager appCheckUpdate:^(BOOL success, id object) {
+        if (success) {
+            BOOL isShow = [object[@"data"][@"isShow"] boolValue];
+            BOOL isForce = [object[@"data"][@"isForce"] boolValue];
+            NSString *msg = object[@"data"][@"msg"];
+            NSString *url = object[@"data"][@"updateAddr"];
+            if (isShow)
+            {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"发现新版本" message:msg preferredStyle:UIAlertControllerStyleAlert];
+                if (isForce)
+                {
+                    [alert addAction:[UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                    }]];
+                }
+                else
+                {
+                    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                        
+                    }]];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                    }]];
+                }
+                [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+            }
+        }
+    }];
 }
 @end

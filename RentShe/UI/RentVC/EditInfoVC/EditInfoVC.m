@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, PickType)
     NSString *_weight;
     NSString *_profession;
     NSString *_avatar;
+    NSString *_introduction;
     
     //选择图片类型：1 头部，2 头像
     NSInteger _imgType;
@@ -163,6 +164,7 @@ typedef NS_ENUM(NSInteger, PickType)
     _height = infoM.user_info.height;
     _profession = infoM.user_info.vocation;
     _avatar = infoM.user_info.avatar;
+    _introduction = infoM.user_info.introduction;
     
     [self.myTabV reloadData];
     
@@ -202,6 +204,7 @@ typedef NS_ENUM(NSInteger, PickType)
                           @"weight":_weight,
                           @"vocation":_profession,
                           @"photo":photoStr,
+                          @"introduction":_introduction,
                           @"avatar":_avatar};
     [NetAPIManager setUserInfo:dic callBack:^(BOOL success, id object) {
         if (success) {
@@ -227,7 +230,10 @@ typedef NS_ENUM(NSInteger, PickType)
         {
             _profession = tf.text;
         }
-        
+        else if (tf.tag == 3)
+        {
+            _introduction = tf.text;
+        }
     }
 }
 
@@ -274,12 +280,12 @@ typedef NS_ENUM(NSInteger, PickType)
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!indexPath.row || indexPath.row == 4)
+    if (!indexPath.row || indexPath.row == 4 || indexPath.row == 5)
     {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tfCell"];
         if (!cell) {
@@ -290,6 +296,7 @@ typedef NS_ENUM(NSInteger, PickType)
             
             UITextField *tf = [[UITextField alloc] init];
             tf.borderStyle = UITextBorderStyleNone;
+            tf.clearButtonMode = UITextFieldViewModeNever;
             tf.font = [UIFont systemFontOfSize:13];
             tf.textAlignment = NSTextAlignmentRight;
             tf.textColor = kRGB(86, 86, 86);
@@ -309,11 +316,18 @@ typedef NS_ENUM(NSInteger, PickType)
                 break;
             }
         }
-        if (indexPath.row)
+        if (indexPath.row == 5)
         {
             cell.textLabel.text = @"职业";
-            tf.text = _profession ? _profession : @"请设置";
+            tf.text = _profession.length ? _profession : @"请设置";
             tf.tag = 2;
+        }
+        else if (indexPath.row == 4)
+        {
+            cell.textLabel.text = @"个人简介";
+            tf.clearButtonMode = UITextFieldViewModeWhileEditing;
+            tf.text = _introduction.length ? _introduction : @"请介绍自己";
+            tf.tag = 3;
         }
         else
         {
@@ -324,7 +338,7 @@ typedef NS_ENUM(NSInteger, PickType)
         
         return cell;
     }
-    else if (indexPath.row == 5)
+    else if (indexPath.row == 6)
     {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imgCell"];
         if (!cell) {

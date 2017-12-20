@@ -100,6 +100,20 @@
 }
 
 #pragma mark -
+#pragma mark - 版本更新
++ (void)appCheckUpdate:(HttpCallBackWithObject)callBack
+{
+    NSDictionary *dic = @{@"version":kAppVersion,@"device":@"ios"};
+    [[NetAPIManager manager] POST:base_url@"/Config/appCheckUpdate" parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *dic = nil;
+        BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
+        callBack(status,dic);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callBack(NO,nil);
+    }];
+}
+
+#pragma mark -
 #pragma mark - 拉黑用户
 + (void)shieldUser:(id)params callBack:(HttpCallBackWithObject)callBack
 {
@@ -420,6 +434,19 @@
 + (void)getUserSimpleInfo:(id)params callBack:(HttpCallBackWithObject)callBack
 {
     [[NetAPIManager manager] POST:base_url@"/User/getUserSimpleInfo" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *dic = nil;
+        BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
+        callBack(status,dic);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callBack(NO,nil);
+    }];
+}
+
+#pragma mark -
+#pragma mark - 更新位置
++ (void)updateLocation:(id)params callBack:(HttpCallBackWithObject)callBack
+{
+    [[NetAPIManager manager] POST:base_url@"/Rent/updateLocation" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);

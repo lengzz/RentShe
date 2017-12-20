@@ -12,6 +12,7 @@
 
 #define kAuditStatus @"auditStatus"
 #define kCurCityCode @"curCityCode"
+#define kRangeSensor @"rangeSensor"
 
 @implementation UserDefaultsManager
 
@@ -101,6 +102,18 @@
 + (void) setAuditStatus:(BOOL)isAudit
 {
     [kUserDefaults setObject:@(isAudit) forKey:kAuditStatus];
+    [kUserDefaults synchronize];
+}
+
+#pragma mark -
+#pragma mark - rangeSensor -> 超过上传用户经纬度
++ (NSString *) getRangeSensor
+{
+    return [kUserDefaults objectForKey:kRangeSensor];
+}
++ (void) setRangeSensor:(NSString *)rangeSensor
+{
+    [kUserDefaults setObject:rangeSensor forKey:kRangeSensor];
     [kUserDefaults synchronize];
 }
 

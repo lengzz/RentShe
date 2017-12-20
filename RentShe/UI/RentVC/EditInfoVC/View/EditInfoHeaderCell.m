@@ -39,6 +39,9 @@
     [self.contentView addSubview:photoV];
     _photoV = photoV;
     
+    UIImageView *delImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"rent_delete"]];
+    [photoV addSubview:delImg];
+    
     [bgImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self.contentView).offset(5);
         make.right.bottom.equalTo(self.contentView).offset(-5);
@@ -46,6 +49,10 @@
     [photoV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self.contentView).offset(5);
         make.right.bottom.equalTo(self.contentView).offset(-5);
+    }];
+    [delImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.top.equalTo(photoV);
+        make.height.width.equalTo(@15);
     }];
 }
 

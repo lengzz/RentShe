@@ -19,6 +19,11 @@
 {
     UIButton *_currentBtn;
     UIView *_titleV;
+    
+    CLLocation *_startLocation;  //记录定位
+    NSTimer *_locationTimer;
+    BOOL _isClose; //关闭定位
+    BOOL _oneTips; //城市切换提示
 }
 @property (nonatomic, strong) UICollectionView *collectionV;
 @property (nonatomic, strong) UIButton *navCityBtn;
@@ -35,6 +40,7 @@
         _locationManager = [[CLLocationManager alloc] init];
         if (![CLLocationManager locationServicesEnabled]||[CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied)
         {
+            _isClose = YES;
             UIAlertController *ctl = [UIAlertController alertControllerWithTitle:@"无法定位" message:@"请检查您的设备是否开启定位功能" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [ctl dismissViewControllerAnimated:YES completion:nil];
@@ -101,7 +107,11 @@
     [self createNavBar];
     [self collectionV];
     
+    _startLocation = [[CLLocation alloc] initWithLatitude:[[UserDefaultsManager getUserLat] doubleValue] longitude:[[UserDefaultsManager getUserLng] doubleValue]];
+    _locationTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(locationAction) userInfo:nil repeats:YES];
     [self.locationManager startUpdatingLocation];
+    [_locationTimer setFireDate:[NSDate distantPast]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusIsChange) name:kLoginStatusIsChange object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -244,6 +254,39 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)locationAction
+{
+    if (_isClose||![UserDefaultsManager getToken])
+    {
+        [_locationTimer setFireDate:[NSDate distantFuture]];
+    }
+    else
+    {
+        [self.locationManager startUpdatingLocation];
+    }
+}
+
+- (void)distanceCompare:(CLLocation *)location
+{
+    double distance = [_startLocation distanceFromLocation:location];
+    if (distance > [[UserDefaultsManager getRangeSensor] doubleValue] && [[UserDefaultsManager getRangeSensor] doubleValue] > 0)
+    {
+        _startLocation = location;
+        NSDictionary *dic = @{@"city_code":[UserDefaultsManager getCurCityCode],@"lng":@(location.coordinate.longitude),@"lat":@(location.coordinate.latitude)};
+        [NetAPIManager updateLocation:dic callBack:^(BOOL success, id object) {
+            if (success) {
+            }
+        }];
+    }
+}
+
+- (void)statusIsChange
+{
+    if ([UserDefaultsManager getToken]) {
+        [_locationTimer setFireDate:[NSDate distantPast]];
+    }
+}
+
 #pragma mark - _______UICollectionViewDelegate,UICollectionViewDataSource________
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -284,7 +327,7 @@
      didUpdateLocations:(NSArray *)locations
 {
     CLLocation *location = [locations lastObject];
-    
+    [self distanceCompare:location];
     
     [UserDefaultsManager setUserLat:location.coordinate.latitude];
     [UserDefaultsManager setUserLng:location.coordinate.longitude];
@@ -316,12 +359,14 @@
                     locationCity = [locationCity substringWithRange:NSMakeRange(0, locationCity.length - 1)];
                 [UserDefaultsManager setCurCityCode:[CityM getCodeByCity:locationCity]];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if (![UserDefaultsManager.getCity isEqualToString:locationCity]) {
+                    if (![UserDefaultsManager.getCity isEqualToString:locationCity]&&!_oneTips) {
+                        _oneTips = YES;
                         UIAlertController *ctl = [UIAlertController alertControllerWithTitle:locationCity message:@"是否切换到当前城市" preferredStyle:UIAlertControllerStyleAlert];
                         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                             [UserDefaultsManager setCityCode:[CityM getCodeByCity:locationCity]];
                             [UserDefaultsManager setCity:locationCity];
                             [self.navCityBtn setTitle:[UserDefaultsManager getCity] forState:UIControlStateNormal];
+                            [self.recommendVC filterChange];
                             [ctl dismissViewControllerAnimated:YES completion:nil];
                         }];
                         UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -342,7 +387,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
 }
 
 @end

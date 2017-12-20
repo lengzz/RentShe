@@ -73,6 +73,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
 #pragma mark - APP info
 #define kAPPInfo [[NSBundle mainBundle] infoDictionary]
+#define kAppVersion ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"])
 
 #define kWindowWidth                ([[UIScreen mainScreen] bounds].size.width)
 #define kWindowHeight               ([[UIScreen mainScreen] bounds].size.height)

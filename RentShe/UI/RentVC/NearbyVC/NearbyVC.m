@@ -62,11 +62,11 @@
         if (i)
         {
             _femaleBtn = btn;
+            btn.selected = YES;
         }
         else
         {
             _maleBtn = btn;
-            btn.selected = YES;
         }
     }
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 35.5, kWindowWidth, 0.5)];
@@ -79,7 +79,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self myTabV];
-    [self requestNewData];
     
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestNewData)];
     header.lastUpdatedTimeLabel.hidden = YES;
@@ -88,6 +87,8 @@
     
     MJRefreshAutoFooter *footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreData)];
     self.myTabV.mj_footer = footer;
+    
+    [self.myTabV.mj_header beginRefreshing];
 }
 
 - (void)choiceGender:(UIButton *)btn

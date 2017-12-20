@@ -30,4 +30,5 @@
 @property (nonatomic, copy) NSString *share_url;
 @property (nonatomic, copy) NSString *share_avatar;
 @property (nonatomic, copy) NSString *share_content;
+@property (nonatomic, copy) NSString *introduction;//":"自我介绍",
 @end
