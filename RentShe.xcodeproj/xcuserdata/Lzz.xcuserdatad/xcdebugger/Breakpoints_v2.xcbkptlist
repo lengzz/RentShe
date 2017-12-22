@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RentShe/UI/MineVC/MyRentInfo/AddRentSkillVC/AddRentSkillVC.m"
-            timestampString = "534761825.016541"
+            filePath = "RentShe/AppDelegate+RongCloud.m"
+            timestampString = "534942410.141245"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "-completed"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "-onRCIMReceiveMessage:left:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RentShe/UI/MineVC/View/MineHeadCell.m"
-            timestampString = "534765224.679108"
+            filePath = "RentShe/AppDelegate+RongCloud.m"
+            timestampString = "534942410.141313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "-refreshCellIsLogin:"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "-onRCIMReceiveMessage:left:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
