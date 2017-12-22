@@ -182,6 +182,7 @@
     RentDetailVC *vc = [RentDetailVC new];
     vc.hidesBottomBarWhenPushed = YES;
     NearbyM *model = self.dataArr[indexPath.row];
+    vc.infoM = model;
     vc.user_id = model.user_info.user_id;
     vc.isSelf = [[UserDefaultsManager getUserId] isEqualToString:model.user_info.user_id];
     [self.navC pushViewController:vc animated:YES];

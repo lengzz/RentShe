@@ -20,7 +20,6 @@
 @interface RentDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *myTabV;
 @property (nonatomic, strong) RentDetailHeadV *headV;
-@property (nonatomic, strong) NearbyM *infoM;
 @end
 
 @implementation RentDetailVC
@@ -155,6 +154,12 @@
     }
     else
     {
+        if (self.infoM)
+        {
+            [self.headV refreshHead:self.infoM];
+            [self.myTabV reloadData];
+            return;
+        }
         NSDictionary *dic = @{@"user_id":self.user_id,
                               @"lng":[UserDefaultsManager getUserLng],
                               @"lat":[UserDefaultsManager getUserLat]};

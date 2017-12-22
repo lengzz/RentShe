@@ -163,6 +163,7 @@
     }
     RentDetailVC *vc = [RentDetailVC new];
     NearbyM *model = self.dataArr[indexPath.row];
+    vc.infoM = model;
     vc.user_id = model.user_info.user_id;
     vc.isSelf = [[UserDefaultsManager getUserId] isEqualToString:model.user_info.user_id];
     vc.hidesBottomBarWhenPushed = YES;

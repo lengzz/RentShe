@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class NearbyM;
 
 @interface RentDetailVC : UIViewController
 @property (nonatomic, copy) NSString *user_id;
+@property (nonatomic, strong) NearbyM *infoM;
 @property (nonatomic, assign) BOOL isSelf;
 @end

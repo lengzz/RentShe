@@ -87,6 +87,12 @@
 
 - (void)scrollToPage:(NSInteger)idx
 {
+    if (idx >= self.dataArr.count)
+    {
+        [_myCollectionV scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.dataArr.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+        _numLab.text = [NSString stringWithFormat:@"%zd/%zd",self.dataArr.count,self.dataArr.count];
+        return;
+    }
     [_myCollectionV scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
     _numLab.text = [NSString stringWithFormat:@"%zd/%zd",idx + 1,self.dataArr.count];
 }

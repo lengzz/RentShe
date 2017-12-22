@@ -128,7 +128,7 @@
 
 - (void)commitClick
 {
-    if (!_address || !CLLocationCoordinate2DIsValid(_meetPoint) || ! _meetTime) {
+    if (!_address || !CLLocationCoordinate2DIsValid(_meetPoint) || ! _meetTime || !_hours) {
         return;
     }
     NSDictionary *params = @{
@@ -141,7 +141,9 @@
                              @"addr_lng":[NSString stringWithFormat:@"%f",_meetPoint.longitude],
                              @"explain": _notes ? _notes : @""
                              };
+    [SVProgressHUD show];
     [NetAPIManager makeOrder:params callBack:^(BOOL success, id object) {
+        [SVProgressHUD dismiss];
         if (success) {
             PayForOrderM *orderM = [[PayForOrderM alloc] init];
             [orderM setValuesForKeysWithDictionary:object[@"data"]];

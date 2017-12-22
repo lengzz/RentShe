@@ -256,7 +256,7 @@
 
 - (void)locationAction
 {
-    if (_isClose||![UserDefaultsManager getToken])
+    if (_isClose||![UserDefaultsManager getToken].length)
     {
         [_locationTimer setFireDate:[NSDate distantFuture]];
     }
