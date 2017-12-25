@@ -420,7 +420,7 @@ typedef NS_ENUM(NSInteger, PickType)
             
             break;
             
-        case 5:
+        case 6:
             _imgType = 2;
             [self popImgChoose];
             break;
