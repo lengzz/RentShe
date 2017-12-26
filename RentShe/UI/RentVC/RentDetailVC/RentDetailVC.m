@@ -219,6 +219,11 @@
             }
             [NetAPIManager shieldUser:@{@"his_id":self.user_id} callBack:^(BOOL success, id object) {
                 if (success) {
+                    [[RCIMClient sharedRCIMClient] addToBlacklist:self.user_id success:^{
+                        
+                    } error:^(RCErrorCode status) {
+                        
+                    }];
                     NSString *string = object[@"message"];
                     float time = (float)string.length*0.12 + 0.5;
                     [SVProgressHUD showSuccessWithStatus:object[@"message"]];

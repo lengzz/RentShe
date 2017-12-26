@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, ServerType){
          *
          */
         /**   切换环境   */
-        config.type = ServerTypeOfTest;
+        config.type = ServerTypeOfOnline;
         
         [config createData];
     });
