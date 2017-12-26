@@ -369,6 +369,19 @@
 		4C58DECD1FEA687900E26594 /* rent_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C58DECC1FEA687900E26594 /* rent_delete@2x.png */; };
 		4C5E960B1FE8E23500826075 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5E96051FE8E23500826075 /* UMAnalytics.framework */; };
 		4C5E960C1FE8E23500826075 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5E96071FE8E23500826075 /* UMCommon.framework */; };
+		4C6CEA671FF22341005659FB /* HeadCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CEA551FF22340005659FB /* HeadCollectionView.m */; };
+		4C6CEA681FF22341005659FB /* RCAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CEA581FF22340005659FB /* RCAnnotation.m */; };
+		4C6CEA691FF22341005659FB /* RCAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CEA5A1FF22340005659FB /* RCAnnotationView.m */; };
+		4C6CEA6A1FF22341005659FB /* RCLocationConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CEA5C1FF22340005659FB /* RCLocationConvert.m */; };
+		4C6CEA6B1FF22341005659FB /* RCLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CEA5E1FF22340005659FB /* RCLocationView.m */; };
+		4C6CEA6C1FF22341005659FB /* RealTimeLocationEndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CEA601FF22340005659FB /* RealTimeLocationEndCell.m */; };
+		4C6CEA6D1FF22341005659FB /* RealTimeLocationStartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CEA621FF22340005659FB /* RealTimeLocationStartCell.m */; };
+		4C6CEA6E1FF22341005659FB /* RealTimeLocationStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CEA641FF22340005659FB /* RealTimeLocationStatusView.m */; };
+		4C6CEA6F1FF22341005659FB /* RealTimeLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CEA661FF22340005659FB /* RealTimeLocationViewController.m */; };
+		4C6CEB5C1FF2442B005659FB /* gps.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6CEB5B1FF2442A005659FB /* gps.png */; };
+		4C6CEB5E1FF2450D005659FB /* back_to_conversation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6CEB5D1FF2450D005659FB /* back_to_conversation@2x.png */; };
+		4C6CEB601FF24544005659FB /* quit_location_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6CEB5F1FF24543005659FB /* quit_location_share@2x.png */; };
+		4C6CEB631FF245F0005659FB /* RCDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CEB621FF245F0005659FB /* RCDUtilities.m */; };
 		4C739EE91F7F6B2000D5F93E /* CityM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C739EE81F7F6B2000D5F93E /* CityM.m */; };
 		4C739EED1F7F842C00D5F93E /* SearchM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C739EEC1F7F842C00D5F93E /* SearchM.m */; };
 		4C74893A1FD122C700D108B3 /* BlackListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7489391FD122C700D108B3 /* BlackListVC.m */; };
@@ -942,6 +955,29 @@
 		4C58DECC1FEA687900E26594 /* rent_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rent_delete@2x.png"; sourceTree = "<group>"; };
 		4C5E96051FE8E23500826075 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
 		4C5E96071FE8E23500826075 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
+		4C6CEA541FF22340005659FB /* HeadCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadCollectionView.h; sourceTree = "<group>"; };
+		4C6CEA551FF22340005659FB /* HeadCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadCollectionView.m; sourceTree = "<group>"; };
+		4C6CEA571FF22340005659FB /* RCAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCAnnotation.h; sourceTree = "<group>"; };
+		4C6CEA581FF22340005659FB /* RCAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCAnnotation.m; sourceTree = "<group>"; };
+		4C6CEA591FF22340005659FB /* RCAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCAnnotationView.h; sourceTree = "<group>"; };
+		4C6CEA5A1FF22340005659FB /* RCAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCAnnotationView.m; sourceTree = "<group>"; };
+		4C6CEA5B1FF22340005659FB /* RCLocationConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLocationConvert.h; sourceTree = "<group>"; };
+		4C6CEA5C1FF22340005659FB /* RCLocationConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLocationConvert.m; sourceTree = "<group>"; };
+		4C6CEA5D1FF22340005659FB /* RCLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLocationView.h; sourceTree = "<group>"; };
+		4C6CEA5E1FF22340005659FB /* RCLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLocationView.m; sourceTree = "<group>"; };
+		4C6CEA5F1FF22340005659FB /* RealTimeLocationEndCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimeLocationEndCell.h; sourceTree = "<group>"; };
+		4C6CEA601FF22340005659FB /* RealTimeLocationEndCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimeLocationEndCell.m; sourceTree = "<group>"; };
+		4C6CEA611FF22340005659FB /* RealTimeLocationStartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimeLocationStartCell.h; sourceTree = "<group>"; };
+		4C6CEA621FF22340005659FB /* RealTimeLocationStartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimeLocationStartCell.m; sourceTree = "<group>"; };
+		4C6CEA631FF22340005659FB /* RealTimeLocationStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimeLocationStatusView.h; sourceTree = "<group>"; };
+		4C6CEA641FF22340005659FB /* RealTimeLocationStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimeLocationStatusView.m; sourceTree = "<group>"; };
+		4C6CEA651FF22340005659FB /* RealTimeLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimeLocationViewController.h; sourceTree = "<group>"; };
+		4C6CEA661FF22340005659FB /* RealTimeLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimeLocationViewController.m; sourceTree = "<group>"; };
+		4C6CEB5B1FF2442A005659FB /* gps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps.png; sourceTree = "<group>"; };
+		4C6CEB5D1FF2450D005659FB /* back_to_conversation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_to_conversation@2x.png"; sourceTree = "<group>"; };
+		4C6CEB5F1FF24543005659FB /* quit_location_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quit_location_share@2x.png"; sourceTree = "<group>"; };
+		4C6CEB611FF245F0005659FB /* RCDUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDUtilities.h; sourceTree = "<group>"; };
+		4C6CEB621FF245F0005659FB /* RCDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDUtilities.m; sourceTree = "<group>"; };
 		4C739EE71F7F6B2000D5F93E /* CityM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityM.h; sourceTree = "<group>"; };
 		4C739EE81F7F6B2000D5F93E /* CityM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityM.m; sourceTree = "<group>"; };
 		4C739EEB1F7F842C00D5F93E /* SearchM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchM.h; sourceTree = "<group>"; };
@@ -1132,6 +1168,9 @@
 		1F502DB41EDC00310007A908 /* Rent */ = {
 			isa = PBXGroup;
 			children = (
+				4C6CEB5F1FF24543005659FB /* quit_location_share@2x.png */,
+				4C6CEB5D1FF2450D005659FB /* back_to_conversation@2x.png */,
+				4C6CEB5B1FF2442A005659FB /* gps.png */,
 				4C58DECC1FEA687900E26594 /* rent_delete@2x.png */,
 				4C2DFBF71FE2873D007D6EA7 /* share_inform@2x.png */,
 				4C2DFBF31FE28719007D6EA7 /* share_inform@3x.png */,
@@ -1306,6 +1345,7 @@
 		1F52E3791ED58AAE00C678C6 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				4C6CEA531FF22340005659FB /* RealTimeLocation */,
 				4C5E96031FE8E23500826075 /* UMAnalytics */,
 				1F86DE871F5A91B300F9EFA7 /* AliPay */,
 				1F86DE7F1F5A5CD100F9EFA7 /* WXPay */,
@@ -2550,6 +2590,41 @@
 			path = common;
 			sourceTree = "<group>";
 		};
+		4C6CEA531FF22340005659FB /* RealTimeLocation */ = {
+			isa = PBXGroup;
+			children = (
+				4C6CEB611FF245F0005659FB /* RCDUtilities.h */,
+				4C6CEB621FF245F0005659FB /* RCDUtilities.m */,
+				4C6CEA541FF22340005659FB /* HeadCollectionView.h */,
+				4C6CEA551FF22340005659FB /* HeadCollectionView.m */,
+				4C6CEA561FF22340005659FB /* RCAnnotation */,
+				4C6CEA5F1FF22340005659FB /* RealTimeLocationEndCell.h */,
+				4C6CEA601FF22340005659FB /* RealTimeLocationEndCell.m */,
+				4C6CEA611FF22340005659FB /* RealTimeLocationStartCell.h */,
+				4C6CEA621FF22340005659FB /* RealTimeLocationStartCell.m */,
+				4C6CEA631FF22340005659FB /* RealTimeLocationStatusView.h */,
+				4C6CEA641FF22340005659FB /* RealTimeLocationStatusView.m */,
+				4C6CEA651FF22340005659FB /* RealTimeLocationViewController.h */,
+				4C6CEA661FF22340005659FB /* RealTimeLocationViewController.m */,
+			);
+			path = RealTimeLocation;
+			sourceTree = "<group>";
+		};
+		4C6CEA561FF22340005659FB /* RCAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				4C6CEA571FF22340005659FB /* RCAnnotation.h */,
+				4C6CEA581FF22340005659FB /* RCAnnotation.m */,
+				4C6CEA591FF22340005659FB /* RCAnnotationView.h */,
+				4C6CEA5A1FF22340005659FB /* RCAnnotationView.m */,
+				4C6CEA5B1FF22340005659FB /* RCLocationConvert.h */,
+				4C6CEA5C1FF22340005659FB /* RCLocationConvert.m */,
+				4C6CEA5D1FF22340005659FB /* RCLocationView.h */,
+				4C6CEA5E1FF22340005659FB /* RCLocationView.m */,
+			);
+			path = RCAnnotation;
+			sourceTree = "<group>";
+		};
 		4C739EE61F7F6B0400D5F93E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2785,6 +2860,7 @@
 				1FF4E7F91ED4157D007E7B15 /* SVProgressHUD.bundle in Resources */,
 				1F802DBC1F76233100D59AE6 /* editinfo_photo@2x.png in Resources */,
 				1F5F066D1EE6B398002AF27D /* rent_visitor@2x.png in Resources */,
+				4C6CEB5C1FF2442B005659FB /* gps.png in Resources */,
 				1F502DC21EDC00310007A908 /* rent_female@3x.png in Resources */,
 				1F7164511ED99F1300DDFF1C /* rentinfo_time_arrows@3x.png in Resources */,
 				1F62D1B11F2E116000D27D84 /* navbar_msg_no@2x.png in Resources */,
@@ -2842,6 +2918,7 @@
 				1FF4E83D1ED42AD0007E7B15 /* login_wechat@3x.png in Resources */,
 				1FF4E85E1ED4A38A007E7B15 /* regist_gender_selected@2x.png in Resources */,
 				1FF4E8351ED42AD0007E7B15 /* login_phone_selected@3x.png in Resources */,
+				4C6CEB601FF24544005659FB /* quit_location_share@2x.png in Resources */,
 				1F6012551FA5AB540016A94A /* setting_bind@2x.png in Resources */,
 				1F7D27701FB1E4C300FAF500 /* share_weixin_friends@3x.png in Resources */,
 				1F65676A1ECF334000D30107 /* navbar_search@3x.png in Resources */,
@@ -2858,6 +2935,7 @@
 				1FF4E8621ED4A38A007E7B15 /* regist_nick_selected@2x.png in Resources */,
 				1F5F065D1EE68228002AF27D /* rent_certification@2x.png in Resources */,
 				1F7164411ED9838000DDFF1C /* rentinfo_show@3x.png in Resources */,
+				4C6CEB5E1FF2450D005659FB /* back_to_conversation@2x.png in Resources */,
 				1F3FA7131F6EC63B009D01F3 /* rent_chooseweek@3x.png in Resources */,
 				1F59620B1ED0202E00E0EF30 /* mine_myrent@3x.png in Resources */,
 				1F6567671ECF334000D30107 /* navbar_location@2x.png in Resources */,
@@ -2945,8 +3023,11 @@
 				1F752EE61EDEFC7400A148D5 /* ConversationCell.m in Sources */,
 				1F502DD01EDC067A0007A908 /* RecommendCell.m in Sources */,
 				1F5FE8041F63917000CE1988 /* MJRefreshGifHeader.m in Sources */,
+				4C6CEA6B1FF22341005659FB /* RCLocationView.m in Sources */,
+				4C6CEA671FF22341005659FB /* HeadCollectionView.m in Sources */,
 				1F7143301F35B789004B8616 /* MOSelLocationVC.m in Sources */,
 				1F6AEF8A1F3715BA00342560 /* CusAnnotation.m in Sources */,
+				4C6CEA691FF22341005659FB /* RCAnnotationView.m in Sources */,
 				1FF4E81C1ED41A90007E7B15 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				1F5FE8021F63917000CE1988 /* MJRefreshBackNormalFooter.m in Sources */,
 				1F56FCAF1EED193300FC34F1 /* WalletRecordVC.m in Sources */,
@@ -2961,9 +3042,11 @@
 				1F5FE8061F63917000CE1988 /* MJRefreshStateHeader.m in Sources */,
 				4C2DFBEE1FE229F4007D6EA7 /* DQBroswerItemView.m in Sources */,
 				1F502DD61EDC29A40007A908 /* RentDetailVC.m in Sources */,
+				4C6CEA6D1FF22341005659FB /* RealTimeLocationStartCell.m in Sources */,
 				1F502DA81EDBFCEF0007A908 /* SDWebImageDecoder.m in Sources */,
 				1F540BFD1EE1457E007E39BC /* LocationHotCell.m in Sources */,
 				1F91BC381F7D3622009D9B55 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				4C6CEA6E1FF22341005659FB /* RealTimeLocationStatusView.m in Sources */,
 				1F63FE0D1F9F77FF00A5CAE2 /* OrderReviewVC.m in Sources */,
 				1F67922B1ED2D3ED00449CCE /* AFNetworkReachabilityManager.m in Sources */,
 				1F5FE7F91F63917000CE1988 /* MJRefreshAutoFooter.m in Sources */,
@@ -3022,6 +3105,7 @@
 				1F5511EE1EDB19BA008BE0CA /* NearbyCell.m in Sources */,
 				1F5FE8011F63917000CE1988 /* MJRefreshBackGifFooter.m in Sources */,
 				1F6566F51ECEF0B600D30107 /* main.m in Sources */,
+				4C6CEA6F1FF22341005659FB /* RealTimeLocationViewController.m in Sources */,
 				1F65676E1ECF475F00D30107 /* RentCell.m in Sources */,
 				1F9315251F6CE8CE00C90ED4 /* AddRentSkillCell.m in Sources */,
 				1F7D27621FB1E03300FAF500 /* HeadImgV.m in Sources */,
@@ -3040,6 +3124,7 @@
 				4C2DFBED1FE229F4007D6EA7 /* DQPhotoBroswerViewController.m in Sources */,
 				1FF4E8181ED41A90007E7B15 /* MASLayoutConstraint.m in Sources */,
 				1FC883DE1F3ED22200A3045F /* MOInfoVC.m in Sources */,
+				4C6CEA681FF22341005659FB /* RCAnnotation.m in Sources */,
 				1F91BC331F7D3622009D9B55 /* IQUITextFieldView+Additions.m in Sources */,
 				1F5FE80B1F63917000CE1988 /* UIScrollView+MJRefresh.m in Sources */,
 				1F502DA71EDBFCEF0007A908 /* SDWebImageCompat.m in Sources */,
@@ -3059,12 +3144,15 @@
 				1FA5FA541F246B85007321AB /* ForgetPswVC.m in Sources */,
 				1F91BC3A1F7D3622009D9B55 /* IQBarButtonItem.m in Sources */,
 				1F67922E1ED2D3ED00449CCE /* AFURLResponseSerialization.m in Sources */,
+				4C6CEA6C1FF22341005659FB /* RealTimeLocationEndCell.m in Sources */,
 				1F6E1EAA1F72A70900620E68 /* EditInfoVC.m in Sources */,
+				4C6CEA6A1FF22341005659FB /* RCLocationConvert.m in Sources */,
 				1F5FE8081F63917000CE1988 /* MJRefreshConst.m in Sources */,
 				1F8B44AF1FA469D90043292F /* ReviewsListM.m in Sources */,
 				1F6792351ED2ED9500449CCE /* UserDefaultsManager.m in Sources */,
 				4C74893E1FD1251B00D108B3 /* BlackListM.m in Sources */,
 				1F4D9EBA1EDFEE4200320745 /* AppDelegate+RongCloud.m in Sources */,
+				4C6CEB631FF245F0005659FB /* RCDUtilities.m in Sources */,
 				1F56FCBD1EED3BB200FC34F1 /* RentMeVC.m in Sources */,
 				B2E027621FC15EEF0008E652 /* InformVC.m in Sources */,
 				1F91BC3B1F7D3622009D9B55 /* IQPreviousNextView.m in Sources */,
@@ -3277,6 +3365,7 @@
 					"$(PROJECT_DIR)/RentShe/Core/UMSocial6.4.4/UMSocialSDKPlugin",
 					"$(PROJECT_DIR)/RentShe/Core/RongCloud2.8.0",
 					"$(PROJECT_DIR)/RentShe/Core/WXPay",
+					"$(PROJECT_DIR)/RentShe/Core/Utilities/UMAnalytics",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rentshe.ios;
@@ -3318,6 +3407,7 @@
 					"$(PROJECT_DIR)/RentShe/Core/UMSocial6.4.4/UMSocialSDKPlugin",
 					"$(PROJECT_DIR)/RentShe/Core/RongCloud2.8.0",
 					"$(PROJECT_DIR)/RentShe/Core/WXPay",
+					"$(PROJECT_DIR)/RentShe/Core/Utilities/UMAnalytics",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rentshe.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -19,7 +19,6 @@
 #import "WXApi.h"
 #import "WXApiManager.h"
 
-//#import <RongIMKit/RongIMKit.h>
 #import "AppDelegate+RongCloud.h"
 #import "IQKeyboardManager.h"
 
@@ -59,7 +58,7 @@
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:kQQ_APPID appSecret:nil redirectURL:nil];
     
     //融云
-    [[RCIM sharedRCIM] initWithAppKey:kRongCAppKey];
+    [[RCIM sharedRCIM] initWithAppKey:kCommonConfig.rongCAppKey];
     
     if ([application
          respondsToSelector:@selector(registerUserNotificationSettings:)]) {
