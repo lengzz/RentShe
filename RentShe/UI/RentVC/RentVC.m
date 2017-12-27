@@ -338,7 +338,7 @@
         if (error || !placemarks.count)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                _isClose = YES;
                 UIAlertController *ctl = [UIAlertController alertControllerWithTitle:@"无法定位" message:@"请检查您的设备是否开启定位功能" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     [ctl dismissViewControllerAnimated:YES completion:nil];

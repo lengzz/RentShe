@@ -136,6 +136,11 @@
     NSInteger index = indexPath.row;
     BlackListM *model = self.dataArr[index];
     NSDictionary *dic = @{@"his_id":model.his_id};
+    //融云 -> 取消拉黑
+    [[RCIMClient sharedRCIMClient] removeFromBlacklist:model.his_id success:^{
+    } error:^(RCErrorCode status) {
+    }];
+    //系统 -> 取消拉黑
     [NetAPIManager cancelShieldUser:dic callBack:^(BOOL success, id object) {
         [SVProgressHUD dismiss];
         if (success) {
