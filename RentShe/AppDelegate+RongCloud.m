@@ -14,13 +14,18 @@
 - (void)getUserInfoWithUserId:(NSString *)userId
                    completion:(void (^)(RCUserInfo *userInfo))completion
 {
-    if ([userId isEqualToString:[UserDefaultsManager getUserId]]) {
+    if ([userId isEqualToString:[UserDefaultsManager getUserId]])
+    {
         return completion([RCIM sharedRCIM].currentUserInfo);
+    }
+    if ([kCommonConfig.userInfo valueForKey:userId]) {
+        return completion([kCommonConfig.userInfo valueForKey:userId]);
     }
     [NetAPIManager getUserSimpleInfo:@{@"uid_string":userId} callBack:^(BOOL success, id object) {
         if (success) {
             NSDictionary *dic = [object[@"data"] firstObject];
             RCUserInfo *user = [[RCUserInfo alloc] initWithUserId:dic[@"id"] name:dic[@"nickname"] portrait:dic[@"avatar"]];
+            [kCommonConfig.userInfo setValue:user forKey:userId];
             return completion(user);
         }
     }];

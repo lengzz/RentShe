@@ -103,7 +103,7 @@
     NSMutableArray *dateArr = [@[] mutableCopy];
     for (NSInteger i = 0; i < 7; i++) {
         NSString *str = [kCommonConfig.week_DateFormatter stringFromDate:[date dateByAddingTimeInterval:i * (60 * 60 * 24)]];
-        str = [str substringToIndex:9];
+        str = [str substringToIndex:13];
         [dateArr addObject:str];
     }
     _dateArr = [dateArr copy];
@@ -160,8 +160,8 @@
     NSDate *date = [NSDate date];
     date = [date dateByAddingTimeInterval:60 * 30];
     NSString *str = [kCommonConfig.week_DateFormatter stringFromDate:date];
-    NSString *hour = [str substringWithRange:NSMakeRange(10, 2)];
-    NSString *minute = [str substringWithRange:NSMakeRange(13, 2)];
+    NSString *hour = [str substringWithRange:NSMakeRange(14, 2)];
+    NSString *minute = [str substringWithRange:NSMakeRange(17, 2)];
     if (component == 1)
     {
         NSInteger i = [_hourArr indexOfObject:hour];

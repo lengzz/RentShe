@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, ServerType){
 #define kRongCAppKey_Online @"6tnym1br6jwt7"
 
 //测试环境
-#define kApiHostUrl_Test @"http://zuapi.rentshe.com"
+#define kApiHostUrl_Test @"http://zuapi.rentshe.com/Nip"
 #define kRongCAppKey_Test @"c9kqb3rdcvn9j"
 
 @interface CommonConfig ()
@@ -72,6 +72,19 @@ typedef NS_ENUM(NSUInteger, ServerType){
     }
 }
 
+- (void)setHotCityArr:(NSArray *)hotCityArr
+{
+    _hotCityArr = hotCityArr;
+}
+
+- (NSMutableDictionary *)userInfo
+{
+    if (!_userInfo) {
+        _userInfo = [NSMutableDictionary dictionary];
+    }
+    return _userInfo;
+}
+
 - (NSDateFormatter *)dateFormatter
 {
     if (!_dateFormatter) {
@@ -88,7 +101,7 @@ typedef NS_ENUM(NSUInteger, ServerType){
     if (!_week_DateFormatter) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"beijing"];
-        dateFormatter.dateFormat = @"MM月dd日 EE HH:mm";
+        dateFormatter.dateFormat = @"yyyy/MM/dd EE HH:mm";
         dateFormatter.shortWeekdaySymbols = @[@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六"];
         _week_DateFormatter = dateFormatter;
     }

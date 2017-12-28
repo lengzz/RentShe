@@ -156,6 +156,10 @@
     {
         if (self.infoM)
         {
+            
+            RCUserInfo *user = [[RCUserInfo alloc] initWithUserId:self.infoM.user_info.user_id name:self.infoM.user_info.nickname portrait:self.infoM.user_info.avatar];
+            [kCommonConfig.userInfo setValue:user forKey:self.infoM.user_info.user_id];
+            
             [self.headV refreshHead:self.infoM];
             [self.myTabV reloadData];
             return;
@@ -167,6 +171,10 @@
             if (success) {
                 self.infoM = [NearbyM new];
                 [self.infoM setValuesForKeysWithDictionary:object[@"data"]];
+                
+                RCUserInfo *user = [[RCUserInfo alloc] initWithUserId:self.infoM.user_info.user_id name:self.infoM.user_info.nickname portrait:self.infoM.user_info.avatar];
+                [kCommonConfig.userInfo setValue:user forKey:self.infoM.user_info.user_id];
+                
                 [self.headV refreshHead:self.infoM];
                 [self.myTabV reloadData];
             }
