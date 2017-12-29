@@ -9,7 +9,7 @@
 #import "ConversationVC.h"
 #import <RongIMLib/RCIMClient.h>
 
-#import "ConversationCell.h"
+#import "ConversationHeader.h"
 #import "ConversationDetailVC.h"
 
 @interface ConversationVC ()
@@ -28,6 +28,7 @@
     self.showConversationListWhileLogOut = NO;
     self.isShowNetworkIndicatorView = NO;
     [self createNavBar];
+    self.conversationListTableView.tableHeaderView = [ConversationHeader header];
     self.conversationListTableView.frame = CGRectMake(0, 0, kWindowWidth, kWindowHeight - 49);
 }
 
@@ -121,19 +122,25 @@
 
 - (void)willDisplayConversationTableCell:(RCConversationBaseCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    RCConversationCell *customCell = (RCConversationCell *)cell;
-    [customCell setHeaderImagePortraitStyle:RC_USER_AVATAR_CYCLE];
+    if ([cell isKindOfClass:[RCConversationCell class]])
+    {
+        RCConversationCell *customCell = (RCConversationCell *)cell;
+        [customCell setHeaderImagePortraitStyle:RC_USER_AVATAR_CYCLE];
+        
+        customCell.conversationTitle.font = [UIFont systemFontOfSize:15];
+        customCell.conversationTitle.textColor = kRGB_Value(0x282828);
+        
+        customCell.messageContentLabel.font = [UIFont systemFontOfSize:12];
+        customCell.messageContentLabel.textColor = kRGB_Value(0x989898);
+        
+        customCell.messageCreatedTimeLabel.font = [UIFont systemFontOfSize:12];
+        customCell.messageCreatedTimeLabel.textColor = kRGB_Value(0x989898);
+    }
     
-    customCell.conversationTitle.font = [UIFont systemFontOfSize:15];
-    customCell.conversationTitle.textColor = kRGB_Value(0x282828);
-    
-    customCell.messageContentLabel.font = [UIFont systemFontOfSize:12];
-    customCell.messageContentLabel.textColor = kRGB_Value(0x989898);
-    
-    customCell.messageCreatedTimeLabel.font = [UIFont systemFontOfSize:12];
-    customCell.messageCreatedTimeLabel.textColor = kRGB_Value(0x989898);
-    
-    
+}
+
+- (CGFloat)rcConversationListTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
