@@ -126,6 +126,9 @@
 - (void)textFieldClick
 {
     if (_moneyTF.text.length) {
+        if ([_moneyTF.text integerValue] > [[UserDefaultsManager getMoney] integerValue]) {
+            _moneyTF.text = [UserDefaultsManager getMoney];
+        }
         float money = [_moneyTF.text integerValue]/100.0;
         _feeTipsLab.text = [NSString stringWithFormat:@"额外扣除¥%.2f手续费（费率1%%）",money];
     }
