@@ -37,6 +37,8 @@
     NSString *token = [UserDefaultsManager getToken];
     [dic setValue:token?token:@"" forKey:@"token"];
     [dic setValue:@"ios" forKey:@"device"];
+    [dic setValue:[UserDefaultsManager getUserLng] forKey:@"lng"];
+    [dic setValue:[UserDefaultsManager getUserLat] forKey:@"lat"];
     return dic;
 }
 

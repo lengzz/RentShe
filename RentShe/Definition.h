@@ -50,6 +50,8 @@ typedef NS_ENUM(NSInteger,LoginType) {
 #define kAMapKey @"589239581301a83945f4b9c1bd6a736a"
 #define kAliScheme @"alisdkRentShe"
 
+#define kServiceRCID @"209"
+
 
 #undef	kRGB
 #define kRGB(R,G,B)		[UIColor colorWithRed:R/255.0f green:G/255.0f blue:B/255.0f alpha:1.0f]

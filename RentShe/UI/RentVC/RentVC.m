@@ -272,7 +272,7 @@
     if (distance > [[UserDefaultsManager getRangeSensor] doubleValue] && [[UserDefaultsManager getRangeSensor] doubleValue] > 0)
     {
         _startLocation = location;
-        NSDictionary *dic = @{@"city_code":[UserDefaultsManager getCurCityCode],@"lng":@(location.coordinate.longitude),@"lat":@(location.coordinate.latitude)};
+        NSDictionary *dic = @{@"city_code":[UserDefaultsManager getCurCityCode]};
         [NetAPIManager updateLocation:dic callBack:^(BOOL success, id object) {
             if (success) {
             }

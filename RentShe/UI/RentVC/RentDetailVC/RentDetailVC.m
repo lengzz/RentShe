@@ -164,9 +164,7 @@
             [self.myTabV reloadData];
             return;
         }
-        NSDictionary *dic = @{@"user_id":self.user_id,
-                              @"lng":[UserDefaultsManager getUserLng],
-                              @"lat":[UserDefaultsManager getUserLat]};
+        NSDictionary *dic = @{@"user_id":self.user_id};
         [NetAPIManager othersHomeInfo:dic callBack:^(BOOL success, id object) {
             if (success) {
                 self.infoM = [NearbyM new];

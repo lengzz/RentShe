@@ -39,6 +39,7 @@
     if (resArr.count)
     {
         _resArr = resArr;
+        [self.mapView removeAnnotations:self.mapView.annotations];
         for (id<MAAnnotation> annotation in resArr)
         {
             if (annotation)

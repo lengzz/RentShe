@@ -468,8 +468,10 @@ typedef NS_ENUM(NSInteger, PickType)
 - (void)editInfoHeader:(EditInfoHeader *)header moveImageAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)toIndex
 {
     if (self.photoArr.count > (sourceIndex > toIndex ? sourceIndex : toIndex)) {
-//        self.photoArr ob
-        [self.photoArr exchangeObjectAtIndex:sourceIndex withObjectAtIndex:toIndex];
+        id obj = self.photoArr[sourceIndex];
+        [self.photoArr removeObjectAtIndex:sourceIndex];
+        [self.photoArr insertObject:obj atIndex:toIndex];
+//        [self.photoArr exchangeObjectAtIndex:sourceInex withObjectAtIndex:toIndex];
     }
 }
 
@@ -517,19 +519,19 @@ typedef NS_ENUM(NSInteger, PickType)
             month = [rows[1] integerValue];
         }
         _birthday = [NSString stringWithFormat:@"%@-%@",self.yearsArr[year],self.monthsArr[month]];
-        [self.myTabV reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        [self.myTabV reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:6 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     }
     else if (_type == PickTypeOfHeight)
     {
         NSInteger index = [rows[0] integerValue];
         _height = self.heightArr[index];
-        [self.myTabV reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        [self.myTabV reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     }
     else if (_type == PickTypeOfWeight)
     {
         NSInteger index = [rows[0] integerValue];
         _weight = self.weightArr[index];
-        [self.myTabV reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        [self.myTabV reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:5 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
@@ -552,7 +554,7 @@ typedef NS_ENUM(NSInteger, PickType)
             if (_imgType == 2)
             {
                 _avatar = imgUrl;
-                [self.myTabV reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:5 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.myTabV reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             }
             else if (_imgType == 1)
             {

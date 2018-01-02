@@ -38,7 +38,7 @@
     tabV.delegate = self;
     tabV.dataSource = self;
     tabV.backgroundColor = [UIColor orangeColor];
-    tabV.separatorStyle = 
+//    tabV.separatorStyle = 
     tabV.scrollEnabled = NO;
     [self addSubview:tabV];
     _myTabV = tabV;
@@ -66,6 +66,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 70;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(conversationHeader:didSelectWithType:)]) {
+        [self.delegate conversationHeader:self didSelectWithType:[self.dataArr[indexPath.row] integerValue]];
+    }
 }
 
 @end

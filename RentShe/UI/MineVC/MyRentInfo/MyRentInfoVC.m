@@ -220,8 +220,6 @@
         [skillArr addObject:dic];
     }
     NSDictionary *dic = @{@"city_code":[UserDefaultsManager getCurCityCode],
-                          @"lng":[UserDefaultsManager getUserLng] ? [UserDefaultsManager getUserLng] : @"100.1",
-                          @"lat":[UserDefaultsManager getUserLat] ? [UserDefaultsManager getUserLat] : @"80",
                           @"rental_start_time":_myInfo.rent_info.rental_start_time,
                           @"rental_end_time":_myInfo.rent_info.rental_end_time,
                           @"rental_date":self.weekDic,

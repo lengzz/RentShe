@@ -12,13 +12,23 @@
 #import "ConversationHeader.h"
 #import "ConversationDetailVC.h"
 
-@interface ConversationVC ()
+@interface ConversationVC ()<ConversationHeaderDelegate>
 {
     UIButton *_msgBtn;
 }
+@property (nonatomic, strong) ConversationHeader *header;
 @end
 
 @implementation ConversationVC
+
+- (ConversationHeader *)header
+{
+    if (!_header) {
+        _header = [ConversationHeader header];
+        _header.delegate = self;
+    }
+    return _header;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,7 +38,7 @@
     self.showConversationListWhileLogOut = NO;
     self.isShowNetworkIndicatorView = NO;
     [self createNavBar];
-    self.conversationListTableView.tableHeaderView = [ConversationHeader header];
+    self.conversationListTableView.tableHeaderView = self.header;
     self.conversationListTableView.frame = CGRectMake(0, 0, kWindowWidth, kWindowHeight - 49);
 }
 
@@ -112,6 +122,9 @@
 - (void)onSelectedTableRow:(RCConversationModelType)conversationModelType
          conversationModel:(RCConversationModel *)model
                atIndexPath:(NSIndexPath *)indexPath {
+    if (!isLogin(self)) {
+        return;
+    }
     ConversationDetailVC *conversationVC = [[ConversationDetailVC alloc]init];
     conversationVC.conversationType = model.conversationType;
     conversationVC.targetId = model.targetId;
@@ -153,6 +166,24 @@
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(15, 0, kWindowWidth - 15, 1)];
     line.backgroundColor = kRGB_Value(0xf2f2f2);
     return line;
+}
+
+- (void)conversationHeader:(ConversationHeader *)header didSelectWithType:(CustomConversation)type
+{
+    switch (type) {
+        case CustomConversationOfService:
+        {
+            ConversationDetailVC *conversationVC = [[ConversationDetailVC alloc]init];
+            conversationVC.conversationType = ConversationType_PRIVATE;
+            conversationVC.targetId = kServiceRCID;
+            conversationVC.title = @"客服";
+            conversationVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:conversationVC animated:YES];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

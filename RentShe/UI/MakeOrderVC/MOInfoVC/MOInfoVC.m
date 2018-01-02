@@ -184,7 +184,7 @@
 - (void)setAddress:(CusAnnotation *)annotation
 {
     _meetPoint = annotation.coordinate;
-    _address = annotation.subtitle;
+    _address = annotation.title;
     [self.myTabV reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 

@@ -78,6 +78,7 @@
                 }
                 _curCell = cell;
                 _curIndex = selectIndexPath;
+                _toIndex = selectIndexPath;
                 cell.isMove = YES;
                 _topImg.center = cell.center;
                 _topImg.image = cell.photoV.image;
@@ -89,22 +90,20 @@
             CGPoint point = [longPress locationInView:_longPress.view];
             NSIndexPath *selectIndexPath = [self.myCollectionV indexPathForItemAtPoint:[_longPress locationInView:self.myCollectionV]];
             EditInfoHeaderCell *cell = (EditInfoHeaderCell *)[self.myCollectionV cellForItemAtIndexPath:selectIndexPath];
-            if (_curIndex.item != selectIndexPath.item && !cell.photoV.hidden) {
-                [self.myCollectionV moveItemAtIndexPath:_curIndex toIndexPath:selectIndexPath];
-                [self collectionView:self.myCollectionV moveItemAtIndexPath:_curIndex toIndexPath:selectIndexPath];
-                _curIndex = selectIndexPath;
+            if (_toIndex.item != selectIndexPath.item && !cell.photoV.hidden) {
+                [self.myCollectionV moveItemAtIndexPath:_toIndex toIndexPath:selectIndexPath];
+                _toIndex = selectIndexPath;
             }
             _topImg.center = point;
             break;
         }
         case UIGestureRecognizerStateEnded: {
-            [self.myCollectionV endInteractiveMovement];
+            [self moveItemAtIndexPath:_curIndex toIndexPath:_toIndex];
             _topImg.hidden = YES;
             _curCell.isMove = NO;
             break;
         }
         default: {
-            [self.myCollectionV cancelInteractiveMovement];
             _topImg.hidden = YES;
             _curCell.isMove = NO;
             break;
@@ -126,6 +125,15 @@
 - (void)updateHeader
 {
     [self.myCollectionV reloadData];
+}
+
+
+- (void)moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+    NSLog(@"1221");
+    if ([self.delegate respondsToSelector:@selector(editInfoHeader:moveImageAtIndex:toIndex:)]) {
+        [self.delegate editInfoHeader:self moveImageAtIndex:sourceIndexPath.item toIndex:toIndexPath.item];
+    }
 }
 
 #pragma mark -
@@ -164,14 +172,6 @@
 {
     if ([self.delegate respondsToSelector:@selector(editInfoHeader:clickImageAtIndex:)]) {
         [self.delegate editInfoHeader:self clickImageAtIndex:indexPath.item];
-    }
-}
-
-- (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    NSLog(@"1221");
-    if ([self.delegate respondsToSelector:@selector(editInfoHeader:moveImageAtIndex:toIndex:)]) {
-        [self.delegate editInfoHeader:self moveImageAtIndex:sourceIndexPath.item toIndex:destinationIndexPath.item];
     }
 }
 
