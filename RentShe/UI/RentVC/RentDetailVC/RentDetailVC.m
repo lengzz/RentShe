@@ -374,7 +374,7 @@
             {
                 cell.textLabel.textColor = kRGB(101, 101, 101);
                 cell.textLabel.numberOfLines = 0;
-                cell.textLabel.text = self.infoM.user_info.introduction.length ? self.infoM.user_info.introduction : @"这家伙很懒，木有介绍。";
+                cell.textLabel.text = self.infoM.user_info.introduction.length ? self.infoM.user_info.introduction : @"我就是我，不一样烟火。";
             }
             else
             {

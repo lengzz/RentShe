@@ -17,6 +17,10 @@
 {
     NSInteger _beginIndex;
     UILongPressGestureRecognizer *_longPress;
+    UIImageView *_topImg;
+    EditInfoHeaderCell *_curCell;
+    NSIndexPath *_curIndex;
+    NSIndexPath *_toIndex;
 }
 @property (nonatomic, strong) UICollectionView *myCollectionV;
 @end
@@ -51,9 +55,15 @@
 - (void)createV
 {
     [self myCollectionV];
-//    _beginIndex = -1;
-//    _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(lonePressMoving:)];
-//    [self.myCollectionV addGestureRecognizer:_longPress];
+    _beginIndex = -1;
+    _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(lonePressMoving:)];
+    [self.myCollectionV addGestureRecognizer:_longPress];
+    
+    UIImageView *topImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    topImg.hidden = YES;
+    topImg.backgroundColor = [UIColor redColor];
+    [self addSubview:topImg];
+    _topImg = topImg;
 }
 
 - (void)lonePressMoving:(UILongPressGestureRecognizer *)longPress
@@ -62,21 +72,43 @@
         case UIGestureRecognizerStateBegan: {
             {
                 NSIndexPath *selectIndexPath = [self.myCollectionV indexPathForItemAtPoint:[_longPress locationInView:self.myCollectionV]];
-                
-                [self.myCollectionV beginInteractiveMovementForItemAtIndexPath:selectIndexPath];
+                EditInfoHeaderCell *cell = (EditInfoHeaderCell *)[self.myCollectionV cellForItemAtIndexPath:selectIndexPath];
+                if (cell.photoV.hidden) {
+                    return;
+                }
+                _curCell = cell;
+                _curIndex = selectIndexPath;
+                cell.isMove = YES;
+                _topImg.center = cell.center;
+                _topImg.image = cell.photoV.image;
+                _topImg.hidden = NO;
             }
             break;
         }
         case UIGestureRecognizerStateChanged: {
-            [self.myCollectionV updateInteractiveMovementTargetPosition:[longPress locationInView:_longPress.view]];
+            CGPoint point = [longPress locationInView:_longPress.view];
+            NSIndexPath *selectIndexPath = [self.myCollectionV indexPathForItemAtPoint:[_longPress locationInView:self.myCollectionV]];
+            EditInfoHeaderCell *cell = (EditInfoHeaderCell *)[self.myCollectionV cellForItemAtIndexPath:selectIndexPath];
+            if (_curIndex.item != selectIndexPath.item && !cell.photoV.hidden) {
+                [self.myCollectionV moveItemAtIndexPath:_curIndex toIndexPath:selectIndexPath];
+                [self collectionView:self.myCollectionV moveItemAtIndexPath:_curIndex toIndexPath:selectIndexPath];
+                _curIndex = selectIndexPath;
+            }
+            _topImg.center = point;
             break;
         }
         case UIGestureRecognizerStateEnded: {
             [self.myCollectionV endInteractiveMovement];
+            _topImg.hidden = YES;
+            _curCell.isMove = NO;
             break;
         }
-        default: [self.myCollectionV cancelInteractiveMovement];
+        default: {
+            [self.myCollectionV cancelInteractiveMovement];
+            _topImg.hidden = YES;
+            _curCell.isMove = NO;
             break;
+        }
     }
 }
 

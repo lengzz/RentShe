@@ -169,7 +169,7 @@ RealTimeLocationStatusViewDelegate, UIAlertViewDelegate, RCMessageCellDelegate>
 - (void)pluginBoardView:(RCPluginBoardView *)pluginBoardView clickedItemWithTag:(NSInteger)tag {
     switch (tag) {
         case PLUGIN_BOARD_ITEM_LOCATION_TAG: {
-            if (self.realTimeLocation&&0) {//先不开启功能
+            if (self.realTimeLocation) {
                 UIAlertController *ctl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
                 UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                     

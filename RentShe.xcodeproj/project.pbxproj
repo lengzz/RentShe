@@ -392,6 +392,7 @@
 		4C74893A1FD122C700D108B3 /* BlackListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7489391FD122C700D108B3 /* BlackListVC.m */; };
 		4C74893E1FD1251B00D108B3 /* BlackListM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74893D1FD1251B00D108B3 /* BlackListM.m */; };
 		4C7489421FD12E9200D108B3 /* BlackListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7489411FD12E9200D108B3 /* BlackListCell.m */; };
+		4C83FF7B1FFB853E0050A105 /* EditIntroVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83FF7A1FFB853E0050A105 /* EditIntroVC.m */; };
 		B2C622421FB82DB200D2EB31 /* SearchBarV.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C622411FB82DB200D2EB31 /* SearchBarV.m */; };
 		B2E027621FC15EEF0008E652 /* InformVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E027611FC15EEF0008E652 /* InformVC.m */; };
 		B2E027651FC161BF0008E652 /* share_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2E027631FC161BF0008E652 /* share_more@2x.png */; };
@@ -999,6 +1000,8 @@
 		4C74893D1FD1251B00D108B3 /* BlackListM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlackListM.m; sourceTree = "<group>"; };
 		4C7489401FD12E9200D108B3 /* BlackListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlackListCell.h; sourceTree = "<group>"; };
 		4C7489411FD12E9200D108B3 /* BlackListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlackListCell.m; sourceTree = "<group>"; };
+		4C83FF791FFB853E0050A105 /* EditIntroVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditIntroVC.h; sourceTree = "<group>"; };
+		4C83FF7A1FFB853E0050A105 /* EditIntroVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditIntroVC.m; sourceTree = "<group>"; };
 		B2C622401FB82DB200D2EB31 /* SearchBarV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBarV.h; sourceTree = "<group>"; };
 		B2C622411FB82DB200D2EB31 /* SearchBarV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBarV.m; sourceTree = "<group>"; };
 		B2E027601FC15EEF0008E652 /* InformVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformVC.h; sourceTree = "<group>"; };
@@ -2071,6 +2074,7 @@
 				1F802DAD1F760FE100D59AE6 /* View */,
 				1F6E1EA81F72A70900620E68 /* EditInfoVC.h */,
 				1F6E1EA91F72A70900620E68 /* EditInfoVC.m */,
+				4C83FF781FFB85270050A105 /* EditIntroVC */,
 			);
 			path = EditInfoVC;
 			sourceTree = "<group>";
@@ -2698,6 +2702,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4C83FF781FFB85270050A105 /* EditIntroVC */ = {
+			isa = PBXGroup;
+			children = (
+				4C83FF791FFB853E0050A105 /* EditIntroVC.h */,
+				4C83FF7A1FFB853E0050A105 /* EditIntroVC.m */,
+			);
+			path = EditIntroVC;
+			sourceTree = "<group>";
+		};
 		B2C6223F1FB82D9300D2EB31 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -3028,6 +3041,7 @@
 				1F5F065A1EE67C75002AF27D /* RentDetailHeadV.m in Sources */,
 				1F502DAF1EDBFCEF0007A908 /* UIImage+MultiFormat.m in Sources */,
 				1F91BC361F7D3622009D9B55 /* IQUIWindow+Hierarchy.m in Sources */,
+				4C83FF7B1FFB853E0050A105 /* EditIntroVC.m in Sources */,
 				1F4D9F091EE060BB00320745 /* LocationVC.m in Sources */,
 				1F9315211F6CE34500C90ED4 /* AddRentSkillVC.m in Sources */,
 				1FA5FA571F246DCB007321AB /* ModifyPswVC.m in Sources */,

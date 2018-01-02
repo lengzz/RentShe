@@ -19,7 +19,7 @@
 - (NSArray *)dataArr
 {
     if (!_dataArr) {
-        _dataArr = @[@(CustomConversationOfService),@(CustomConversationOfService)];
+        _dataArr = @[@(CustomConversationOfService)];
     }
     return _dataArr;
 }

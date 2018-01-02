@@ -10,6 +10,7 @@
 #import "EditInfoHeader.h"
 #import "CustomPickV.h"
 #import "NearbyM.h"
+#import "EditIntroVC.h"
 
 #define kCellIdentifier @"editInfoCell"
 
@@ -158,13 +159,13 @@ typedef NS_ENUM(NSInteger, PickType)
 - (void)setInfoM:(NearbyM *)infoM
 {
     _infoM = infoM;
-    _name = infoM.user_info.nickname;
-    _birthday = infoM.user_info.birthday;
-    _weight = infoM.user_info.weight;
-    _height = infoM.user_info.height;
-    _profession = infoM.user_info.vocation;
-    _avatar = infoM.user_info.avatar;
-    _introduction = infoM.user_info.introduction;
+    _name = infoM.user_info.nickname ? infoM.user_info.nickname : @"";
+    _birthday = infoM.user_info.birthday ? infoM.user_info.birthday : @"";
+    _weight = infoM.user_info.weight ? infoM.user_info.weight : @"";
+    _height = infoM.user_info.height ? infoM.user_info.height : @"";
+    _profession = infoM.user_info.vocation ? infoM.user_info.vocation : @"";
+    _avatar = infoM.user_info.avatar ? infoM.user_info.avatar : @"";
+    _introduction = infoM.user_info.introduction ? infoM.user_info.introduction : @"";
     
     [self.myTabV reloadData];
     
@@ -237,6 +238,18 @@ typedef NS_ENUM(NSInteger, PickType)
     }
 }
 
+- (void)editIntroduction
+{
+    EditIntroVC *vc = [[EditIntroVC alloc] init];
+    __weak typeof(self)wself = self;
+    vc.callBack = ^(NSString *str) {
+        __strong typeof(wself) strongSelf = wself;
+        strongSelf->_introduction = str;
+        [wself.myTabV reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)popImgChoose
 {
     UIImagePickerController *imgCtl = [[UIImagePickerController alloc] init];
@@ -285,7 +298,30 @@ typedef NS_ENUM(NSInteger, PickType)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!indexPath.row || indexPath.row == 4 || indexPath.row == 5)
+    if (indexPath.row == 0)
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imgCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"imgCell"];
+            cell.textLabel.font = [UIFont systemFontOfSize:15];
+            cell.textLabel.textColor = kRGB(40, 40, 40);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            UIImageView *img = [[UIImageView alloc] init];
+            img.tag = 110;
+            [cell.contentView addSubview:img];
+            [img mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.height.equalTo(@30);
+                make.centerY.equalTo(cell.contentView);
+                make.right.equalTo(cell.contentView).offset(-15);
+            }];
+        }
+        cell.textLabel.text = @"修改头像";
+        UIImageView *img = [cell.contentView viewWithTag:110];
+        [img sd_setImageWithUrlStr:_avatar placeholderImage:[UIImage imageNamed:@"mine_default"]];
+        return cell;
+    }
+    else if (indexPath.row == 1 || indexPath.row == 3)
     {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tfCell"];
         if (!cell) {
@@ -316,18 +352,11 @@ typedef NS_ENUM(NSInteger, PickType)
                 break;
             }
         }
-        if (indexPath.row == 5)
+        if (indexPath.row == 3)
         {
             cell.textLabel.text = @"职业";
             tf.text = _profession.length ? _profession : @"请设置";
             tf.tag = 2;
-        }
-        else if (indexPath.row == 4)
-        {
-            cell.textLabel.text = @"个人简介";
-            tf.clearButtonMode = UITextFieldViewModeWhileEditing;
-            tf.text = _introduction.length ? _introduction : @"请介绍自己";
-            tf.tag = 3;
         }
         else
         {
@@ -336,29 +365,6 @@ typedef NS_ENUM(NSInteger, PickType)
             tf.tag = 1;
         }
         
-        return cell;
-    }
-    else if (indexPath.row == 6)
-    {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imgCell"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"imgCell"];
-            cell.textLabel.font = [UIFont systemFontOfSize:15];
-            cell.textLabel.textColor = kRGB(40, 40, 40);
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            UIImageView *img = [[UIImageView alloc] init];
-            img.tag = 110;
-            [cell.contentView addSubview:img];
-            [img mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.width.height.equalTo(@30);
-                make.centerY.equalTo(cell.contentView);
-                make.right.equalTo(cell.contentView).offset(-15);
-            }];
-        }
-        cell.textLabel.text = @"修改头像";
-        UIImageView *img = [cell.contentView viewWithTag:110];
-        [img sd_setImageWithUrlStr:_avatar placeholderImage:[UIImage imageNamed:@"mine_default"]];
         return cell;
     }
     
@@ -372,24 +378,24 @@ typedef NS_ENUM(NSInteger, PickType)
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     switch (indexPath.row) {
-        case 1:
-            cell.textLabel.text = @"生日";
+        case 6:
+            cell.textLabel.text = @"出生年月";
             cell.detailTextLabel.text = _birthday ? _birthday : @"请设置";
             break;
             
-        case 2:
+        case 4:
             cell.textLabel.text = @"身高";
             cell.detailTextLabel.text = _height ? [NSString stringWithFormat:@"%@cm",_height]: @"请设置";
             break;
             
-        case 3:
+        case 5:
             cell.textLabel.text = @"体重";
             cell.detailTextLabel.text = _weight ? [NSString stringWithFormat:@"%@kg",_weight]: @"请设置";
             break;
             
-        case 4:
-            cell.textLabel.text = @"职业";
-            cell.detailTextLabel.text = @"年龄";
+        case 2:
+            cell.textLabel.text = @"自我简介";
+            cell.detailTextLabel.text = _introduction.length ? _introduction : @"请介绍自己";
             break;
             
         default:
@@ -401,26 +407,29 @@ typedef NS_ENUM(NSInteger, PickType)
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
-        case 1:
+        case 6:
             _type = PickTypeOfAge;
             [self.pickV showPickV];
+            [self.pickV selectWithTitles:[_birthday.length ? _birthday : @"1995-1" componentsSeparatedByString:@"-"]];
             break;
             
-        case 2:
-            _type = PickTypeOfHeight;
-            [self.pickV showPickV];
-            break;
-            
-        case 3:
+        case 5:
             _type = PickTypeOfWeight;
             [self.pickV showPickV];
+            [self.pickV selectWithTitles:@[_weight.length ? _weight : @"50"]];
             break;
             
         case 4:
-            
+            _type = PickTypeOfHeight;
+            [self.pickV showPickV];
+            [self.pickV selectWithTitles:@[_height.length ? _height : @"170"]];
             break;
             
-        case 6:
+        case 2:
+            [self editIntroduction];
+            break;
+            
+        case 0:
             _imgType = 2;
             [self popImgChoose];
             break;
@@ -458,7 +467,10 @@ typedef NS_ENUM(NSInteger, PickType)
 }
 - (void)editInfoHeader:(EditInfoHeader *)header moveImageAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)toIndex
 {
-
+    if (self.photoArr.count > (sourceIndex > toIndex ? sourceIndex : toIndex)) {
+//        self.photoArr ob
+        [self.photoArr exchangeObjectAtIndex:sourceIndex withObjectAtIndex:toIndex];
+    }
 }
 
 #pragma mark -

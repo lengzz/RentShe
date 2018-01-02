@@ -10,8 +10,8 @@
 
 @interface EditInfoHeaderCell ()
 {
-    UIImageView *_photoV;
     UIImageView *_bgImg;
+    UIView *_coverV;
 }
 @end
 
@@ -28,6 +28,7 @@
 
 - (void)createCell
 {
+    self.contentView.backgroundColor = [UIColor whiteColor];
     
     UIImageView *bgImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"editinfo_photo"]];
     [self.contentView addSubview:bgImg];
@@ -42,6 +43,13 @@
     UIImageView *delImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"rent_delete"]];
     [photoV addSubview:delImg];
     
+    UIView *coverV = [[UIView alloc] init];
+    coverV.backgroundColor = [UIColor whiteColor];
+    coverV.alpha = 0.3;
+    coverV.hidden = YES;
+    [self.contentView addSubview:coverV];
+    _coverV = coverV;
+    
     [bgImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self.contentView).offset(5);
         make.right.bottom.equalTo(self.contentView).offset(-5);
@@ -54,8 +62,15 @@
         make.right.top.equalTo(photoV);
         make.height.width.equalTo(@15);
     }];
+    [coverV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.contentView);
+    }];
 }
 
+- (void)setIsMove:(BOOL)isMove
+{
+    _coverV.hidden = !isMove;
+}
 
 - (void)refreshCell:(id)obj
 {

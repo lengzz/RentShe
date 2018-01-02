@@ -10,6 +10,10 @@
 
 @interface EditInfoHeaderCell : UICollectionViewCell
 
+
+@property (nonatomic, strong) UIImageView *photoV;
+@property (nonatomic, assign) BOOL isMove;
+
 - (void)refreshCell:(id)obj;
 
 @end

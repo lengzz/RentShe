@@ -13,6 +13,7 @@
     UIView *_contentV;
 }
 @property (nonatomic, strong) UIPickerView *pickerV;
+@property (nonatomic, strong) NSMutableDictionary *dataDic;
 @end
 
 @implementation CustomPickV
@@ -20,6 +21,14 @@
 - (void)dealloc
 {
     NSLog(@"CustomPickV dealloc");
+}
+
+- (NSMutableDictionary *)dataDic
+{
+    if (!_dataDic) {
+        _dataDic = [NSMutableDictionary dictionary];
+    }
+    return _dataDic;
 }
 
 - (UIPickerView *)pickerV
@@ -80,6 +89,25 @@
     [[[UIApplication sharedApplication] keyWindow] addSubview:self];
 }
 
+- (void)selectWithTitles:(NSArray *)arr
+{
+    if (arr.count) {
+        for (NSInteger i = 0; i < arr.count; i ++) {
+            if (i < self.pickerV.numberOfComponents)
+            {
+                NSInteger row = 0;
+                NSArray *data = self.dataDic[@(i)];
+                if ([data containsObject:arr[i]]) {
+                    row = [data indexOfObject:arr[i]];
+                }
+                [self.pickerV selectRow:row inComponent:i animated:YES];
+            }
+            else
+                break;
+        }
+    }
+}
+
 - (void)reloadCustomPickV
 {
     [self.pickerV reloadAllComponents];
@@ -129,6 +157,7 @@
 {
     if ([self.dataSource respondsToSelector:@selector(customPickV:contentOfRowsInComponent:)])
     {
+        [self.dataDic setObject:[self.dataSource customPickV:self contentOfRowsInComponent:component] forKey:@(component)];
         return [self.dataSource customPickV:self contentOfRowsInComponent:component].count;
     }
     return 0;
