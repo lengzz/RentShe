@@ -59,16 +59,6 @@
     [self setMsgFlag:[obj[@"userinfo"][@"flag"] integerValue]];
     [self setCertified:[obj[@"userinfo"][@"certified"] boolValue]];
     
-    //    [[RCIM sharedRCIM] connectWithToken:[self getRYToken] success:^(NSString *userId) {
-    //        NSLog(@"RongYun is Login !!!");
-    //        RCUserInfo *info = [[RCUserInfo alloc] initWithUserId:userId name:[self getNickName] portrait:[self getAvatar]];
-    //        [RCIM sharedRCIM].currentUserInfo = info;
-    //    } error:^(RCConnectErrorCode status) {
-    //
-    //    } tokenIncorrect:^{
-    //
-    //    }];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:kLoginStatusIsChange object:self];
 }
 
@@ -86,7 +76,7 @@
             [self setMoney:infoM.user_info.money];
             [self setVisitorNum:[NSString stringWithFormat:@"%zd",infoM.user_info.visitornum]];
             [self setMsgFlag:infoM.user_info.flag];
-            [self setCertified:infoM.user_info.certified];
+            [self setCertified:[infoM.user_info.certified boolValue]];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kUserInfoIsChange object:self];
         }
