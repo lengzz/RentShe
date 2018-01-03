@@ -16,7 +16,6 @@
 {
     NSInteger _index;
 }
-@property (nonatomic, strong) UICollectionView *myCollectionV;
 @property (nonatomic, strong) NSMutableArray *dataArr;
 @property (nonatomic, strong) NSDictionary *searchDic;
 @end

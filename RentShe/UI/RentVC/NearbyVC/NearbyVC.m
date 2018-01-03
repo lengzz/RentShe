@@ -17,7 +17,6 @@
     NSInteger _index;
     UIButton *_maleBtn,*_femaleBtn;
 }
-@property (nonatomic, strong) UITableView *myTabV;
 @property (nonatomic, strong) NSMutableArray *dataArr;
 @end
 

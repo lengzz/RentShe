@@ -10,6 +10,7 @@
 
 @interface NearbyVC : UIViewController
 
+@property (nonatomic, strong) UITableView *myTabV;
 @property (nonatomic, weak) UINavigationController *navC;
 
 @end

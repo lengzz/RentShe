@@ -92,6 +92,7 @@
         _collectionV.showsHorizontalScrollIndicator = NO;
         _collectionV.pagingEnabled = YES;
         [_collectionV registerClass:[RentCell class]forCellWithReuseIdentifier:@"rentCell"];
+        _collectionV.scrollsToTop = NO;
         [self.view addSubview:_collectionV];
         if (@available(iOS 11.0, *)){
             [_collectionV setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
@@ -191,6 +192,8 @@
     switch (tag) {
         case 1:
         {
+            self.nearbyVC.myTabV.scrollsToTop = YES;
+            self.recommendVC.myCollectionV.scrollsToTop = NO;
             UIButton *btn = [_titleV viewWithTag:2];
             btn.selected = NO;
             btn.userInteractionEnabled = YES;
@@ -200,6 +203,8 @@
         }
         case 2:
         {
+            self.nearbyVC.myTabV.scrollsToTop = NO;
+            self.recommendVC.myCollectionV.scrollsToTop = YES;
             UIButton *btn = [_titleV viewWithTag:1];
             btn.selected = NO;
             btn.userInteractionEnabled = YES;

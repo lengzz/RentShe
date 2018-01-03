@@ -91,12 +91,13 @@ RealTimeLocationStatusViewDelegate, UIAlertViewDelegate, RCMessageCellDelegate>
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             
         }];
-        UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.realTimeLocation quitRealTimeLocation];
             [self.realTimeLocation removeRealTimeLocationObserver:self];
             [self.navigationController popViewControllerAnimated:YES];
         }];
-        [ctl addAction:confirm];
         [ctl addAction:cancel];
+        [ctl addAction:confirm];
         [self presentViewController:ctl animated:YES completion:nil];
     } else {
         [self.realTimeLocation removeRealTimeLocationObserver:self];

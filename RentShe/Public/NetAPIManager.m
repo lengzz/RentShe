@@ -24,6 +24,8 @@
 //    NSString *cookie = [NSString stringWithFormat:@"device=ios;version=%@;token=%@",[kAPPInfo objectForKey:@"CFBundleShortVersionString"],token];
 //    
 //    [manager.requestSerializer setValue:cookie forHTTPHeaderField:@"Cookie"];
+    [manager.requestSerializer setValue:@"ios" forHTTPHeaderField:@"device"];
+    [manager.requestSerializer setValue:kAppVersion forHTTPHeaderField:@"version"];
     return manager;
 }
 
@@ -36,7 +38,6 @@
     
     NSString *token = [UserDefaultsManager getToken];
     [dic setValue:token?token:@"" forKey:@"token"];
-    [dic setValue:@"ios" forKey:@"device"];
     [dic setValue:[UserDefaultsManager getUserLng] forKey:@"lng"];
     [dic setValue:[UserDefaultsManager getUserLat] forKey:@"lat"];
     return dic;

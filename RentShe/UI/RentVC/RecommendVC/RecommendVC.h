@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RecommendVC : UIViewController
+@property (nonatomic, strong) UICollectionView *myCollectionV;
 @property (nonatomic, weak) UINavigationController *navC;
 
 - (void)filterChange;
