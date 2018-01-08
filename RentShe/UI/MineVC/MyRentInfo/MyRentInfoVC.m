@@ -220,8 +220,6 @@
         [skillArr addObject:dic];
     }
     NSDictionary *dic = @{@"city_code":[UserDefaultsManager getCurCityCode],
-                          @"lng":[UserDefaultsManager getUserLng] ? [UserDefaultsManager getUserLng] : @"100.1",
-                          @"lat":[UserDefaultsManager getUserLat] ? [UserDefaultsManager getUserLat] : @"80",
                           @"rental_start_time":_myInfo.rent_info.rental_start_time,
                           @"rental_end_time":_myInfo.rent_info.rental_end_time,
                           @"rental_date":self.weekDic,
@@ -233,17 +231,15 @@
 #pragma mark - _______UITableViewDelegate,UITableViewDataSource_______
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!indexPath.section && indexPath.row == 1) {
-        if (!_myInfo.user_info.vocation.length)
-        {
-            EditInfoVC *vc = [EditInfoVC new];
-            vc.infoM = self.myInfo;
-            __block typeof(self) wself = self;
-            vc.isChange = ^{
-                [wself requestData];
-            };
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+    if (!indexPath.section && indexPath.row < 2)
+    {
+        EditInfoVC *vc = [EditInfoVC new];
+        vc.infoM = self.myInfo;
+        __block typeof(self) wself = self;
+        vc.isChange = ^{
+            [wself requestData];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -271,6 +267,7 @@
             cell.textLabel.textColor = kRGB_Value(0x282828);
             cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         switch (indexPath.row) {
             case 0:

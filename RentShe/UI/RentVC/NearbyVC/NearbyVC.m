@@ -17,7 +17,6 @@
     NSInteger _index;
     UIButton *_maleBtn,*_femaleBtn;
 }
-@property (nonatomic, strong) UITableView *myTabV;
 @property (nonatomic, strong) NSMutableArray *dataArr;
 @end
 
@@ -113,8 +112,6 @@
     _index = 1;
     NSDictionary *params = @{
                              @"city_code":[UserDefaultsManager getCurCityCode],
-                             @"lng":[UserDefaultsManager getUserLng],
-                             @"lat":[UserDefaultsManager getUserLat],
                              @"page":@(_index),
                              @"gender":@(_femaleBtn.selected)
                              };
@@ -142,8 +139,6 @@
     _index ++;
     NSDictionary *params = @{
                              @"city_code":[UserDefaultsManager getCurCityCode],
-                             @"lng":[UserDefaultsManager getUserLng],
-                             @"lat":[UserDefaultsManager getUserLat],
                              @"page":@(_index),
                              @"gender":@(_femaleBtn.selected)
                              };

@@ -209,6 +209,10 @@
     {
         type = LoginTypeWechat;
     }
+    else
+    {
+        return;
+    }
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:platformType currentViewController:self completion:^(id result, NSError *error) {
         
         UMSocialUserInfoResponse *resp = result;

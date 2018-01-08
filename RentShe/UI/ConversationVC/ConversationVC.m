@@ -9,16 +9,26 @@
 #import "ConversationVC.h"
 #import <RongIMLib/RCIMClient.h>
 
-#import "ConversationCell.h"
+#import "ConversationHeader.h"
 #import "ConversationDetailVC.h"
 
-@interface ConversationVC ()
+@interface ConversationVC ()<ConversationHeaderDelegate>
 {
     UIButton *_msgBtn;
 }
+@property (nonatomic, strong) ConversationHeader *header;
 @end
 
 @implementation ConversationVC
+
+- (ConversationHeader *)header
+{
+    if (!_header) {
+        _header = [ConversationHeader header];
+        _header.delegate = self;
+    }
+    return _header;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,6 +38,7 @@
     self.showConversationListWhileLogOut = NO;
     self.isShowNetworkIndicatorView = NO;
     [self createNavBar];
+    self.conversationListTableView.tableHeaderView = self.header;
     self.conversationListTableView.frame = CGRectMake(0, 0, kWindowWidth, kWindowHeight - 49);
 }
 
@@ -111,6 +122,9 @@
 - (void)onSelectedTableRow:(RCConversationModelType)conversationModelType
          conversationModel:(RCConversationModel *)model
                atIndexPath:(NSIndexPath *)indexPath {
+    if (!isLogin(self)) {
+        return;
+    }
     ConversationDetailVC *conversationVC = [[ConversationDetailVC alloc]init];
     conversationVC.conversationType = model.conversationType;
     conversationVC.targetId = model.targetId;
@@ -121,19 +135,25 @@
 
 - (void)willDisplayConversationTableCell:(RCConversationBaseCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    RCConversationCell *customCell = (RCConversationCell *)cell;
-    [customCell setHeaderImagePortraitStyle:RC_USER_AVATAR_CYCLE];
+    if ([cell isKindOfClass:[RCConversationCell class]])
+    {
+        RCConversationCell *customCell = (RCConversationCell *)cell;
+        [customCell setHeaderImagePortraitStyle:RC_USER_AVATAR_CYCLE];
+        
+        customCell.conversationTitle.font = [UIFont systemFontOfSize:15];
+        customCell.conversationTitle.textColor = kRGB_Value(0x282828);
+        
+        customCell.messageContentLabel.font = [UIFont systemFontOfSize:12];
+        customCell.messageContentLabel.textColor = kRGB_Value(0x989898);
+        
+        customCell.messageCreatedTimeLabel.font = [UIFont systemFontOfSize:12];
+        customCell.messageCreatedTimeLabel.textColor = kRGB_Value(0x989898);
+    }
     
-    customCell.conversationTitle.font = [UIFont systemFontOfSize:15];
-    customCell.conversationTitle.textColor = kRGB_Value(0x282828);
-    
-    customCell.messageContentLabel.font = [UIFont systemFontOfSize:12];
-    customCell.messageContentLabel.textColor = kRGB_Value(0x989898);
-    
-    customCell.messageCreatedTimeLabel.font = [UIFont systemFontOfSize:12];
-    customCell.messageCreatedTimeLabel.textColor = kRGB_Value(0x989898);
-    
-    
+}
+
+- (CGFloat)rcConversationListTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -146,6 +166,24 @@
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(15, 0, kWindowWidth - 15, 1)];
     line.backgroundColor = kRGB_Value(0xf2f2f2);
     return line;
+}
+
+- (void)conversationHeader:(ConversationHeader *)header didSelectWithType:(CustomConversation)type
+{
+    switch (type) {
+        case CustomConversationOfService:
+        {
+            ConversationDetailVC *conversationVC = [[ConversationDetailVC alloc]init];
+            conversationVC.conversationType = ConversationType_PRIVATE;
+            conversationVC.targetId = kServiceRCID;
+            conversationVC.title = @"客服";
+            conversationVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:conversationVC animated:YES];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -185,9 +185,7 @@ static const NSString *kOrderStateEnd = @"end";//已完成
 - (void)updateStatus:(NSString *)type withOrderId:(NSString *)orderId
 {
     NSDictionary *dic = @{@"type":type,
-                          @"order_id":orderId,
-                          @"lng":[UserDefaultsManager getUserLng],
-                          @"lat":[UserDefaultsManager getUserLat]};
+                          @"order_id":orderId};
     switch (self.type) {
         case OrderTypeOfMyRent:
         {

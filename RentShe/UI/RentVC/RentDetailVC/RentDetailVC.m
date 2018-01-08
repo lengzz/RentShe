@@ -156,17 +156,23 @@
     {
         if (self.infoM)
         {
+            
+            RCUserInfo *user = [[RCUserInfo alloc] initWithUserId:self.infoM.user_info.user_id name:self.infoM.user_info.nickname portrait:self.infoM.user_info.avatar];
+            [kCommonConfig.userInfo setValue:user forKey:self.infoM.user_info.user_id];
+            
             [self.headV refreshHead:self.infoM];
             [self.myTabV reloadData];
             return;
         }
-        NSDictionary *dic = @{@"user_id":self.user_id,
-                              @"lng":[UserDefaultsManager getUserLng],
-                              @"lat":[UserDefaultsManager getUserLat]};
+        NSDictionary *dic = @{@"user_id":self.user_id};
         [NetAPIManager othersHomeInfo:dic callBack:^(BOOL success, id object) {
             if (success) {
                 self.infoM = [NearbyM new];
                 [self.infoM setValuesForKeysWithDictionary:object[@"data"]];
+                
+                RCUserInfo *user = [[RCUserInfo alloc] initWithUserId:self.infoM.user_info.user_id name:self.infoM.user_info.nickname portrait:self.infoM.user_info.avatar];
+                [kCommonConfig.userInfo setValue:user forKey:self.infoM.user_info.user_id];
+                
                 [self.headV refreshHead:self.infoM];
                 [self.myTabV reloadData];
             }
@@ -219,6 +225,11 @@
             }
             [NetAPIManager shieldUser:@{@"his_id":self.user_id} callBack:^(BOOL success, id object) {
                 if (success) {
+                    [[RCIMClient sharedRCIMClient] addToBlacklist:self.user_id success:^{
+                        
+                    } error:^(RCErrorCode status) {
+                        
+                    }];
                     NSString *string = object[@"message"];
                     float time = (float)string.length*0.12 + 0.5;
                     [SVProgressHUD showSuccessWithStatus:object[@"message"]];
@@ -361,7 +372,7 @@
             {
                 cell.textLabel.textColor = kRGB(101, 101, 101);
                 cell.textLabel.numberOfLines = 0;
-                cell.textLabel.text = self.infoM.user_info.introduction.length ? self.infoM.user_info.introduction : @"这家伙很懒，木有介绍。";
+                cell.textLabel.text = self.infoM.user_info.introduction.length ? self.infoM.user_info.introduction : @"我就是我，不一样烟火。";
             }
             else
             {

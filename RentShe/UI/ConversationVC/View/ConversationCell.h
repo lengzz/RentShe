@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef NS_ENUM(NSInteger, CustomConversation)
+{
+    CustomConversationOfService = 1
+};
 @interface ConversationCell : UITableViewCell
-- (void)refreshCell:(id)obj;
+
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+
+@property (nonatomic, assign) CustomConversation type;
+
 @end

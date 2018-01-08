@@ -92,6 +92,7 @@
         _collectionV.showsHorizontalScrollIndicator = NO;
         _collectionV.pagingEnabled = YES;
         [_collectionV registerClass:[RentCell class]forCellWithReuseIdentifier:@"rentCell"];
+        _collectionV.scrollsToTop = NO;
         [self.view addSubview:_collectionV];
         if (@available(iOS 11.0, *)){
             [_collectionV setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
@@ -191,6 +192,8 @@
     switch (tag) {
         case 1:
         {
+            self.nearbyVC.myTabV.scrollsToTop = YES;
+            self.recommendVC.myCollectionV.scrollsToTop = NO;
             UIButton *btn = [_titleV viewWithTag:2];
             btn.selected = NO;
             btn.userInteractionEnabled = YES;
@@ -200,6 +203,8 @@
         }
         case 2:
         {
+            self.nearbyVC.myTabV.scrollsToTop = NO;
+            self.recommendVC.myCollectionV.scrollsToTop = YES;
             UIButton *btn = [_titleV viewWithTag:1];
             btn.selected = NO;
             btn.userInteractionEnabled = YES;
@@ -272,7 +277,7 @@
     if (distance > [[UserDefaultsManager getRangeSensor] doubleValue] && [[UserDefaultsManager getRangeSensor] doubleValue] > 0)
     {
         _startLocation = location;
-        NSDictionary *dic = @{@"city_code":[UserDefaultsManager getCurCityCode],@"lng":@(location.coordinate.longitude),@"lat":@(location.coordinate.latitude)};
+        NSDictionary *dic = @{@"city_code":[UserDefaultsManager getCurCityCode]};
         [NetAPIManager updateLocation:dic callBack:^(BOOL success, id object) {
             if (success) {
             }
@@ -338,7 +343,7 @@
         if (error || !placemarks.count)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                _isClose = YES;
                 UIAlertController *ctl = [UIAlertController alertControllerWithTitle:@"无法定位" message:@"请检查您的设备是否开启定位功能" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     [ctl dismissViewControllerAnimated:YES completion:nil];

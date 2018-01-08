@@ -7,7 +7,7 @@
 //
 
 #import "NetAPIManager.h"
-#define base_url @"https://api.rentshe.com/Nip"//@"http://119.23.76.192:8000/Nip"
+//#define [NSString stringWithFormat: kCommonConfig.apiHostUrl//@"https://api.rentshe.com/Nip"
 @implementation NetAPIManager
 
 #pragma mark -
@@ -24,6 +24,8 @@
 //    NSString *cookie = [NSString stringWithFormat:@"device=ios;version=%@;token=%@",[kAPPInfo objectForKey:@"CFBundleShortVersionString"],token];
 //    
 //    [manager.requestSerializer setValue:cookie forHTTPHeaderField:@"Cookie"];
+    [manager.requestSerializer setValue:@"ios" forHTTPHeaderField:@"device"];
+    [manager.requestSerializer setValue:kAppVersion forHTTPHeaderField:@"version"];
     return manager;
 }
 
@@ -37,6 +39,8 @@
     NSString *token = [UserDefaultsManager getToken];
     [dic setValue:token?token:@"" forKey:@"token"];
     [dic setValue:@"ios" forKey:@"device"];
+    [dic setValue:[UserDefaultsManager getUserLng] forKey:@"lng"];
+    [dic setValue:[UserDefaultsManager getUserLat] forKey:@"lat"];
     return dic;
 }
 
@@ -90,7 +94,7 @@
 #pragma mark - 审核配置信息
 + (void)auditConfig:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Config/mineConfig" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Config/mineConfig",kCommonConfig.apiHostUrl] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -104,7 +108,7 @@
 + (void)appCheckUpdate:(HttpCallBackWithObject)callBack
 {
     NSDictionary *dic = @{@"version":kAppVersion,@"device":@"ios"};
-    [[NetAPIManager manager] POST:base_url@"/Config/appCheckUpdate" parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Config/appCheckUpdate",kCommonConfig.apiHostUrl] parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -117,7 +121,7 @@
 #pragma mark - 拉黑用户
 + (void)shieldUser:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/addBlackList" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/addBlackList",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -130,7 +134,7 @@
 #pragma mark - 移除拉黑
 + (void)cancelShieldUser:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/removeBlackList" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/removeBlackList",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -143,7 +147,7 @@
 #pragma mark - 黑名单列表
 + (void)shieldList:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/userBlackList" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/userBlackList",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -156,7 +160,7 @@
 #pragma mark - 举报
 + (void)reportUser:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/report" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/report",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -169,7 +173,7 @@
 #pragma mark - 登录
 + (void)login:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Acount/login" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Acount/login",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -182,7 +186,7 @@
 #pragma mark - 登出
 + (void)logoutWithCallBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Acount/logout" parameters:[self configParams:nil] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Acount/logout",kCommonConfig.apiHostUrl] parameters:[self configParams:nil] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -195,7 +199,7 @@
 #pragma mark - 获取验证码
 + (void)takeCode:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Acount/mobileCaptcha" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Acount/mobileCaptcha",kCommonConfig.apiHostUrl] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -208,7 +212,7 @@
 #pragma mark - 确认验证码
 + (void)verifyCode:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Acount/verifyCaptcha" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Acount/verifyCaptcha",kCommonConfig.apiHostUrl] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -221,7 +225,7 @@
 #pragma mark - 查询绑定信息
 + (void)getBindingInfoWithCallBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Acount/queryBindingInfo" parameters:[self configParams:nil] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Acount/queryBindingInfo",kCommonConfig.apiHostUrl] parameters:[self configParams:nil] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -234,7 +238,7 @@
 #pragma mark - 绑定和解绑第三方账号
 + (void)bindOrUndrawAccount:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Acount/bindThirdParty" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Acount/bindThirdParty",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -247,7 +251,7 @@
 #pragma mark - 绑定手机号
 + (void)bindMobilePhone:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Acount/mobileBind" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Acount/mobileBind",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -260,7 +264,7 @@
 #pragma mark - 注册
 + (void)regist:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Acount/register" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Acount/register",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -273,7 +277,7 @@
 #pragma mark - 修改密码
 + (void)modifyPsw:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Acount/setPassword" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Acount/setPassword",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -286,7 +290,7 @@
 #pragma mark - 设置用户信息
 + (void)setUserInfo:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/setUserInfo" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/setUserInfo",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -299,7 +303,7 @@
 #pragma mark - 上传图片
 + (void)uploadImg:(UIImage *)img withParams:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/imageUploadResUrl" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/imageUploadResUrl",kCommonConfig.apiHostUrl] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSData *imgData = UIImageJPEGRepresentation(img, 0.5);
         [formData appendPartWithFileData:imgData name:@"name" fileName:@"rentshe.jpg" mimeType:@"image/jpeg"];
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -315,7 +319,7 @@
 #pragma mark - 实名认证
 + (void)cardAuth:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/cardAuth" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/cardAuth",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -329,7 +333,7 @@
 + (void)hotCityWithCallBack:(HttpCallBackWithObject)callBack
 {
     NSString *token = [UserDefaultsManager getToken];
-    [[NetAPIManager manager] POST:base_url@"/Rent/hotCity" parameters:@{@"token":token?token:@""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Rent/hotCity",kCommonConfig.apiHostUrl] parameters:@{@"token":token?token:@""} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -342,7 +346,7 @@
 #pragma mark - 附近的人
 + (void)nearbyPeople:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Rent/nearbyForRentPeople" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Rent/nearbyForRentPeople",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -355,7 +359,7 @@
 #pragma mark - 推荐列表
 + (void)recommendPeople:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Rent/searchRentList" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Rent/searchRentList",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -368,7 +372,7 @@
 #pragma mark - 昵称搜索
 + (void)searchPeople:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/userNickSearch" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/userNickSearch",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -381,7 +385,7 @@
 #pragma mark - 获取个人主页
 + (void)myHomeInfoWithCallBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/myHome" parameters:[self configParams:nil] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/myHome",kCommonConfig.apiHostUrl] parameters:[self configParams:nil] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -394,7 +398,7 @@
 #pragma mark - 获取他人主页
 + (void)othersHomeInfo:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/hisHome" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/hisHome",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -407,7 +411,7 @@
 #pragma mark - 访客记录列表
 + (void)visitorList:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Visitor/visitorHistoryList" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Visitor/visitorHistoryList",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -420,7 +424,7 @@
 #pragma mark - 添加访客记录
 + (void)visitRecord:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Visitor/addVisitorRecord" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Visitor/addVisitorRecord",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -433,7 +437,7 @@
 #pragma mark - 获取用户简单信息
 + (void)getUserSimpleInfo:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/getUserSimpleInfo" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/getUserSimpleInfo",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -446,7 +450,7 @@
 #pragma mark - 更新位置
 + (void)updateLocation:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Rent/updateLocation" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Rent/updateLocation",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -459,7 +463,7 @@
 #pragma mark - 设置私信开关
 + (void)setReceiveLetter:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/setFlag" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/setFlag",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -472,7 +476,7 @@
 #pragma mark - 提交订单
 + (void)makeOrder:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Payment/submitPaymentInfo" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Payment/submitPaymentInfo",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -485,7 +489,7 @@
 #pragma mark - 充值接口
 + (void)recharge:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Purse/rechargeInfo" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Purse/rechargeInfo",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -498,7 +502,7 @@
 #pragma mark - 提现接口
 + (void)withdraw:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Purse/withdraw" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Purse/withdraw",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -511,7 +515,7 @@
 #pragma mark - 系统余额支付
 + (void)balancePay:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Payment/sysPay" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Payment/sysPay",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -524,7 +528,7 @@
 #pragma mark - 支付宝支付
 + (void)zfbPay:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Payment/alipayInfo" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Payment/alipayInfo",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -537,7 +541,7 @@
 #pragma mark - 支付状态
 + (void)payStatus:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Payment/getPaymentStatus" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Payment/getPaymentStatus",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -550,7 +554,7 @@
 #pragma mark - 获取系统技能
 + (void)getSkills:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Skill/getSystemSkill" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Skill/getSystemSkill",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -574,7 +578,7 @@
         jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     }
     
-    [[NetAPIManager manager] POST:base_url@"/Rent/postRentInfo" parameters:@{@"json":jsonString} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Rent/postRentInfo",kCommonConfig.apiHostUrl] parameters:@{@"json":jsonString} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -587,7 +591,7 @@
 #pragma mark - 修改出租状态
 + (void)changeRentInfo:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Rent/changeRentInfo" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Rent/changeRentInfo",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -600,7 +604,7 @@
 #pragma mark - 我租了谁
 + (void)myRentOrderList:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Order/iRentOrder" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Order/iRentOrder",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -613,7 +617,7 @@
 #pragma mark - 谁租了我
 + (void)rentMeOrderList:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Order/lessorOrder" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Order/lessorOrder",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -626,7 +630,7 @@
 #pragma mark - 我租了谁订单状态更新
 + (void)myRentUpdateOrder:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Order/updateEmployerOrder" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Order/updateEmployerOrder",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -639,7 +643,7 @@
 #pragma mark - 谁租了我订单状态更新
 + (void)rentMeUpdateOrder:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Order/updateLessorOrder" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Order/updateLessorOrder",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -652,7 +656,7 @@
 #pragma mark - 订单评论
 + (void)orderReview:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/OrderEva/orderReview" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/OrderEva/orderReview",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -665,7 +669,7 @@
 #pragma mark - 评论列表
 + (void)orderReviewsList:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/OrderEva/orderReviewList" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/OrderEva/orderReviewList",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -678,7 +682,7 @@
 #pragma mark - 钱包列表
 + (void)walletList:(id)params callBack:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/Purse/purseList" parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Purse/purseList",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);
@@ -691,7 +695,7 @@
 #pragma mark - 我的余额
 + (void)myWallet:(HttpCallBackWithObject)callBack
 {
-    [[NetAPIManager manager] POST:base_url@"/User/myAmount" parameters:[self configParams:nil] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/User/myAmount",kCommonConfig.apiHostUrl] parameters:[self configParams:nil] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = nil;
         BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
         callBack(status,dic);

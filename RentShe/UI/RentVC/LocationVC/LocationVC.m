@@ -153,6 +153,16 @@
 
 - (void)requestHotCity
 {
+    if (kCommonConfig.hotCityArr)
+    {
+        for (CityM *m in kCommonConfig.hotCityArr) {
+            [self.hotArr addObject:m];
+        }
+        [self.dataArr insertObject:self.hotArr atIndex:1];
+        [self.titleArr insertObject:@"热门" atIndex:1];
+        [self.myTabV reloadData];
+        return;
+    }
     [NetAPIManager hotCityWithCallBack:^(BOOL success, id object) {
         if (success)
         {
@@ -165,6 +175,7 @@
                         [m setValuesForKeysWithDictionary:dic];
                         [self.hotArr addObject:m];
                     }
+                    kCommonConfig.hotCityArr = [self.hotArr copy];
                     [self.dataArr insertObject:self.hotArr atIndex:1];
                     [self.titleArr insertObject:@"热门" atIndex:1];
                     [self.myTabV reloadData];

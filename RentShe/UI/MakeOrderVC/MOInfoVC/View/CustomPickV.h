@@ -25,6 +25,7 @@
 @property (nonatomic, weak) id<CustomPickVDataSource> dataSource;
 - (void)showPickV;
 - (void)reloadCustomPickV;
+- (void)selectWithTitles:(NSArray *)arr;
 - (NSInteger)selectedRowInComponent:(NSInteger)component; 
 @end
 

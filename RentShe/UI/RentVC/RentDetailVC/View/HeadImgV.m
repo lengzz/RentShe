@@ -83,6 +83,7 @@
     {
         _numV.hidden = YES;
     }
+    [self.myCollectionV reloadData];
 }
 
 - (void)scrollToPage:(NSInteger)idx

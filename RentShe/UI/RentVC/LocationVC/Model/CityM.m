@@ -16,15 +16,21 @@
 
 + (NSArray *)dataArr
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"cityCode" ofType:@"plist"];
-    NSArray *arr = [NSArray arrayWithContentsOfFile:path];
-    NSMutableArray *sourceArr = [NSMutableArray array];
-    for (NSDictionary *dic in arr) {
-        CityM *m = [[CityM alloc] init];
-        [m setValuesForKeysWithDictionary:dic];
-        [sourceArr addObject:m];
-    }
-    return [sourceArr copy];
+    static dispatch_once_t onceToken;
+    static NSArray *dataArr;
+    dispatch_once(&onceToken, ^{
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"cityCode" ofType:@"plist"];
+        NSArray *arr = [NSArray arrayWithContentsOfFile:path];
+        NSMutableArray *sourceArr = [NSMutableArray array];
+        for (NSDictionary *dic in arr) {
+            CityM *m = [[CityM alloc] init];
+            [m setValuesForKeysWithDictionary:dic];
+            [sourceArr addObject:m];
+        }
+        dataArr = [sourceArr copy];
+    });
+    
+    return dataArr;
 }
 
 + (NSString *)getCityByCode:(NSString *)code

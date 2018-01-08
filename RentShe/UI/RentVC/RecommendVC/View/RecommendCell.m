@@ -146,13 +146,7 @@
         }
         
         _sexImg.image = [UIImage imageNamed:[model.user_info.gender integerValue] ? @"rent_female" : @"rent_male"];
-        NSArray *photoArr = [model.user_info.photo componentsSeparatedByString:@","];
-        if (photoArr.count)
-        {
-            [_headImg sd_setImageWithUrlStr:photoArr[0]];
-        }
-        else
-            [_headImg sd_setImageWithUrlStr:model.user_info.avatar];
+        [_headImg sd_setImageWithUrlStr:model.user_info.cover];
     }
     [self labSizeToFit];
 }

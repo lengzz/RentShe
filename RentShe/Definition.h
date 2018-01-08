@@ -12,11 +12,9 @@
 #ifdef DEBUG
 #define NSLog(...) NSLog(__VA_ARGS__)
 #define debugMethod() NSLog(@"%s", __func__)
-#define kRongCAppKey @"6tnym1br6jwt7"//@"c9kqb3rdcvn9j"
 #else
 #define NSLog(...)
 #define debugMethod()
-#define kRongCAppKey @"6tnym1br6jwt7"
 #endif
 
 typedef NS_ENUM(NSInteger, OrderType)
@@ -51,6 +49,8 @@ typedef NS_ENUM(NSInteger,LoginType) {
 #define kQQ_Secret @"yIwbIpVaFN7UO91U"
 #define kAMapKey @"589239581301a83945f4b9c1bd6a736a"
 #define kAliScheme @"alisdkRentShe"
+
+#define kServiceRCID @"209"
 
 
 #undef	kRGB
