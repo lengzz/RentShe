@@ -35,13 +35,13 @@
 {
     self.view.backgroundColor = kRGB_Value(0xfde23d);
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 22, 40, 40);
+    backBtn.frame = CGRectMake(0, kStatusBarHeight + 2, 40, 40);
     [backBtn setImage:[UIImage imageNamed:@"setting_back"] forState:UIControlStateNormal];
     [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *forgetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    forgetBtn.frame = CGRectMake(kWindowWidth - 60 - 15, 27, 60, 30);
+    forgetBtn.frame = CGRectMake(kWindowWidth - 60 - 15, kStatusBarHeight + 7, 60, 30);
     [forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
     [forgetBtn setTitleColor:kRGB_Value(0x442509) forState:UIControlStateNormal];
     forgetBtn.titleLabel.font = [UIFont systemFontOfSize:14];

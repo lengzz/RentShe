@@ -77,7 +77,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
 #define kWindowWidth                ([[UIScreen mainScreen] bounds].size.width)
 #define kWindowHeight               ([[UIScreen mainScreen] bounds].size.height)
-#define kNavBarHeight               44 + CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame])
+
+#define kNavBarHeight               (44 + CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]))
+#define kStatusBarHeight            (CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]))
+#define kTabBarHeight               (CGRectGetHeight([UITabBarController new].tabBar.frame) + kSafeAreaBottomHeight)
+#define kSafeAreaBottomHeight       (kWindowHeight == 812.0 ? 34 : 0)
 
 #pragma mark - APP Notification
 #define kLoginStatusIsChange @"LoginStatusIsChange"

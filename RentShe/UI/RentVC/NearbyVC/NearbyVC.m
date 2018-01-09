@@ -33,7 +33,7 @@
 - (UITableView *)myTabV
 {
     if (!_myTabV) {
-        _myTabV = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight - 64 - 49) style:UITableViewStylePlain];
+        _myTabV = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight - kNavBarHeight - kTabBarHeight) style:UITableViewStylePlain];
         _myTabV.backgroundColor = kRGB_Value(0xf2f2f2);
         _myTabV.delegate = self;
         _myTabV.dataSource = self;

@@ -80,11 +80,11 @@
     if (!_collectionV) {
         
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.itemSize = CGSizeMake(kWindowWidth, kWindowHeight - 64 - 49);
+        flowLayout.itemSize = CGSizeMake(kWindowWidth, kWindowHeight - kNavBarHeight - kTabBarHeight);
         flowLayout.minimumLineSpacing = 0;
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kWindowWidth, kWindowHeight - 64 - 49)collectionViewLayout:flowLayout];
+        _collectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kWindowWidth, kWindowHeight - kNavBarHeight - kTabBarHeight)collectionViewLayout:flowLayout];
         _collectionV.delegate = self;
         _collectionV.dataSource = self;
         _collectionV.backgroundColor = [UIColor whiteColor];

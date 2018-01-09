@@ -38,12 +38,12 @@ typedef NS_ENUM(NSInteger,GenderType) {
 {
     self.view.backgroundColor = kRGB_Value(0xfde23d);
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 22, 40, 40);
+    backBtn.frame = CGRectMake(0, kStatusBarHeight + 2, 40, 40);
     [backBtn setImage:[UIImage imageNamed:@"setting_back"] forState:UIControlStateNormal];
     [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImageView *headImg = [[UIImageView alloc] initWithFrame:CGRectMake(kWindowWidth/2.0 - 30, 64 + 23, 60, 60)];
+    UIImageView *headImg = [[UIImageView alloc] initWithFrame:CGRectMake(kWindowWidth/2.0 - 30, kNavBarHeight + 23, 60, 60)];
     headImg.image = [UIImage imageNamed:@"head_default"];
     headImg.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addHeadImg)];

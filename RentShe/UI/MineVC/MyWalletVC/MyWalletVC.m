@@ -83,12 +83,12 @@
 {
     if (!_mycollectionV) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(kWindowWidth, kWindowHeight - 64 - 44);
+        layout.itemSize = CGSizeMake(kWindowWidth, kWindowHeight - kNavBarHeight - 44);
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _mycollectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64 + 44, kWindowWidth, kWindowHeight - 64 - 44) collectionViewLayout:layout];
+        _mycollectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavBarHeight + 44, kWindowWidth, kWindowHeight - kNavBarHeight - 44) collectionViewLayout:layout];
         _mycollectionV.backgroundColor = [UIColor whiteColor];
         _mycollectionV.delegate = self;
         _mycollectionV.dataSource = self;
@@ -141,7 +141,7 @@
     backImg.image = [UIImage imageNamed:@"mywallet_back"];
     [_headerV addSubview:backImg];
     
-    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(15, 64, 150, 13)];
+    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(15, kNavBarHeight, 150, 13)];
     lab.font = [UIFont systemFontOfSize:13];
     lab.textColor = [UIColor whiteColor];
     lab.text = @"账户余额（元）：";
@@ -274,7 +274,7 @@
 {
     if ([object isEqual:self.headerV] && [keyPath isEqualToString:@"frame"])
     {
-        if (self.headerV.y >= -64) {
+        if (self.headerV.y >= -kNavBarHeight) {
             [self.navigationController.navigationBar setCustomBarBackgroundColor:[UIColor clearColor]];
             [self.navigationController.navigationBar setShadowImage:[UIImage new]];
             self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -282,7 +282,7 @@
             return;
         }
         
-        CGFloat alpha = - (self.headerV.y + 64)/40.0;
+        CGFloat alpha = - (self.headerV.y + kNavBarHeight)/40.0;
         if (alpha > 0 && alpha < 1) {
             [self.navigationController.navigationBar setCustomBarBackgroundColor:kRGBA(255, 255, 255, alpha)];
             _title.textColor = kRGBA_Value(0x442509, alpha);
@@ -350,17 +350,17 @@
 - (void)walletRecordDidScroll:(WalletRecordVC *)vc withContentOffset:(CGPoint)origin
 {
     CGRect frame = self.headerV.frame;
-    if (origin.y < -(311 + 21 - 64)) {
+    if (origin.y < -(311 + 21 - kNavBarHeight)) {
         frame.origin.y = 0;
         self.headerV.frame = frame;
         return;
     }
     if (origin.y > 0) {
-        frame.origin.y = -(311 + 21 - 64);
+        frame.origin.y = -(311 + 21 - kNavBarHeight);
         self.headerV.frame = frame;
         return;
     }
-    frame.origin.y = -(311 + 21 - 64 + origin.y);
+    frame.origin.y = -(311 + 21 - kNavBarHeight + origin.y);
     self.headerV.frame = frame;
     self.allRecordVC.myTabV.contentOffset = origin;
     self.rechargeRecordVC.myTabV.contentOffset = origin;

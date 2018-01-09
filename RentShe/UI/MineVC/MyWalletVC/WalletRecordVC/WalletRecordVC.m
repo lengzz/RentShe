@@ -29,7 +29,7 @@
 - (UITableView *)myTabV
 {
     if (!_myTabV) {
-        _myTabV = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight - 64 - 44) style:UITableViewStylePlain];
+        _myTabV = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight - kNavBarHeight - 44) style:UITableViewStylePlain];
         _myTabV.backgroundColor = kRGB_Value(0xf2f2f2);
         _myTabV.delegate = self;
         _myTabV.dataSource = self;
@@ -37,7 +37,7 @@
         _myTabV.rowHeight = 44;
 //        UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 311 + 21 - 64)];
 //        _myTabV.tableHeaderView = header;
-        _myTabV.contentInset = UIEdgeInsetsMake(311 + 21 - 64, 0, 0, 0);
+        _myTabV.contentInset = UIEdgeInsetsMake(311 + 21 - kNavBarHeight, 0, 0, 0);
         [self.view addSubview:_myTabV];
     }
     return _myTabV;
@@ -208,7 +208,7 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if ([scrollView isEqual:self.myTabV]) {
-        if (scrollView.contentOffset.y < -64) {
+        if (scrollView.contentOffset.y < -kNavBarHeight) {
             if (self.showBlock) {
                 self.showBlock(NO);
             }

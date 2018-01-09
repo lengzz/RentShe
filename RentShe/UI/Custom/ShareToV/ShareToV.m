@@ -134,7 +134,7 @@
     _contentV.frame = frame;
     [UIView animateWithDuration:0.3 animations:^{
         CGRect frame = _contentV.frame;
-        frame.origin.y = CGRectGetMaxY(self.frame) - CGRectGetHeight(_contentV.frame);
+        frame.origin.y = CGRectGetMaxY(self.frame) - CGRectGetHeight(_contentV.frame) - kSafeAreaBottomHeight;
         _contentV.frame = frame;
     }];
 }

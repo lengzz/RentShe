@@ -47,7 +47,7 @@
         layout.minimumLineSpacing = 7;
         layout.minimumInteritemSpacing = 11;
         layout.sectionInset = UIEdgeInsetsMake(7, 11, 7, 11);
-        _myCollectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight - 64 - 49) collectionViewLayout:layout];
+        _myCollectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight - kNavBarHeight - kTabBarHeight) collectionViewLayout:layout];
         _myCollectionV.delegate = self;
         _myCollectionV.dataSource = self;
         [_myCollectionV registerClass:[RecommendCell class] forCellWithReuseIdentifier:@"recommendCell"];

@@ -74,7 +74,7 @@
     self.phoneTF = phoneTF;
     [infoV addSubview:phoneTF];
     
-    UIView *codeV = [[UIView alloc] initWithFrame:CGRectMake(kWindowWidth/2.0 - 114, kWindowHeight/2.0 - 113 + 64, 228, 44)];
+    UIView *codeV = [[UIView alloc] initWithFrame:CGRectMake(kWindowWidth/2.0 - 114, kWindowHeight/2.0 - 113 + kNavBarHeight, 228, 44)];
     codeV.backgroundColor = [UIColor whiteColor];
     codeV.layer.masksToBounds = YES;
     codeV.layer.cornerRadius = 5.0;
@@ -109,7 +109,7 @@
     [regetV addSubview:regetLab];
     
     UIButton *bindBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    bindBtn.frame = CGRectMake(kWindowWidth/2.0 - 114, kWindowHeight/2.0 - 113 + 64 + 44 + 30, 228, 44);
+    bindBtn.frame = CGRectMake(kWindowWidth/2.0 - 114, kWindowHeight/2.0 - 113 + kNavBarHeight + 44 + 30, 228, 44);
     bindBtn.layer.masksToBounds = YES;
     bindBtn.layer.cornerRadius = 5.0;
     bindBtn.backgroundColor = kRGB_Value(0x442509);

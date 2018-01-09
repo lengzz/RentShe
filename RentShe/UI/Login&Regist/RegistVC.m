@@ -29,7 +29,7 @@
 {
     self.view.backgroundColor = kRGB_Value(0xfde23d);
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 22, 40, 40);
+    backBtn.frame = CGRectMake(0, kStatusBarHeight + 2, 40, 40);
     [backBtn setImage:[UIImage imageNamed:@"setting_back"] forState:UIControlStateNormal];
     [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];

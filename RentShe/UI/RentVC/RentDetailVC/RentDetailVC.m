@@ -62,7 +62,7 @@
         }
         else
         {
-            _myTabV.frame = CGRectMake(0, 0, kWindowWidth, kWindowHeight - 44);
+            _myTabV.frame = CGRectMake(0, 0, kWindowWidth, kWindowHeight - 44 - kSafeAreaBottomHeight);
             [self addFunctionV];
         }
         _myTabV.delegate = self;
@@ -116,7 +116,7 @@
 
 - (void)addFunctionV
 {
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, kWindowHeight - 44, kWindowWidth, 44)];
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, kWindowHeight - 44 - kSafeAreaBottomHeight, kWindowWidth, 44 + kSafeAreaBottomHeight)];
     v.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:v];
     

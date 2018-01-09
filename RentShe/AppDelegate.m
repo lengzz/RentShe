@@ -18,6 +18,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
 #import "WXApiManager.h"
+#import <BQMMRongCloudExt/BQMMRongCloudExt.h>
 
 #import "AppDelegate+RongCloud.h"
 #import "IQKeyboardManager.h"
@@ -59,6 +60,10 @@
     
     //融云
     [[RCIM sharedRCIM] initWithAppKey:kCommonConfig.rongCAppKey];
+    
+//    [[MMEmotionCentre defaultCentre] setAppId:@"d85169a2cc3b4e19bb180dd3a7e9815c"                                         secret:@"cb748c02f5bd449abcf179b3e2ba2caa"];//AppId:d85169a2cc3b4e19bb180dd3a7e9815c
+//AppSecret:cb748c02f5bd449abcf179b3e2ba2caa
+    [MMEmotionCentre defaultCentre].sdkRegion = MMRegionChina;
     
     if ([application
          respondsToSelector:@selector(registerUserNotificationSettings:)]) {
