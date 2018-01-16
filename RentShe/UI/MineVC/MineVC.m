@@ -17,6 +17,10 @@
 #import "RentDetailVC.h"
 #import "CertificationVC.h"
 
+#import "MyFansVC.h"
+#import "MyFocusVC.h"
+#import "MyVideosVC.h"
+
 typedef NS_ENUM(NSInteger,CellType) {
     CellTypeWallet = 1,
     CellTypeRentMe,
@@ -26,7 +30,7 @@ typedef NS_ENUM(NSInteger,CellType) {
     CellTypeInfo
 };
 
-@interface MineVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface MineVC ()<UITableViewDelegate,UITableViewDataSource,MineHeadDelegate>
 @property (nonatomic, strong) UITableView *myTabV;
 @property (nonatomic, strong) NSMutableArray *dataArr;
 @end
@@ -237,6 +241,7 @@ typedef NS_ENUM(NSInteger,CellType) {
         if (!cell) {
             cell = [[MineHeadCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mineHeadCell"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.delegate = self;
         }
         [cell refreshCellIsLogin:[self.dataArr[indexPath.section] boolValue]];
         return cell;
@@ -246,7 +251,7 @@ typedef NS_ENUM(NSInteger,CellType) {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!indexPath.section) {
-        return 70;
+        return 150;
     }
     return 44;
 }
@@ -276,6 +281,42 @@ typedef NS_ENUM(NSInteger,CellType) {
     UIView *footer = [UIView new];
     footer.backgroundColor = [UIColor clearColor];
     return footer;
+}
+
+#pragma mark -
+#pragma mark - MineHeadDelegate
+
+- (void)mineHeadCell:(MineHeadCell *)headCell didClickWithType:(MineHeadType)type
+{
+    if (!isLogin(self))
+    {
+        return;
+    }
+    switch (type) {
+        case MineHeadOfFocus:
+        {
+            MyFocusVC *vc = [MyFocusVC new];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
+        case MineHeadOfFans:
+        {
+            MyFansVC *vc = [MyFansVC new];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
+        case MineHeadOfVideos:
+        {
+            MyVideosVC *vc = [MyVideosVC new];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

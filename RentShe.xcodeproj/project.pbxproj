@@ -392,7 +392,11 @@
 		4C74893A1FD122C700D108B3 /* BlackListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7489391FD122C700D108B3 /* BlackListVC.m */; };
 		4C74893E1FD1251B00D108B3 /* BlackListM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74893D1FD1251B00D108B3 /* BlackListM.m */; };
 		4C7489421FD12E9200D108B3 /* BlackListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7489411FD12E9200D108B3 /* BlackListCell.m */; };
+		4C83A994200DFCDB00E75E87 /* MyFansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83A993200DFCDB00E75E87 /* MyFansCell.m */; };
 		4C83FF7B1FFB853E0050A105 /* EditIntroVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83FF7A1FFB853E0050A105 /* EditIntroVC.m */; };
+		4CA5CD7A200C9BB90043F58A /* MyFansVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5CD79200C9BB90043F58A /* MyFansVC.m */; };
+		4CA5CD7D200C9BD10043F58A /* MyFocusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5CD7C200C9BD10043F58A /* MyFocusVC.m */; };
+		4CA5CD80200C9BE80043F58A /* MyVideosVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5CD7F200C9BE80043F58A /* MyVideosVC.m */; };
 		B2C622421FB82DB200D2EB31 /* SearchBarV.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C622411FB82DB200D2EB31 /* SearchBarV.m */; };
 		B2E027621FC15EEF0008E652 /* InformVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E027611FC15EEF0008E652 /* InformVC.m */; };
 		B2E027651FC161BF0008E652 /* share_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2E027631FC161BF0008E652 /* share_more@2x.png */; };
@@ -1000,8 +1004,16 @@
 		4C74893D1FD1251B00D108B3 /* BlackListM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlackListM.m; sourceTree = "<group>"; };
 		4C7489401FD12E9200D108B3 /* BlackListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlackListCell.h; sourceTree = "<group>"; };
 		4C7489411FD12E9200D108B3 /* BlackListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlackListCell.m; sourceTree = "<group>"; };
+		4C83A992200DFCDB00E75E87 /* MyFansCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFansCell.h; sourceTree = "<group>"; };
+		4C83A993200DFCDB00E75E87 /* MyFansCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFansCell.m; sourceTree = "<group>"; };
 		4C83FF791FFB853E0050A105 /* EditIntroVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditIntroVC.h; sourceTree = "<group>"; };
 		4C83FF7A1FFB853E0050A105 /* EditIntroVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditIntroVC.m; sourceTree = "<group>"; };
+		4CA5CD78200C9BB90043F58A /* MyFansVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFansVC.h; sourceTree = "<group>"; };
+		4CA5CD79200C9BB90043F58A /* MyFansVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFansVC.m; sourceTree = "<group>"; };
+		4CA5CD7B200C9BD10043F58A /* MyFocusVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFocusVC.h; sourceTree = "<group>"; };
+		4CA5CD7C200C9BD10043F58A /* MyFocusVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFocusVC.m; sourceTree = "<group>"; };
+		4CA5CD7E200C9BE80043F58A /* MyVideosVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyVideosVC.h; sourceTree = "<group>"; };
+		4CA5CD7F200C9BE80043F58A /* MyVideosVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyVideosVC.m; sourceTree = "<group>"; };
 		B2C622401FB82DB200D2EB31 /* SearchBarV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBarV.h; sourceTree = "<group>"; };
 		B2C622411FB82DB200D2EB31 /* SearchBarV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBarV.m; sourceTree = "<group>"; };
 		B2E027601FC15EEF0008E652 /* InformVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformVC.h; sourceTree = "<group>"; };
@@ -1933,6 +1945,9 @@
 				1F6567341ECEFB3E00D30107 /* MineVC.m */,
 				1F3AB8161F1B7B8A006B095A /* Model */,
 				1F5962121ED023AA00E0EF30 /* View */,
+				4CA5CD75200C9B840043F58A /* MyFansVC */,
+				4CA5CD76200C9B840043F58A /* MyFocusVC */,
+				4CA5CD77200C9B840043F58A /* MyVideosVC */,
 				1F86DE951F5AB73300F9EFA7 /* OrderListVC */,
 				1F7F8BE91FB0A68300E4CEDB /* CertificationVC */,
 				1F56FCB41EED3B7300FC34F1 /* MyRentVC */,
@@ -2702,6 +2717,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4C83A991200DFCAE00E75E87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C83A992200DFCDB00E75E87 /* MyFansCell.h */,
+				4C83A993200DFCDB00E75E87 /* MyFansCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4C83FF781FFB85270050A105 /* EditIntroVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -2709,6 +2733,34 @@
 				4C83FF7A1FFB853E0050A105 /* EditIntroVC.m */,
 			);
 			path = EditIntroVC;
+			sourceTree = "<group>";
+		};
+		4CA5CD75200C9B840043F58A /* MyFansVC */ = {
+			isa = PBXGroup;
+			children = (
+				4CA5CD78200C9BB90043F58A /* MyFansVC.h */,
+				4CA5CD79200C9BB90043F58A /* MyFansVC.m */,
+				4C83A991200DFCAE00E75E87 /* View */,
+			);
+			path = MyFansVC;
+			sourceTree = "<group>";
+		};
+		4CA5CD76200C9B840043F58A /* MyFocusVC */ = {
+			isa = PBXGroup;
+			children = (
+				4CA5CD7B200C9BD10043F58A /* MyFocusVC.h */,
+				4CA5CD7C200C9BD10043F58A /* MyFocusVC.m */,
+			);
+			path = MyFocusVC;
+			sourceTree = "<group>";
+		};
+		4CA5CD77200C9B840043F58A /* MyVideosVC */ = {
+			isa = PBXGroup;
+			children = (
+				4CA5CD7E200C9BE80043F58A /* MyVideosVC.h */,
+				4CA5CD7F200C9BE80043F58A /* MyVideosVC.m */,
+			);
+			path = MyVideosVC;
 			sourceTree = "<group>";
 		};
 		B2C6223F1FB82D9300D2EB31 /* View */ = {
@@ -3057,12 +3109,14 @@
 				1F52CAF51EE80045004B7A61 /* MyWalletVC.m in Sources */,
 				1F67922F1ED2D3ED00449CCE /* AFURLSessionManager.m in Sources */,
 				1F67922C1ED2D3ED00449CCE /* AFSecurityPolicy.m in Sources */,
+				4CA5CD80200C9BE80043F58A /* MyVideosVC.m in Sources */,
 				1F59DB3D1F0BED0F00BF6F0B /* FilterVC.m in Sources */,
 				4C739EED1F7F842C00D5F93E /* SearchM.m in Sources */,
 				1F502DA51EDBFCEF0007A908 /* NSData+ImageContentType.m in Sources */,
 				1FC883E21F3EEAF200A3045F /* CustomPickV.m in Sources */,
 				1F8B44A71FA456CC0043292F /* VisitorM.m in Sources */,
 				1F5FE80C1F63917000CE1988 /* UIView+MJExtension.m in Sources */,
+				4CA5CD7D200C9BD10043F58A /* MyFocusVC.m in Sources */,
 				1F752EE61EDEFC7400A148D5 /* ConversationCell.m in Sources */,
 				1F502DD01EDC067A0007A908 /* RecommendCell.m in Sources */,
 				1F5FE8041F63917000CE1988 /* MJRefreshGifHeader.m in Sources */,
@@ -3073,6 +3127,7 @@
 				4C6CEA691FF22341005659FB /* RCAnnotationView.m in Sources */,
 				1FF4E81C1ED41A90007E7B15 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				1F5FE8021F63917000CE1988 /* MJRefreshBackNormalFooter.m in Sources */,
+				4CA5CD7A200C9BB90043F58A /* MyFansVC.m in Sources */,
 				1F56FCAF1EED193300FC34F1 /* WalletRecordVC.m in Sources */,
 				1F5FE7FE1F63917000CE1988 /* MJRefreshAutoGifFooter.m in Sources */,
 				1FA4C2E61F52876A00BE1BD2 /* PayForOrderCell.m in Sources */,
@@ -3160,6 +3215,7 @@
 				4C506A6E1FF62BD500ADBEEC /* ConversationHeader.m in Sources */,
 				1F502DAB1EDBFCEF0007A908 /* SDWebImageManager.m in Sources */,
 				1F5511E91EDB178B008BE0CA /* NearbyVC.m in Sources */,
+				4C83A994200DFCDB00E75E87 /* MyFansCell.m in Sources */,
 				1F56FCBA1EED3B9B00FC34F1 /* MyRentVC.m in Sources */,
 				1F67922D1ED2D3ED00449CCE /* AFURLRequestSerialization.m in Sources */,
 				1F75070F1FAD924800718536 /* RechargeVC.m in Sources */,
@@ -3383,6 +3439,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = RentShe/RentShe.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M4ZVFEXN6S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3415,6 +3473,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rentshe.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -3426,6 +3485,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = RentShe/RentShe.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M4ZVFEXN6S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3457,6 +3518,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rentshe.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MineHeadCell;
+typedef NS_ENUM(NSInteger, MineHeadType)
+{
+    MineHeadOfFocus = 1,
+    MineHeadOfFans,
+    MineHeadOfVideos
+};
+
+@protocol MineHeadDelegate<NSObject>
+- (void)mineHeadCell:(MineHeadCell *)headCell didClickWithType:(MineHeadType)type;
+@end
 
 @interface MineHeadCell : UITableViewCell
+
+@property (nonatomic, weak) id<MineHeadDelegate> delegate;
+
 - (void)refreshCellIsLogin:(BOOL)isLogin;
 @end
