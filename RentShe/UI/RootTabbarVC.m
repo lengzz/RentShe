@@ -13,6 +13,7 @@
 #import "DiscoverVC.h"
 #import "ConversationVC.h"
 #import "MineVC.h"
+#import "CusTabBar.h"
 
 @interface RootTabbarVC ()
 
@@ -24,6 +25,9 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self addSubVC];
+    CusTabBar *customTabBar = [[CusTabBar alloc] init];
+//    _customTabBar.customDelegate = self;
+    [self setValue:customTabBar forKey:@"tabBar"];
 }
 
 - (void)addSubVC
@@ -37,6 +41,8 @@
     DiscoverVC *discoverVC = [[DiscoverVC alloc] init];
     CustomNavVC *discoverNavVC = [[CustomNavVC alloc] initWithRootViewController:discoverVC];
     [subVCArr addObject:discoverNavVC];
+    //占位控制器
+//    [subVCArr addObject:[UIViewController new]];
     //消息
     ConversationVC *conversationVC = [[ConversationVC alloc] init];
     CustomNavVC *conversationNavVC = [[CustomNavVC alloc] initWithRootViewController:conversationVC];
@@ -66,6 +72,7 @@
         else
         {
             item1 = [item initWithTitle:nil image:[[UIImage imageNamed:imgArr[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:imgSelArr[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        
             item.tag = i;
         }
     }

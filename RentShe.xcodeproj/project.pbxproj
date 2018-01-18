@@ -366,6 +366,7 @@
 		4C2DFBF51FE2871A007D6EA7 /* share_inform@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DFBF31FE28719007D6EA7 /* share_inform@3x.png */; };
 		4C2DFBF81FE2873E007D6EA7 /* share_inform@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DFBF71FE2873D007D6EA7 /* share_inform@2x.png */; };
 		4C2DFBFA1FE2876E007D6EA7 /* share_shield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DFBF91FE2876D007D6EA7 /* share_shield@2x.png */; };
+		4C45E68A2010FF5B008CBDED /* CusTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45E6892010FF5B008CBDED /* CusTabBar.m */; };
 		4C506A6E1FF62BD500ADBEEC /* ConversationHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C506A6D1FF62BD500ADBEEC /* ConversationHeader.m */; };
 		4C506A711FF634A900ADBEEC /* conversation_service@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C506A6F1FF634A800ADBEEC /* conversation_service@3x.png */; };
 		4C506A721FF634A900ADBEEC /* conversation_service@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C506A701FF634A900ADBEEC /* conversation_service@2x.png */; };
@@ -970,6 +971,8 @@
 		4C2DFBF71FE2873D007D6EA7 /* share_inform@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_inform@2x.png"; sourceTree = "<group>"; };
 		4C2DFBF91FE2876D007D6EA7 /* share_shield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_shield@2x.png"; sourceTree = "<group>"; };
 		4C322F2A1FDA2FD200E3EFC2 /* RentShe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RentShe.entitlements; sourceTree = "<group>"; };
+		4C45E6882010FF5B008CBDED /* CusTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CusTabBar.h; sourceTree = "<group>"; };
+		4C45E6892010FF5B008CBDED /* CusTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CusTabBar.m; sourceTree = "<group>"; };
 		4C506A6C1FF62BD500ADBEEC /* ConversationHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationHeader.h; sourceTree = "<group>"; };
 		4C506A6D1FF62BD500ADBEEC /* ConversationHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationHeader.m; sourceTree = "<group>"; };
 		4C506A6F1FF634A800ADBEEC /* conversation_service@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "conversation_service@3x.png"; sourceTree = "<group>"; };
@@ -1993,6 +1996,7 @@
 		1F65673D1ECEFF2700D30107 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				4C45E6872010FF3C008CBDED /* CusTabBar */,
 				1F7D27631FB1E35300FAF500 /* ShareToV */,
 				1F65673E1ECEFF9200D30107 /* NavVC */,
 			);
@@ -2626,6 +2630,15 @@
 			path = BroswerView;
 			sourceTree = "<group>";
 		};
+		4C45E6872010FF3C008CBDED /* CusTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4C45E6882010FF5B008CBDED /* CusTabBar.h */,
+				4C45E6892010FF5B008CBDED /* CusTabBar.m */,
+			);
+			path = CusTabBar;
+			sourceTree = "<group>";
+		};
 		4C5E96031FE8E23500826075 /* UMAnalytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -3253,6 +3266,7 @@
 				1F5962221ED04F4A00E0EF30 /* LoginVC.m in Sources */,
 				1F5511EE1EDB19BA008BE0CA /* NearbyCell.m in Sources */,
 				1F5FE8011F63917000CE1988 /* MJRefreshBackGifFooter.m in Sources */,
+				4C45E68A2010FF5B008CBDED /* CusTabBar.m in Sources */,
 				1F6566F51ECEF0B600D30107 /* main.m in Sources */,
 				4C6CEA6F1FF22341005659FB /* RealTimeLocationViewController.m in Sources */,
 				1F65676E1ECF475F00D30107 /* RentCell.m in Sources */,
