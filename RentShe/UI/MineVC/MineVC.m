@@ -228,6 +228,7 @@ typedef NS_ENUM(NSInteger,CellType) {
             cell.textLabel.font = [UIFont systemFontOfSize:15];
             cell.textLabel.textColor = kRGB_Value(0x282828);
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         NSArray *arr = self.dataArr[indexPath.section];
         NSDictionary *dic = arr[indexPath.row];

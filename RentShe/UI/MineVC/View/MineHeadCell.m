@@ -154,9 +154,10 @@
     {
         self.logLab.hidden = YES;
         self.nameLab.hidden = NO;
-        self.signLab.hidden = YES;
+        self.signLab.hidden = NO;
         
         self.nameLab.text = [UserDefaultsManager getNickName];
+        self.signLab.text = @"I have a pen, I have a apple, ah ~";
 //        self.fansLab.text = [NSString stringWithFormat:@"粉丝 %@",[UserDefaultsManager getVisitorNum]];
         [self.icon sd_setImageWithUrlStr:[UserDefaultsManager getAvatar]];
     }

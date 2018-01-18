@@ -7,12 +7,28 @@
 //
 
 #import "MyFocusVC.h"
+#import "MyFocusCell.h"
 
-@interface MyFocusVC ()
+@interface MyFocusVC ()<UITableViewDelegate,UITableViewDataSource,MyFocusCellDelegate>
+@property (nonatomic, strong) UITableView *myTabV;
 
 @end
 
 @implementation MyFocusVC
+
+- (UITableView *)myTabV
+{
+    if (!_myTabV) {
+        _myTabV = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _myTabV.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _myTabV.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _myTabV.delegate = self;
+        _myTabV.dataSource = self;
+        _myTabV.estimatedRowHeight = 68;
+        [self.view addSubview:_myTabV];
+    }
+    return _myTabV;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,7 +51,8 @@
 
 - (void)createV
 {
-    
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [self myTabV];
 }
 
 - (void)backClick
@@ -43,19 +60,30 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark -
+#pragma mark - UITableViewDelegate,UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 20;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MyFocusCell *cell = [MyFocusCell cellWithTableView:tableView indexPath:indexPath];
+    [cell refreshCell:@(indexPath.row%2)];
+    return cell;
+}
+
+#pragma mark -
+#pragma mark - MyFocusCellDelegate
+- (void)myFocusCell:(MyFocusCell *)cell clickWithIndex:(NSIndexPath *)index
+{
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
