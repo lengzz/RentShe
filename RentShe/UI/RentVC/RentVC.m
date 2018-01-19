@@ -81,10 +81,12 @@
         
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.itemSize = CGSizeMake(kWindowWidth, kWindowHeight - kNavBarHeight - kTabBarHeight);
+        flowLayout.sectionInset = UIEdgeInsetsMake(kNavBarHeight, 0, kTabBarHeight, 0);
         flowLayout.minimumLineSpacing = 0;
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kWindowWidth, kWindowHeight - kNavBarHeight - kTabBarHeight)collectionViewLayout:flowLayout];
+//        _collectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kWindowWidth, kWindowHeight - kNavBarHeight - kTabBarHeight)collectionViewLayout:flowLayout];
+        _collectionV = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
         _collectionV.delegate = self;
         _collectionV.dataSource = self;
         _collectionV.backgroundColor = [UIColor whiteColor];
@@ -94,9 +96,9 @@
         [_collectionV registerClass:[RentCell class]forCellWithReuseIdentifier:@"rentCell"];
         _collectionV.scrollsToTop = NO;
         [self.view addSubview:_collectionV];
-        if (@available(iOS 11.0, *)){
-            [_collectionV setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
-        }
+//        if (@available(iOS 11.0, *)){
+//            [_collectionV setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+//        }
     }
     return _collectionV;
 }
@@ -104,7 +106,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     [self createNavBar];
     [self collectionV];
     
@@ -309,7 +311,7 @@
     {
         infoV = self.nearbyVC.view;
     }
-    infoV.backgroundColor = [UIColor redColor];
+    infoV.backgroundColor = [UIColor whiteColor];
     cell.infoV = infoV;
     return cell;
 }
@@ -322,7 +324,8 @@
     }
     else
     {
-        [self titleSelected:1];    }
+        [self titleSelected:1];
+    }
 }
 
 #pragma mark -

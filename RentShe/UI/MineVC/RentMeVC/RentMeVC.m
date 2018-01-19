@@ -108,7 +108,7 @@
 - (void)createV
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kWindowWidth, 44)];
-    view.backgroundColor = [UIColor redColor];
+    view.backgroundColor = [UIColor whiteColor];
     _contentV = view;
     [self.view addSubview:view];
     

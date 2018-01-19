@@ -86,7 +86,7 @@
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.frame = [UIApplication sharedApplication].keyWindow.frame;
     
-    UIView *contentV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 169)];
+    UIView *contentV = [[UIView alloc] init];
     contentV.backgroundColor = [UIColor clearColor];
     [self addSubview:contentV];
     _contentV = contentV;
@@ -98,12 +98,14 @@
     [_contentV addSubview:shareV];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+//    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.itemSize = CGSizeMake(60, 80);
     layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
     
     UICollectionView *myCollectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(10, 10, CGRectGetWidth(shareV.frame) - 20, 85) collectionViewLayout:layout];
     myCollectionV.backgroundColor = [UIColor clearColor];
+    myCollectionV.scrollEnabled = NO;
     myCollectionV.delegate = self;
     myCollectionV.dataSource = self;
     [myCollectionV registerClass:[ShareToCell class] forCellWithReuseIdentifier:kShareToCell];
@@ -112,7 +114,6 @@
     _myCollectionV = myCollectionV;
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(15, CGRectGetHeight(contentV.frame) - 44 - 10, self.frame.size.width - 30, 44);
     btn.layer.cornerRadius = 10.0;
     btn.layer.masksToBounds = YES;
     btn.backgroundColor = [UIColor whiteColor];
@@ -121,6 +122,27 @@
     [btn addTarget:self action:@selector(dismissV) forControlEvents:UIControlEventTouchUpInside];
     [_contentV addSubview:btn];
     
+    [contentV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self);
+        make.bottom.equalTo(self).offset(-kSafeAreaBottomHeight);
+    }];
+    [shareV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(contentV).offset(15);
+        make.right.equalTo(contentV).offset(-15);
+        make.top.equalTo(contentV);
+        make.bottom.equalTo(btn.mas_top).offset(-10);
+    }];
+    [myCollectionV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.equalTo(shareV).offset(10);
+        make.right.bottom.equalTo(shareV).offset(-10);
+        make.height.equalTo(@85);
+    }];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(contentV).offset(15);
+        make.right.equalTo(contentV).offset(-15);
+        make.bottom.equalTo(contentV).offset(-10);
+        make.height.equalTo(@44);
+    }];
 }
 
 - (void)show
@@ -129,6 +151,12 @@
     
     _contentV.alpha = 1.0f;
     
+    NSInteger i = self.dataArr.count * (60 + 10)/(kWindowWidth - 5);
+    i += 1;
+    [_myCollectionV mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@(i * 90 + 5));
+    }];
+    
     CGRect frame = _contentV.frame;
     frame.origin.y = CGRectGetMaxY(self.frame);
     _contentV.frame = frame;
@@ -136,6 +164,7 @@
         CGRect frame = _contentV.frame;
         frame.origin.y = CGRectGetMaxY(self.frame) - CGRectGetHeight(_contentV.frame) - kSafeAreaBottomHeight;
         _contentV.frame = frame;
+        
     }];
 }
 
@@ -153,7 +182,6 @@
     }];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
         [self removeFromSuperview];
     });
 }
@@ -299,7 +327,7 @@
         }
         return;
     }
-    _imgV.backgroundColor = [UIColor redColor];
+    _imgV.backgroundColor = [UIColor whiteColor];
     _nameLab.text = @"新浪微博薄";
 }
 

@@ -39,7 +39,7 @@
     self.isShowNetworkIndicatorView = NO;
     [self createNavBar];
     self.conversationListTableView.tableHeaderView = self.header;
-    self.conversationListTableView.frame = CGRectMake(0, 0, kWindowWidth, kWindowHeight - kTabBarHeight);
+//    self.conversationListTableView.frame = CGRectMake(0, 0, kWindowWidth, kWindowHeight - kTabBarHeight);
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -366,7 +366,6 @@
 		4C2DFBF51FE2871A007D6EA7 /* share_inform@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DFBF31FE28719007D6EA7 /* share_inform@3x.png */; };
 		4C2DFBF81FE2873E007D6EA7 /* share_inform@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DFBF71FE2873D007D6EA7 /* share_inform@2x.png */; };
 		4C2DFBFA1FE2876E007D6EA7 /* share_shield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DFBF91FE2876D007D6EA7 /* share_shield@2x.png */; };
-		4C45E68A2010FF5B008CBDED /* CusTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45E6892010FF5B008CBDED /* CusTabBar.m */; };
 		4C506A6E1FF62BD500ADBEEC /* ConversationHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C506A6D1FF62BD500ADBEEC /* ConversationHeader.m */; };
 		4C506A711FF634A900ADBEEC /* conversation_service@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C506A6F1FF634A800ADBEEC /* conversation_service@3x.png */; };
 		4C506A721FF634A900ADBEEC /* conversation_service@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C506A701FF634A900ADBEEC /* conversation_service@2x.png */; };
@@ -393,6 +392,11 @@
 		4C74893A1FD122C700D108B3 /* BlackListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7489391FD122C700D108B3 /* BlackListVC.m */; };
 		4C74893E1FD1251B00D108B3 /* BlackListM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74893D1FD1251B00D108B3 /* BlackListM.m */; };
 		4C7489421FD12E9200D108B3 /* BlackListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7489411FD12E9200D108B3 /* BlackListCell.m */; };
+		4C7AEE502011BA8E00D18D8A /* UITabBar+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7AEE4F2011BA8E00D18D8A /* UITabBar+Custom.m */; };
+		4C7AEE542011EADF00D18D8A /* DisFocusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7AEE532011EADF00D18D8A /* DisFocusVC.m */; };
+		4C7AEE582011EF7F00D18D8A /* DisRecommendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7AEE572011EF7F00D18D8A /* DisRecommendVC.m */; };
+		4C7AEE5C2011F25F00D18D8A /* DisRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7AEE5B2011F25F00D18D8A /* DisRecommendCell.m */; };
+		4C7AEE602011F5EC00D18D8A /* DisFocusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7AEE5F2011F5EC00D18D8A /* DisFocusCell.m */; };
 		4C801133201039A700AF75F1 /* MyFocusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C801132201039A700AF75F1 /* MyFocusCell.m */; };
 		4C8011382010445B00AF75F1 /* tabbar_discover_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8011342010445A00AF75F1 /* tabbar_discover_selected@2x.png */; };
 		4C8011392010445B00AF75F1 /* tabbar_discover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8011352010445B00AF75F1 /* tabbar_discover@2x.png */; };
@@ -971,8 +975,6 @@
 		4C2DFBF71FE2873D007D6EA7 /* share_inform@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_inform@2x.png"; sourceTree = "<group>"; };
 		4C2DFBF91FE2876D007D6EA7 /* share_shield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_shield@2x.png"; sourceTree = "<group>"; };
 		4C322F2A1FDA2FD200E3EFC2 /* RentShe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RentShe.entitlements; sourceTree = "<group>"; };
-		4C45E6882010FF5B008CBDED /* CusTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CusTabBar.h; sourceTree = "<group>"; };
-		4C45E6892010FF5B008CBDED /* CusTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CusTabBar.m; sourceTree = "<group>"; };
 		4C506A6C1FF62BD500ADBEEC /* ConversationHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationHeader.h; sourceTree = "<group>"; };
 		4C506A6D1FF62BD500ADBEEC /* ConversationHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationHeader.m; sourceTree = "<group>"; };
 		4C506A6F1FF634A800ADBEEC /* conversation_service@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "conversation_service@3x.png"; sourceTree = "<group>"; };
@@ -1015,6 +1017,16 @@
 		4C74893D1FD1251B00D108B3 /* BlackListM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlackListM.m; sourceTree = "<group>"; };
 		4C7489401FD12E9200D108B3 /* BlackListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlackListCell.h; sourceTree = "<group>"; };
 		4C7489411FD12E9200D108B3 /* BlackListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlackListCell.m; sourceTree = "<group>"; };
+		4C7AEE4E2011BA8E00D18D8A /* UITabBar+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+Custom.h"; sourceTree = "<group>"; };
+		4C7AEE4F2011BA8E00D18D8A /* UITabBar+Custom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+Custom.m"; sourceTree = "<group>"; };
+		4C7AEE522011EADF00D18D8A /* DisFocusVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisFocusVC.h; sourceTree = "<group>"; };
+		4C7AEE532011EADF00D18D8A /* DisFocusVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisFocusVC.m; sourceTree = "<group>"; };
+		4C7AEE562011EF7F00D18D8A /* DisRecommendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisRecommendVC.h; sourceTree = "<group>"; };
+		4C7AEE572011EF7F00D18D8A /* DisRecommendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisRecommendVC.m; sourceTree = "<group>"; };
+		4C7AEE5A2011F25F00D18D8A /* DisRecommendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisRecommendCell.h; sourceTree = "<group>"; };
+		4C7AEE5B2011F25F00D18D8A /* DisRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisRecommendCell.m; sourceTree = "<group>"; };
+		4C7AEE5E2011F5EC00D18D8A /* DisFocusCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisFocusCell.h; sourceTree = "<group>"; };
+		4C7AEE5F2011F5EC00D18D8A /* DisFocusCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisFocusCell.m; sourceTree = "<group>"; };
 		4C801131201039A700AF75F1 /* MyFocusCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFocusCell.h; sourceTree = "<group>"; };
 		4C801132201039A700AF75F1 /* MyFocusCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFocusCell.m; sourceTree = "<group>"; };
 		4C8011342010445A00AF75F1 /* tabbar_discover_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_discover_selected@2x.png"; sourceTree = "<group>"; };
@@ -1996,7 +2008,6 @@
 		1F65673D1ECEFF2700D30107 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				4C45E6872010FF3C008CBDED /* CusTabBar */,
 				1F7D27631FB1E35300FAF500 /* ShareToV */,
 				1F65673E1ECEFF9200D30107 /* NavVC */,
 			);
@@ -2514,6 +2525,8 @@
 				1F41BAEC1F9CD480001EFF2E /* UIView+Frame.m */,
 				1FF2C2D91F0A9F0A008246E4 /* NSObject+Common.h */,
 				1FF2C2DA1F0A9F0A008246E4 /* NSObject+Common.m */,
+				4C7AEE4E2011BA8E00D18D8A /* UITabBar+Custom.h */,
+				4C7AEE4F2011BA8E00D18D8A /* UITabBar+Custom.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2628,15 +2641,6 @@
 				4C2DFBEB1FE229F3007D6EA7 /* DQBroswerItemView.m */,
 			);
 			path = BroswerView;
-			sourceTree = "<group>";
-		};
-		4C45E6872010FF3C008CBDED /* CusTabBar */ = {
-			isa = PBXGroup;
-			children = (
-				4C45E6882010FF5B008CBDED /* CusTabBar.h */,
-				4C45E6892010FF5B008CBDED /* CusTabBar.m */,
-			);
-			path = CusTabBar;
 			sourceTree = "<group>";
 		};
 		4C5E96031FE8E23500826075 /* UMAnalytics */ = {
@@ -2755,6 +2759,44 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4C7AEE512011EAC400D18D8A /* DisFocusVC */ = {
+			isa = PBXGroup;
+			children = (
+				4C7AEE522011EADF00D18D8A /* DisFocusVC.h */,
+				4C7AEE532011EADF00D18D8A /* DisFocusVC.m */,
+				4C7AEE5D2011F5D000D18D8A /* View */,
+			);
+			path = DisFocusVC;
+			sourceTree = "<group>";
+		};
+		4C7AEE552011EF4200D18D8A /* DisRecommendVC */ = {
+			isa = PBXGroup;
+			children = (
+				4C7AEE562011EF7F00D18D8A /* DisRecommendVC.h */,
+				4C7AEE572011EF7F00D18D8A /* DisRecommendVC.m */,
+				4C7AEE592011F24100D18D8A /* View */,
+			);
+			path = DisRecommendVC;
+			sourceTree = "<group>";
+		};
+		4C7AEE592011F24100D18D8A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C7AEE5A2011F25F00D18D8A /* DisRecommendCell.h */,
+				4C7AEE5B2011F25F00D18D8A /* DisRecommendCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4C7AEE5D2011F5D000D18D8A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C7AEE5E2011F5EC00D18D8A /* DisFocusCell.h */,
+				4C7AEE5F2011F5EC00D18D8A /* DisFocusCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4C8011302010398200AF75F1 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -2769,6 +2811,8 @@
 			children = (
 				4C8011412010460F00AF75F1 /* DiscoverVC.h */,
 				4C8011422010460F00AF75F1 /* DiscoverVC.m */,
+				4C7AEE552011EF4200D18D8A /* DisRecommendVC */,
+				4C7AEE512011EAC400D18D8A /* DisFocusVC */,
 			);
 			path = DiscoverVC;
 			sourceTree = "<group>";
@@ -3157,6 +3201,7 @@
 				1F502DAF1EDBFCEF0007A908 /* UIImage+MultiFormat.m in Sources */,
 				1F91BC361F7D3622009D9B55 /* IQUIWindow+Hierarchy.m in Sources */,
 				4C83FF7B1FFB853E0050A105 /* EditIntroVC.m in Sources */,
+				4C7AEE542011EADF00D18D8A /* DisFocusVC.m in Sources */,
 				1F4D9F091EE060BB00320745 /* LocationVC.m in Sources */,
 				1F9315211F6CE34500C90ED4 /* AddRentSkillVC.m in Sources */,
 				1FA5FA571F246DCB007321AB /* ModifyPswVC.m in Sources */,
@@ -3169,6 +3214,7 @@
 				1F71645C1ED9E7B700DDFF1C /* RentInfoTimeCell.m in Sources */,
 				1FF4E81B1ED41A90007E7B15 /* NSArray+MASAdditions.m in Sources */,
 				1F5FE8051F63917000CE1988 /* MJRefreshNormalHeader.m in Sources */,
+				4C7AEE502011BA8E00D18D8A /* UITabBar+Custom.m in Sources */,
 				1F52CAF51EE80045004B7A61 /* MyWalletVC.m in Sources */,
 				1F67922F1ED2D3ED00449CCE /* AFURLSessionManager.m in Sources */,
 				1F67922C1ED2D3ED00449CCE /* AFSecurityPolicy.m in Sources */,
@@ -3213,6 +3259,7 @@
 				1F67922B1ED2D3ED00449CCE /* AFNetworkReachabilityManager.m in Sources */,
 				1F5FE7F91F63917000CE1988 /* MJRefreshAutoFooter.m in Sources */,
 				1F7D27661FB1E36400FAF500 /* ShareToV.m in Sources */,
+				4C7AEE602011F5EC00D18D8A /* DisFocusCell.m in Sources */,
 				1F9A0CAD1F4824550004C1E1 /* PayForOrderVC.m in Sources */,
 				1F65673C1ECEFBD400D30107 /* ConversationVC.m in Sources */,
 				1F802DB61F7610BB00D59AE6 /* EditInfoHeader.m in Sources */,
@@ -3224,6 +3271,7 @@
 				1FF4E81D1ED41A90007E7B15 /* View+MASAdditions.m in Sources */,
 				1FF2C2D11F0A826D008246E4 /* RentInfoM.m in Sources */,
 				1F41BAED1F9CD480001EFF2E /* UIView+Frame.m in Sources */,
+				4C7AEE582011EF7F00D18D8A /* DisRecommendVC.m in Sources */,
 				1F502DA41EDBFCEF0007A908 /* MKAnnotationView+WebCache.m in Sources */,
 				1FF4E8481ED42E81007E7B15 /* PublicMethod.m in Sources */,
 				1F502DB11EDBFCEF0007A908 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -3266,7 +3314,6 @@
 				1F5962221ED04F4A00E0EF30 /* LoginVC.m in Sources */,
 				1F5511EE1EDB19BA008BE0CA /* NearbyCell.m in Sources */,
 				1F5FE8011F63917000CE1988 /* MJRefreshBackGifFooter.m in Sources */,
-				4C45E68A2010FF5B008CBDED /* CusTabBar.m in Sources */,
 				1F6566F51ECEF0B600D30107 /* main.m in Sources */,
 				4C6CEA6F1FF22341005659FB /* RealTimeLocationViewController.m in Sources */,
 				1F65676E1ECF475F00D30107 /* RentCell.m in Sources */,
@@ -3274,6 +3321,7 @@
 				1F7D27621FB1E03300FAF500 /* HeadImgV.m in Sources */,
 				1F502DAE1EDBFCEF0007A908 /* UIImage+GIF.m in Sources */,
 				1F5FE7FB1F63917000CE1988 /* MJRefreshComponent.m in Sources */,
+				4C7AEE5C2011F25F00D18D8A /* DisRecommendCell.m in Sources */,
 				1FA50DFF1EF6452B00AB7C30 /* NearbyM.m in Sources */,
 				1FF4E81E1ED41A90007E7B15 /* ViewController+MASAdditions.m in Sources */,
 				1F802DB21F76103800D59AE6 /* CustomFlowLayout.m in Sources */,

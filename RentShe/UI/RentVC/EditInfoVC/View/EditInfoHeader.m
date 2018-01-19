@@ -61,7 +61,7 @@
     
     UIImageView *topImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     topImg.hidden = YES;
-    topImg.backgroundColor = [UIColor redColor];
+    topImg.backgroundColor = [UIColor whiteColor];
     [self addSubview:topImg];
     _topImg = topImg;
 }

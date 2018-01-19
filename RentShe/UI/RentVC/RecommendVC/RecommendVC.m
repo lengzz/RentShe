@@ -43,10 +43,10 @@
 {
     if (!_myCollectionV) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(kWindowWidth/2.0 - 11 - 5.5, kWindowWidth/2.0 - 11 - 5.5 + 49);
-        layout.minimumLineSpacing = 7;
-        layout.minimumInteritemSpacing = 11;
-        layout.sectionInset = UIEdgeInsetsMake(7, 11, 7, 11);
+        layout.itemSize = CGSizeMake(kWindowWidth/2.0 - 8, kWindowWidth/2.0 - 8 + 49);
+        layout.minimumLineSpacing = 5;
+        layout.minimumInteritemSpacing = 5;
+        layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
         _myCollectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight - kNavBarHeight - kTabBarHeight) collectionViewLayout:layout];
         _myCollectionV.delegate = self;
         _myCollectionV.dataSource = self;
