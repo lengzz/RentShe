@@ -387,6 +387,8 @@
 		4C6CEB631FF245F0005659FB /* RCDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CEB621FF245F0005659FB /* RCDUtilities.m */; };
 		4C6F49A81FF4C916003432F4 /* BQMM.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F49A61FF4C916003432F4 /* BQMM.bundle */; };
 		4C6F49A91FF4C916003432F4 /* BQMMRongCloudExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C6F49A71FF4C916003432F4 /* BQMMRongCloudExt.framework */; };
+		4C7020F42013B20A0016DE77 /* dis_recommend_praise@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7020F22013B20A0016DE77 /* dis_recommend_praise@3x.png */; };
+		4C7020F52013B20A0016DE77 /* dis_recommend_praise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7020F32013B20A0016DE77 /* dis_recommend_praise@2x.png */; };
 		4C739EE91F7F6B2000D5F93E /* CityM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C739EE81F7F6B2000D5F93E /* CityM.m */; };
 		4C739EED1F7F842C00D5F93E /* SearchM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C739EEC1F7F842C00D5F93E /* SearchM.m */; };
 		4C74893A1FD122C700D108B3 /* BlackListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7489391FD122C700D108B3 /* BlackListVC.m */; };
@@ -1007,6 +1009,8 @@
 		4C6CEB621FF245F0005659FB /* RCDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDUtilities.m; sourceTree = "<group>"; };
 		4C6F49A61FF4C916003432F4 /* BQMM.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BQMM.bundle; sourceTree = "<group>"; };
 		4C6F49A71FF4C916003432F4 /* BQMMRongCloudExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BQMMRongCloudExt.framework; sourceTree = "<group>"; };
+		4C7020F22013B20A0016DE77 /* dis_recommend_praise@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dis_recommend_praise@3x.png"; sourceTree = "<group>"; };
+		4C7020F32013B20A0016DE77 /* dis_recommend_praise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dis_recommend_praise@2x.png"; sourceTree = "<group>"; };
 		4C739EE71F7F6B2000D5F93E /* CityM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityM.h; sourceTree = "<group>"; };
 		4C739EE81F7F6B2000D5F93E /* CityM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityM.m; sourceTree = "<group>"; };
 		4C739EEB1F7F842C00D5F93E /* SearchM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchM.h; sourceTree = "<group>"; };
@@ -1898,6 +1902,7 @@
 		1F6567261ECEF59800D30107 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				4C7020F12013B1910016DE77 /* Discover */,
 				1F502DB41EDC00310007A908 /* Rent */,
 				1FF4E81F1ED42AD0007E7B15 /* Login&Regist */,
 				1F5961F11ED0202E00E0EF30 /* Mine */,
@@ -2712,6 +2717,15 @@
 			path = bqmm;
 			sourceTree = "<group>";
 		};
+		4C7020F12013B1910016DE77 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				4C7020F32013B20A0016DE77 /* dis_recommend_praise@2x.png */,
+				4C7020F22013B20A0016DE77 /* dis_recommend_praise@3x.png */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
 		4C739EE61F7F6B0400D5F93E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -3067,6 +3081,7 @@
 				1FF4E8641ED4A38A007E7B15 /* regist_nick@2x.png in Resources */,
 				1F5962111ED0202E00E0EF30 /* mine_wallet@3x.png in Resources */,
 				1F5F06681EE6B398002AF27D /* rent_comment@3x.png in Resources */,
+				4C7020F42013B20A0016DE77 /* dis_recommend_praise@3x.png in Resources */,
 				1F65675B1ECF0B1600D30107 /* tabbar_mine@3x.png in Resources */,
 				1F6E68D61F0BDCDE00B6E98F /* rent_filter@3x.png in Resources */,
 				1F7F8BEF1FB0AE3E00E4CEDB /* mine_certification_ok@3x.png in Resources */,
@@ -3156,6 +3171,7 @@
 				1F5FE8071F63917000CE1988 /* MJRefresh.bundle in Resources */,
 				1F6567681ECF334000D30107 /* navbar_location@3x.png in Resources */,
 				1F75B4551F9C63E900BB99DF /* pay_alipay@2x.png in Resources */,
+				4C7020F52013B20A0016DE77 /* dis_recommend_praise@2x.png in Resources */,
 				1F63FE151F9F7B6E00A5CAE2 /* order_review@3x.png in Resources */,
 				1F5962071ED0202E00E0EF30 /* mine_default@3x.png in Resources */,
 				4C2DFBF21FE286AF007D6EA7 /* share_shield@3x.png in Resources */,
