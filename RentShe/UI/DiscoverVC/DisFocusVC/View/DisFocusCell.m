@@ -17,8 +17,9 @@
     UILabel *_contentLab;
     UILabel *_distanceLab;
     UILabel *_watchLab;
-    UILabel *_praiseLab;
-    UILabel *_commentLab;
+    UIButton *_praiseBtn;
+    UIButton *_reviewsBtn;
+    UIButton *_commentBtn;
 }
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @end
@@ -45,109 +46,127 @@
 
 - (void)createCell
 {
-    UIImageView *headImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 7, 76, 76)];
+    self.contentView.backgroundColor = [UIColor whiteColor];
+    
+    UIImageView *headImg = [[UIImageView alloc] init];
+    headImg.layer.masksToBounds = YES;
+    headImg.layer.cornerRadius = 17.0;
     _headImg = headImg;
     [self.contentView addSubview:headImg];
     
-    UILabel *nameLab = [[UILabel alloc] initWithFrame:CGRectMake(106, 10, 50, 15)];
-    nameLab.font = [UIFont systemFontOfSize:15];
+    UILabel *nameLab = [[UILabel alloc] init];
+    nameLab.font = [UIFont systemFontOfSize:13];
     nameLab.textColor = kRGB_Value(0x282828);
     _nameLab = nameLab;
     [self.contentView addSubview:nameLab];
     
-    UIView *ageV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 45, 15)];
-    ageV.layer.masksToBounds = YES;
-    ageV.layer.cornerRadius = 7.5;
-    ageV.layer.borderWidth = .5;
-    ageV.layer.borderColor = kRGB_Value(0x989898).CGColor;
-    [self.contentView addSubview:ageV];
-    UIImageView *sexImg = [[UIImageView alloc] initWithFrame:CGRectMake(7.5, 2, 11, 11)];
-    _sexImg = sexImg;
-    [ageV addSubview:sexImg];
-    UILabel *ageLab = [[UILabel alloc] initWithFrame:CGRectMake(19, 1.5, 45 - 15 - 12, 12)];
-    ageLab.font = [UIFont systemFontOfSize:12];
-    ageLab.textColor = kRGB_Value(0x989898);
-    ageLab.textAlignment = NSTextAlignmentCenter;
-    _ageLab = ageLab;
-    [ageV addSubview:ageLab];
+    UILabel *timeLab = [[UILabel alloc] init];
+    timeLab.font = [UIFont systemFontOfSize:10];
+    timeLab.textColor = kRGB_Value(0x989898);
+    _timeLab = timeLab;
+    [self.contentView addSubview:timeLab];
     
-    [nameLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView.mas_top).offset(10);
-        make.left.equalTo(headImg.mas_right).offset(15);
-    }];
-    [ageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(nameLab.mas_centerY);
-        make.left.equalTo(nameLab.mas_right).offset(10);
-        make.height.equalTo(@15);
-        make.width.equalTo(@45);
-    }];
+    UILabel *contentLab = [[UILabel alloc] init];
+    contentLab.font = [UIFont systemFontOfSize:13];
+    contentLab.textColor = kRGB_Value(0x282828);
+    contentLab.numberOfLines = 0;
+    _contentLab = contentLab;
+    [self.contentView addSubview:contentLab];
     
-    UILabel *skillLab = [[UILabel alloc] initWithFrame:CGRectMake(106, 39, kWindowWidth - 106 - 15, 12)];
-    skillLab.font = [UIFont systemFontOfSize:12];
-    skillLab.textColor = kRGB_Value(0x989898);
-    _skillLab = skillLab;
-    [self.contentView addSubview:skillLab];
-    
-    UIImageView *distanceImg = [[UIImageView alloc] initWithFrame:CGRectMake(106, 90 - 7 - 16, 16, 16)];
-    distanceImg.image = [UIImage imageNamed:@"rent_distance"];
-    [self.contentView addSubview:distanceImg];
+    UIImageView *coverImg = [[UIImageView alloc] init];
+    _coverImg = coverImg;
+    [self.contentView addSubview:coverImg];
     
     UILabel *distanceLab = [[UILabel alloc] init];
-    distanceLab.font = [UIFont systemFontOfSize:12];
+    distanceLab.font = [UIFont systemFontOfSize:10];
     distanceLab.textColor = kRGB_Value(0x989898);
     _distanceLab = distanceLab;
     [self.contentView addSubview:distanceLab];
+
+    UILabel *watchLab = [[UILabel alloc] init];
+    watchLab.font = [UIFont systemFontOfSize:10];
+    watchLab.textColor = kRGB_Value(0x989898);
+    _watchLab = watchLab;
+    [self.contentView addSubview:watchLab];
     
-    UIImageView *professionImg = [[UIImageView alloc] init];
-    professionImg.image = [UIImage imageNamed:@"rent_profession"];
-    [self.contentView addSubview:professionImg];
+    UIView *line = [[UIView alloc] init];
+    line.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [self.contentView addSubview:line];
     
-    UILabel *professionLab = [[UILabel alloc] init];
-    professionLab.font = [UIFont systemFontOfSize:12];
-    professionLab.textColor = kRGB_Value(0x989898);
-    [professionLab setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
-    _professionLab = professionLab;
-    [self.contentView addSubview:professionLab];
+    UIButton *praiseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    praiseBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    [praiseBtn setTitle:@"0" forState:UIControlStateNormal];
+    [praiseBtn setTitleColor:kRGB_Value(0x989898) forState:UIControlStateNormal];
+    [praiseBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [praiseBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+    [self.contentView addSubview:praiseBtn];
+    _praiseBtn = praiseBtn;
     
-    UIImageView *priceImg = [[UIImageView alloc] init];
-    priceImg.image = [UIImage imageNamed:@"rent_price"];
-    [self.contentView addSubview:priceImg];
+    UIButton *reviewsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    reviewsBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    [reviewsBtn setTitle:@"0" forState:UIControlStateNormal];
+    [reviewsBtn setTitleColor:kRGB_Value(0x989898) forState:UIControlStateNormal];
+    [reviewsBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [reviewsBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+    [self.contentView addSubview:reviewsBtn];
+    _reviewsBtn = reviewsBtn;
     
-    UILabel *priceLab = [[UILabel alloc] init];
-    priceLab.font = [UIFont systemFontOfSize:12];
-    priceLab.textColor = kRGB_Value(0x989898);
-    [priceLab setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
-    _priceLab = priceLab;
-    [self.contentView addSubview:priceLab];
+    UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [commentBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [commentBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+    [self.contentView addSubview:commentBtn];
+    _commentBtn = commentBtn;
     
+    UIView *bottomLine = [[UIView alloc] init];
+    bottomLine.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [self.contentView addSubview:bottomLine];
+    
+    [headImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.equalTo(self.contentView).offset(10);
+        make.height.width.equalTo(@34);
+    }];
+    [nameLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(headImg.mas_right).offset(10);
+        make.top.equalTo(self.contentView).offset(13);
+        make.right.greaterThanOrEqualTo(self.contentView).offset(-10);
+        make.height.equalTo(@13);
+    }];
+    [timeLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(headImg.mas_right).offset(10);
+        make.top.equalTo(nameLab.mas_bottom).offset(7);
+        make.right.greaterThanOrEqualTo(self.contentView).offset(-10);
+        make.height.equalTo(@10);
+    }];
+    [contentLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(10);
+        make.top.equalTo(headImg.mas_bottom).offset(10);
+        make.right.equalTo(self.contentView).offset(-10);
+    }];
+    [coverImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(10);
+        make.top.equalTo(headImg.mas_bottom).offset(10);
+        make.right.equalTo(self.contentView).offset(-10);
+    }];
     [distanceLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(distanceImg.mas_centerY);
-        make.left.equalTo(distanceImg.mas_right).offset(5);
+        
     }];
-    
-    [professionImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(distanceImg.mas_centerY);
-        make.left.equalTo(distanceLab.mas_right).offset(10);
-        make.height.equalTo(@16);
-        make.width.equalTo(@16);
+    [watchLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        
     }];
-    
-    [professionLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(distanceImg.mas_centerY);
-        make.left.equalTo(professionImg.mas_right).offset(5);
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        
     }];
-    
-    [priceImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(distanceImg.mas_centerY);
-        make.left.equalTo(professionLab.mas_right).offset(10);
-        make.height.equalTo(@16);
-        make.width.equalTo(@16);
+    [praiseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
     }];
-    
-    [priceLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(distanceImg.mas_centerY);
-        make.left.equalTo(priceImg.mas_right).offset(5);
-        make.right.lessThanOrEqualTo(self.contentView).offset(-5);
+    [reviewsBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
+    [commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
+    [bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        
     }];
 }
 

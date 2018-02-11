@@ -46,7 +46,7 @@
 + (NSString *)getCodeByCity:(NSString *)city
 {
     for (CityM *m in self.dataArr) {
-        if ([m.code isEqualToString:city]) {
+        if ([m.city isEqualToString:city]) {
             return m.code;
         }
     }
