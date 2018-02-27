@@ -144,29 +144,48 @@
     }];
     [coverImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(10);
-        make.top.equalTo(headImg.mas_bottom).offset(10);
-        make.right.equalTo(self.contentView).offset(-10);
+        make.top.equalTo(contentLab.mas_bottom).offset(10);
+        make.width.equalTo(@190);
+        make.height.equalTo(@115);
     }];
     [distanceLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.left.equalTo(self.contentView).offset(10);
+        make.top.equalTo(coverImg.mas_bottom).offset(10);
+        make.height.equalTo(@15);
     }];
     [watchLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.left.equalTo(distanceLab.mas_right).offset(20);
+        make.top.equalTo(coverImg.mas_bottom).offset(10);
+        make.height.equalTo(@15);
     }];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.left.equalTo(self.contentView).offset(10);
+        make.right.equalTo(self.contentView).offset(-10);
+        make.top.equalTo(distanceLab.mas_bottom).offset(10);
+        make.height.equalTo(@.5);
     }];
     [praiseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.left.equalTo(self.contentView).offset(10);
+        make.top.equalTo(line.mas_bottom).offset(10);
+        make.height.equalTo(@25);
+        make.width.equalTo(@(kWindowWidth/4));
     }];
     [reviewsBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.left.equalTo(praiseBtn.mas_right).offset(10);
+        make.top.equalTo(line.mas_bottom).offset(10);
+        make.height.equalTo(@25);
+        make.width.equalTo(@(kWindowWidth/4));
     }];
     [commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.right.equalTo(self.contentView).offset(-10);
+        make.top.equalTo(line.mas_bottom).offset(10);
+        make.height.equalTo(@25);
+        make.width.equalTo(@(kWindowWidth/4));
     }];
     [bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.left.right.bottom.equalTo(self.contentView);
+        make.top.equalTo(praiseBtn.mas_bottom).offset(10);
+        make.height.equalTo(@5);
     }];
 }
 
