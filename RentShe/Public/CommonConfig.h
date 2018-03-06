@@ -13,6 +13,8 @@
 @interface CommonConfig : NSObject
 @property (nonatomic, strong, readonly) NSString *apiHostUrl;//服务器地址
 @property (nonatomic, strong, readonly) NSString *rongCAppKey;//融云
+@property (nonatomic, strong, readonly) NSString *jPushAppKey;//极光
+@property (nonatomic, assign, readonly) BOOL isProduction;
 
 /**
  *  APP缓存数据 -> 避免重复请求

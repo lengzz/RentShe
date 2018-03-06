@@ -17,6 +17,8 @@ typedef NS_ENUM(NSUInteger, ServerType){
 //正式环境
 #define kApiHostUrl_Online @"https://api.rentshe.com/Nip"
 #define kRongCAppKey_Online @"6tnym1br6jwt7"
+#define kJPushAppKey_Online @"c83d3aaadd983c50644eb7ab"
+
 
 //测试环境
 #define kApiHostUrl_Test @"http://zuapi.rentshe.com/Nip"
@@ -26,6 +28,8 @@ typedef NS_ENUM(NSUInteger, ServerType){
 @property (nonatomic, assign) ServerType type;
 @property (nonatomic, strong) NSString *apiHostUrl;//服务器地址
 @property (nonatomic, strong) NSString *rongCAppKey;//融云
+@property (nonatomic, strong) NSString *jPushAppKey;//极光
+@property (nonatomic, assign) BOOL isProduction;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) NSDateFormatter *week_DateFormatter;
 @end
@@ -56,6 +60,9 @@ typedef NS_ENUM(NSUInteger, ServerType){
         {
             self.apiHostUrl = kApiHostUrl_Online;
             self.rongCAppKey = kRongCAppKey_Online;
+            
+            self.jPushAppKey = kJPushAppKey_Online;
+            self.isProduction = NO;
 #ifdef DEBUG    //调试不提交BUG统计
 #else
 #endif
@@ -65,6 +72,9 @@ typedef NS_ENUM(NSUInteger, ServerType){
         {
             self.apiHostUrl = kApiHostUrl_Test;
             self.rongCAppKey = kRongCAppKey_Test;
+            
+            self.jPushAppKey = kJPushAppKey_Online;
+            self.isProduction = NO;
             break;
         }
         default:

@@ -409,6 +409,11 @@
 		4C8011432010460F00AF75F1 /* DiscoverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8011422010460F00AF75F1 /* DiscoverVC.m */; };
 		4C83A994200DFCDB00E75E87 /* MyFansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83A993200DFCDB00E75E87 /* MyFansCell.m */; };
 		4C83FF7B1FFB853E0050A105 /* EditIntroVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C83FF7A1FFB853E0050A105 /* EditIntroVC.m */; };
+		4C9C2630204E629800C2118C /* jcore-ios-1.1.7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9C262D204E629800C2118C /* jcore-ios-1.1.7.a */; };
+		4C9C2631204E629800C2118C /* jpush-ios-3.0.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9C262E204E629800C2118C /* jpush-ios-3.0.8.a */; };
+		4C9C2633204E651500C2118C /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9C2632204E650A00C2118C /* CoreFoundation.framework */; };
+		4C9C2635204E658A00C2118C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9C2634204E658500C2118C /* UserNotifications.framework */; };
+		4C9C2637204E65B300C2118C /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9C2636204E65B300C2118C /* libresolv.tbd */; };
 		4CA5CD7A200C9BB90043F58A /* MyFansVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5CD79200C9BB90043F58A /* MyFansVC.m */; };
 		4CA5CD7D200C9BD10043F58A /* MyFocusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5CD7C200C9BD10043F58A /* MyFocusVC.m */; };
 		4CA5CD80200C9BE80043F58A /* MyVideosVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5CD7F200C9BE80043F58A /* MyVideosVC.m */; };
@@ -1045,6 +1050,12 @@
 		4C83A993200DFCDB00E75E87 /* MyFansCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFansCell.m; sourceTree = "<group>"; };
 		4C83FF791FFB853E0050A105 /* EditIntroVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditIntroVC.h; sourceTree = "<group>"; };
 		4C83FF7A1FFB853E0050A105 /* EditIntroVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditIntroVC.m; sourceTree = "<group>"; };
+		4C9C262D204E629800C2118C /* jcore-ios-1.1.7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.1.7.a"; sourceTree = "<group>"; };
+		4C9C262E204E629800C2118C /* jpush-ios-3.0.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.0.8.a"; sourceTree = "<group>"; };
+		4C9C262F204E629800C2118C /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		4C9C2632204E650A00C2118C /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		4C9C2634204E658500C2118C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		4C9C2636204E65B300C2118C /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		4CA5CD78200C9BB90043F58A /* MyFansVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFansVC.h; sourceTree = "<group>"; };
 		4CA5CD79200C9BB90043F58A /* MyFansVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFansVC.m; sourceTree = "<group>"; };
 		4CA5CD7B200C9BD10043F58A /* MyFocusVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFocusVC.h; sourceTree = "<group>"; };
@@ -1066,6 +1077,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C9C2635204E658A00C2118C /* UserNotifications.framework in Frameworks */,
+				4C9C2633204E651500C2118C /* CoreFoundation.framework in Frameworks */,
+				1F52E38D1ED58C2A00C678C6 /* CFNetwork.framework in Frameworks */,
 				1F86DE911F5A927200F9EFA7 /* CoreMotion.framework in Frameworks */,
 				1F86DE8F1F5A924A00F9EFA7 /* Foundation.framework in Frameworks */,
 				1F86DE8D1F5A920A00F9EFA7 /* CoreText.framework in Frameworks */,
@@ -1099,11 +1113,12 @@
 				1F56BDA91ED6DFF800B04A70 /* CoreGraphics.framework in Frameworks */,
 				1F56BDA71ED6DFEC00B04A70 /* CoreAudio.framework in Frameworks */,
 				1F56BDA51ED6DFDB00B04A70 /* AVFoundation.framework in Frameworks */,
+				4C9C2631204E629800C2118C /* jpush-ios-3.0.8.a in Frameworks */,
 				1F6AEF8C1F371D8B00342560 /* AMapFoundationKit.framework in Frameworks */,
 				1F56BDA31ED6DFD100B04A70 /* AudioToolbox.framework in Frameworks */,
 				1F56BDA11ED6DFC500B04A70 /* AssetsLibrary.framework in Frameworks */,
 				1F51F5991ED5A0190089CA7D /* libSocialQQ.a in Frameworks */,
-				1F52E38D1ED58C2A00C678C6 /* CFNetwork.framework in Frameworks */,
+				4C9C2637204E65B300C2118C /* libresolv.tbd in Frameworks */,
 				1F56BD9F1ED6DF9D00B04A70 /* RongIMLib.framework in Frameworks */,
 				1F52E3891ED58C1200C678C6 /* Security.framework in Frameworks */,
 				1F52E3851ED58BF600C678C6 /* libsqlite3.0.tbd in Frameworks */,
@@ -1113,6 +1128,7 @@
 				1F51F5A01ED5A0190089CA7D /* UShareUI.framework in Frameworks */,
 				1F56BD9C1ED6DF9D00B04A70 /* libopencore-amrnb.a in Frameworks */,
 				1F51F59E1ED5A0190089CA7D /* libUMSocialLog.a in Frameworks */,
+				4C9C2630204E629800C2118C /* jcore-ios-1.1.7.a in Frameworks */,
 				1F56BD9E1ED6DF9D00B04A70 /* RongIMKit.framework in Frameworks */,
 				1F7143201F359F85004B8616 /* AMapLocationKit.framework in Frameworks */,
 			);
@@ -1411,6 +1427,7 @@
 		1F52E3791ED58AAE00C678C6 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				4C9C262C204E629800C2118C /* JPush3.0.8 */,
 				4C6F49A51FF4C916003432F4 /* bqmm */,
 				4C6CEA531FF22340005659FB /* RealTimeLocation */,
 				4C5E96031FE8E23500826075 /* UMAnalytics */,
@@ -1426,6 +1443,9 @@
 		1F52E37F1ED58BCF00C678C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C9C2636204E65B300C2118C /* libresolv.tbd */,
+				4C9C2634204E658500C2118C /* UserNotifications.framework */,
+				4C9C2632204E650A00C2118C /* CoreFoundation.framework */,
 				1F86DE901F5A927200F9EFA7 /* CoreMotion.framework */,
 				1F86DE8E1F5A924A00F9EFA7 /* Foundation.framework */,
 				1F86DE8C1F5A920A00F9EFA7 /* CoreText.framework */,
@@ -2849,6 +2869,16 @@
 			path = EditIntroVC;
 			sourceTree = "<group>";
 		};
+		4C9C262C204E629800C2118C /* JPush3.0.8 */ = {
+			isa = PBXGroup;
+			children = (
+				4C9C262D204E629800C2118C /* jcore-ios-1.1.7.a */,
+				4C9C262E204E629800C2118C /* jpush-ios-3.0.8.a */,
+				4C9C262F204E629800C2118C /* JPUSHService.h */,
+			);
+			path = JPush3.0.8;
+			sourceTree = "<group>";
+		};
 		4CA5CD75200C9B840043F58A /* MyFansVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -3599,6 +3629,7 @@
 					"$(PROJECT_DIR)/RentShe/Core/RongCloud2.8.0",
 					"$(PROJECT_DIR)/RentShe/Core/WXPay",
 					"$(PROJECT_DIR)/RentShe/Core/Utilities/UMAnalytics",
+					"$(PROJECT_DIR)/RentShe/Core/JPush3.0.8",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rentshe.ios;
@@ -3645,6 +3676,7 @@
 					"$(PROJECT_DIR)/RentShe/Core/RongCloud2.8.0",
 					"$(PROJECT_DIR)/RentShe/Core/WXPay",
 					"$(PROJECT_DIR)/RentShe/Core/Utilities/UMAnalytics",
+					"$(PROJECT_DIR)/RentShe/Core/JPush3.0.8",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rentshe.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";

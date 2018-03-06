@@ -23,7 +23,19 @@
 #import "AppDelegate+RongCloud.h"
 #import "IQKeyboardManager.h"
 
-@interface AppDelegate ()<RCIMUserInfoDataSource,RCIMReceiveMessageDelegate>
+#import "JPUSHService.h"
+
+// iOS10注册APNs所需头文件
+
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+
+#import <UserNotifications/UserNotifications.h>
+
+#endif
+
+
+
+@interface AppDelegate ()<RCIMUserInfoDataSource,RCIMReceiveMessageDelegate,JPUSHRegisterDelegate>
 
 @end
 
@@ -57,6 +69,22 @@
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:kWeCaht_APPID appSecret:kWeCaht_Secret redirectURL:nil];
     //QQ注册
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:kQQ_APPID appSecret:nil redirectURL:nil];
+    
+    //极光注册
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        // 可以添加自定义categories
+        // NSSet<UNNotificationCategory *> *categories for iOS10 or later
+        // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
+    }
+    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    [JPUSHService setupWithOption:launchOptions appKey:kCommonConfig.jPushAppKey
+                          channel:@"App Store"
+                 apsForProduction:kCommonConfig.isProduction
+            advertisingIdentifier:nil];
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
     
     //融云
     [[RCIM sharedRCIM] initWithAppKey:kCommonConfig.rongCAppKey];
@@ -159,10 +187,55 @@
      withString:@""];
     
     [[RCIMClient sharedRCIMClient] setDeviceToken:token];
+    // Required - 注册 DeviceToken
+    [JPUSHService registerDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"1110   %@",userInfo);
+}
+
+#pragma mark -
+#pragma mark - JPUSHRegisterDelegate
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+    // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+}
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler();  // 系统要求执行这个方法
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    // Required, iOS 7 Support
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)networkDidReceiveMessage:(NSNotification *)notification {
+    NSDictionary * userInfo = [notification userInfo];
+    NSString *content = [userInfo valueForKey:@"content"];
+    NSDictionary *extras = [userInfo valueForKey:@"extras"];
+    NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //服务端传递的Extras附加字段，key是自己定义的
+    NSLog(@"!!!!@@@ %@",userInfo);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"0.0" message:content preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }]];
+    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark -
@@ -172,6 +245,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setBadageNum) name:kUnreadMessageIsChange object:nil]; 
     if ([UserDefaultsManager getToken].length)
     {
+        [JPUSHService setAlias:[UserDefaultsManager getUserId] completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+            
+        } seq:1];
         [[RCIM sharedRCIM] connectWithToken:[UserDefaultsManager getRYToken] success:^(NSString *userId) {
             NSLog(@"RongYun is Login !!!");
             [RCIM sharedRCIM].userInfoDataSource = self;
@@ -184,6 +260,12 @@
         } tokenIncorrect:^{
             
         }];
+    }
+    else
+    {
+        [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+            
+        } seq:0];
     }
 }
 
