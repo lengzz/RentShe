@@ -7,6 +7,7 @@
 //
 
 #import "DisFocusCell.h"
+#import "DisFocusM.h"
 #define kDisFocusCell @"disFocusCellIdentifier"
 @interface DisFocusCell ()
 {
@@ -47,7 +48,7 @@
 - (void)createCell
 {
     self.contentView.backgroundColor = [UIColor whiteColor];
-    
+   
     UIImageView *headImg = [[UIImageView alloc] init];
     headImg.layer.masksToBounds = YES;
     headImg.layer.cornerRadius = 17.0;
@@ -187,12 +188,21 @@
         make.top.equalTo(praiseBtn.mas_bottom).offset(10);
         make.height.equalTo(@5);
     }];
+
 }
 
 - (void)refreshCell:(id)obj
 {
-    NSArray *imgArr = @[@"http://img3.duitang.com/uploads/item/201609/18/20160918000527_GZfkP.thumb.224_0.jpeg",@"http://www.qqzi.net/uploads/allimg/160324/021410I11-0-lp.jpg",@"http://img.bitscn.com/upimg/allimg/c160120/1453262W253120-12J05.jpg",@"http://v1.qzone.cc/avatar/201508/24/10/45/55da854d208b0119.jpg%21200x200.jpg"];
-    NSInteger i = arc4random()%4;
+    if ([obj isKindOfClass:[DisFocusM class]]) {
+        DisFocusM *m = (DisFocusM *)obj;
+        [_headImg sd_setImageWithUrlStr:m.avatar];
+        [_coverImg sd_setImageWithUrlStr:m.video_cover];
+        _nameLab.text = m.nickname;
+        _timeLab.text = @"2018-03-09 15:45";
+        _distanceLab.text = @"150 km";
+        _watchLab.text = [NSString stringWithFormat:@"%@ 观看",m.visitors_num];
+        _contentLab.text = @"sdjfoasjgo adofjo ajdogfjso ofsgaf";
+    }
         
 }
 @end

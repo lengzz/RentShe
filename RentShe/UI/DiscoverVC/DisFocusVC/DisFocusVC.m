@@ -8,6 +8,7 @@
 
 #import "DisFocusVC.h"
 #import "DisFocusCell.h"
+#import "DisFocusM.h"
 
 @interface DisFocusVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -34,6 +35,7 @@
         _myTabV.backgroundColor = kRGB_Value(0xf2f2f2);
         _myTabV.delegate = self;
         _myTabV.dataSource = self;
+        _myTabV.estimatedRowHeight = 100;
         _myTabV.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:_myTabV];
     }
@@ -59,61 +61,59 @@
 - (void) requestNewData
 {
     _index = 1;
-//    NSDictionary *params = @{
-//                             @"city_code":[UserDefaultsManager getCurCityCode],
-//                             @"page":@(_index),
-//                             @"gender":@(_femaleBtn.selected)
-//                             };
-//    [NetAPIManager nearbyPeople:params callBack:^(BOOL success, id object) {
-//        [self.myTabV.mj_header endRefreshing];
-//        if (success) {
-//            NSArray *arr = object[@"data"];
-//            if ([arr isKindOfClass:[NSArray class]])
-//            {
-//                [self.myTabV.mj_footer resetNoMoreData];
-//                [self.dataArr removeAllObjects];
-//                for (id obj in arr) {
-//                    NearbyM *model = [NearbyM new];
-//                    [model setValuesForKeysWithDictionary:obj];
-//                    [self.dataArr addObject:model];
-//                }
-//                [self.myTabV reloadData];
-//            }
-//        }
-//    }];
+    NSDictionary *params = @{
+                             @"type":@"home",
+                             @"page":@(_index)
+                             };
+    [NetAPIManager shortVideoList:params callBack:^(BOOL success, id object) {
+        [self.myTabV.mj_header endRefreshing];
+        if (success) {
+            NSArray *arr = object[@"data"];
+            if ([arr isKindOfClass:[NSArray class]])
+            {
+                [self.myTabV.mj_footer resetNoMoreData];
+                [self.dataArr removeAllObjects];
+                for (id obj in arr) {
+                    DisFocusM *model = [DisFocusM new];
+                    [model setValuesForKeysWithDictionary:obj];
+                    [self.dataArr addObject:model];
+                }
+                [self.myTabV reloadData];
+            }
+        }
+    }];
 }
 
 - (void) requestMoreData
 {
     _index ++;
-//    NSDictionary *params = @{
-//                             @"city_code":[UserDefaultsManager getCurCityCode],
-//                             @"page":@(_index),
-//                             @"gender":@(_femaleBtn.selected)
-//                             };
-//    [NetAPIManager nearbyPeople:params callBack:^(BOOL success, id object) {
-//        [self.myTabV.mj_footer endRefreshing];
-//        if (success)
-//        {
-//            NSArray *arr = object[@"data"];
-//            if ([arr isKindOfClass:[NSArray class]])
-//            {
-//                if (!arr.count) {
-//                    [self.myTabV.mj_footer endRefreshingWithNoMoreData];
-//                }
-//                for (id obj in arr) {
-//                    NearbyM *model = [NearbyM new];
-//                    [model setValuesForKeysWithDictionary:obj];
-//                    [self.dataArr addObject:model];
-//                }
-//                [self.myTabV reloadData];
-//            }
-//        }
-//        else
-//        {
-//            [self.myTabV.mj_footer endRefreshingWithNoMoreData];
-//        }
-//    }];
+    NSDictionary *params = @{
+                             @"type":@"home",
+                             @"page":@(_index)
+                             };
+    [NetAPIManager shortVideoList:params callBack:^(BOOL success, id object) {
+        [self.myTabV.mj_footer endRefreshing];
+        if (success)
+        {
+            NSArray *arr = object[@"data"];
+            if ([arr isKindOfClass:[NSArray class]])
+            {
+                if (!arr.count) {
+                    [self.myTabV.mj_footer endRefreshingWithNoMoreData];
+                }
+                for (id obj in arr) {
+                    DisFocusM *model = [DisFocusM new];
+                    [model setValuesForKeysWithDictionary:obj];
+                    [self.dataArr addObject:model];
+                }
+                [self.myTabV reloadData];
+            }
+        }
+        else
+        {
+            [self.myTabV.mj_footer endRefreshingWithNoMoreData];
+        }
+    }];
 }
 
 #pragma mark -
@@ -146,11 +146,6 @@
     }
     [cell refreshCell:self.dataArr[indexPath.row]];
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 90;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

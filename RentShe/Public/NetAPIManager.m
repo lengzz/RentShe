@@ -703,4 +703,44 @@
         callBack(NO,nil);
     }];
 }
+
+#pragma mark -
+#pragma mark - 获取腾讯短视频签名
++ (void)getShortVideoKey:(id)params callBack:(HttpCallBackWithObject)callBack
+{
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Com/shortVideoKey",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *dic = nil;
+        BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
+        callBack(status,dic);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callBack(NO,nil);
+    }];
+}
+
+#pragma mark -
+#pragma mark - 短视频动态上传
++ (void)shortVideoStatus:(id)params callBack:(HttpCallBackWithObject)callBack
+{
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Com/postStatus",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *dic = nil;
+        BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
+        callBack(status,dic);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callBack(NO,nil);
+    }];
+}
+
+#pragma mark -
+#pragma mark - 短视频列表
++ (void)shortVideoList:(id)params callBack:(HttpCallBackWithObject)callBack
+{
+    [[NetAPIManager manager] POST:[NSString stringWithFormat:@"%@/Com/videoList",kCommonConfig.apiHostUrl] parameters:[self configParams:params] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *dic = nil;
+        BOOL status = [NetAPIManager analyzeRetrunData:responseObject withTask:task andResult:&dic];
+        callBack(status,dic);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callBack(NO,nil);
+    }];
+}
+
 @end

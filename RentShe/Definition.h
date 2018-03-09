@@ -77,6 +77,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
 #define kWindowWidth                ([[UIScreen mainScreen] bounds].size.width)
 #define kWindowHeight               ([[UIScreen mainScreen] bounds].size.height)
+#define kScaleX [UIScreen mainScreen].bounds.size.width / 375
+#define kScaleY [UIScreen mainScreen].bounds.size.height / 667
 
 #define kNavBarHeight               (44 + CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]))
 #define kStatusBarHeight            (CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]))

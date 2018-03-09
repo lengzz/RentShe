@@ -14,6 +14,7 @@
 #import "ConversationVC.h"
 #import "MineVC.h"
 #import "UITabBar+Custom.h"
+#import "RecordVideoVC.h"
 
 @interface RootTabbarVC ()
 
@@ -68,7 +69,9 @@
 
 - (void)videoClick
 {
-    NSLog(@"110110");
+    RecordVideoVC *vc = [[RecordVideoVC alloc] init];
+    CustomNavVC *navVC = [[CustomNavVC alloc] initWithRootViewController:vc];
+    [self presentViewController:navVC animated:YES completion:nil];
 }
 
 @end

@@ -22,4 +22,5 @@
 @property (nonatomic, assign) CGFloat left;
 @property (nonatomic, assign) CGFloat right;
 
+- (UIImage*)toImage;
 @end

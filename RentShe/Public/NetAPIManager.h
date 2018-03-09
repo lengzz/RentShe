@@ -198,4 +198,17 @@ typedef void (^HttpCallBackWithObject)(BOOL success,id object);
 #pragma mark -
 #pragma mark - 我的余额
 + (void)myWallet:(HttpCallBackWithObject)callBack;
+
+#pragma mark -
+#pragma mark - 获取腾讯短视频签名
++ (void)getShortVideoKey:(id)params callBack:(HttpCallBackWithObject)callBack;
+
+#pragma mark -
+#pragma mark - 短视频动态上传
++ (void)shortVideoStatus:(id)params callBack:(HttpCallBackWithObject)callBack;
+
+#pragma mark -
+#pragma mark - 短视频列表
++ (void)shortVideoList:(id)params callBack:(HttpCallBackWithObject)callBack;
+
 @end

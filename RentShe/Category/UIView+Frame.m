@@ -134,5 +134,17 @@
     return self.frame.origin.x + self.frame.size.width;
 }
 
+- (UIImage*)toImage
+{
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0.0);
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [self.layer renderInContext:ctx];
+    UIImage* tImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return tImage;
+}
 @end
 

@@ -9,6 +9,11 @@
 #ifndef Prefix_pch
 #define Prefix_pch
 
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
 #pragma mark -
 #pragma mark - 类别
 
@@ -59,5 +64,7 @@
 #import "RentSkillM.h"
 
 #import "RentInfoM.h"
+
+#endif
 
 #endif /* Prefix_pch */
